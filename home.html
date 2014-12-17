@@ -1,0 +1,130 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Runkeeper Website Template | About :: w3layouts</title>
+		<link href="web/css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="web/images/fav-icon.png" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		</script>
+		<!--start-login-script-->
+		<script type="text/javascript" src="web/js/jquery.min.js"></script>
+		<script src="web/js/login.js"></script>
+		<!--End-login-script-->
+		<!-- Parse -->
+	    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+		<!--768px-menu-->
+		<link type="text/css" rel="stylesheet" href="web/css/jquery.mmenu.all.css" />
+		<script type="text/javascript" src="web/js/jquery.mmenu.js"></script>
+			<script type="text/javascript">
+				//	The menu on the left
+				$(function() {
+					$('nav#menu-left').mmenu();
+				});
+		</script>
+		<script>
+		$(document).ready(function(){
+			Parse.initialize("ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso", "nwbeFPq6tz314WF0FaG2LrvkZ6PvJSJGgOwusG1e");
+			var currentUser = Parse.User.current();
+			if (currentUser) {
+			    // do stuff with the user
+				$("#usernamePlaceholder").text(currentUser.get("username"));
+			} else {
+			    // show the signup or login page
+				window.location.href = 'index.html';
+			}
+		});
+		</script>
+		
+		<style>
+		
+			.contactList{
+				float:right;
+				clear: right;
+				display:block;
+				background: #ff0000;
+				width: 20%;
+			}
+		
+		 	.moduleList{
+		 		float:right;
+				clear: right;
+				display:block;
+				background: #00ffff;
+				width: 20%;
+		 	}
+		 
+		</style>
+		
+	</head>
+	<body>
+		<!---start-wrap---->
+		<!------start-768px-menu---->
+			<div id="page">
+					<div id="header">
+						<a class="navicon" href="#menu-left"> </a>
+					</div>
+					<nav id="menu-left">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="features.html">Features</a></li>
+							<div class="clear"> </div>
+						</ul>
+					</nav>
+			</div>
+		<!------start-768px-menu---->
+			<!---start-header---->
+			<div class="header">
+				<div class="wrap">
+				<div class="header-left">
+					<div class="logo">
+						<a href="index.html">Runkeeper</a>
+					</div>
+				</div>
+				<div class="header-right">
+					<div class="top-nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="features.html">Features</a></li>
+					</ul>
+				</div>
+
+				<div class="clear"> </div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			</div>
+			<!-- End-header -->
+			<!-- End-banner -->
+			<!-- start-content -->
+			<div class="content">
+					
+				<div class="contactList">
+					Beatrice <br />
+					Pierre <br />
+					Tony <br />
+				</div>
+				
+				<div class="moduleList">
+					Database Systems <br />
+					Computing Fundamentals <br />
+					Programming 2 <br />
+				</div>
+					
+				Hello, <div id="usernamePlaceholder"> </div>
+			</div>
+			<!----//End-content--->
+		<!---//End-wrap---->
+	</body>
+</html>
+
+
+
