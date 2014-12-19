@@ -9,7 +9,7 @@
 	$currentUser = $_SESSION["currentUser"];
 	if (isset($_SESSION["currentUser"])) {
 	    // Its all good!
-	} 
+	}
 	else {
 	    // show the signup or login page
 		header("Location: error.php?msg=Wrong%20credentials%20maybe");
@@ -18,7 +18,15 @@
 	//Get users modules
 	use Parse\ParseRelation;
 	$moduleRelation = $currentUser->getRelation("modules");
-	$modules = $moduleRelation->getQuery()->find(); // gets an array of Module PFObjects
+	$query = $moduleRelation->getQuery();
+	$query->className = "Module";
+	$modules = $query->find(); // gets an array of Module PFObjects
+	
+	// Get users activities
+	$activityRelation = $currentUser->getRelation("activities");
+	$query = $activityRelation->getQuery();
+	$query->className = "Activity";
+	$activities = $query->find(); // gets an array of Activity PFObjects
 
 ?>
 		
@@ -37,7 +45,7 @@
 				width: 20%;
 				border: 2px solid #a1a1a1;
 				padding: 10px 20px;
-				border-radius: 25px;
+				border-radius: 15px;
 			}
 		
 		 	.moduleList{
@@ -48,12 +56,44 @@
 				width: 20%;
 				border: 2px solid #a1a1a1;
 				padding: 10px 20px;
-				border-radius: 25px;
+				border-radius: 15px;
 		 	}
+			
+			.mainBody{
+				float:left;
+				clear:left;
+				display:block;
+				width: 80%;
+			}
 		</style>
 	</head>
 	
 	<body>
+		<?php include 'appHeader.php';?>
+		
+		<div class="mainBody">
+			<?php echo "Welcome " . $currentUser->get("username") . "! <br />" ?>
+			<hr>
+			
+			<?php
+				for ($i = 0; $i < count($activities); $i++) { 
+			  	  $object = $activities[$i];
+			  	  echo "  " . $object->get("activityMessage") . "<hr />";
+				}
+				for ($i = 0; $i < count($activities); $i++) { 
+			  	  $object = $activities[$i];
+			  	  echo "  " . $object->get("activityMessage") . "<hr />";
+				}
+				for ($i = 0; $i < count($activities); $i++) { 
+			  	  $object = $activities[$i];
+			  	  echo "  " . $object->get("activityMessage") . "<hr />";
+				}
+				for ($i = 0; $i < count($activities); $i++) { 
+			  	  $object = $activities[$i];
+			  	  echo "  " . $object->get("activityMessage") . "<hr />";
+				}
+			?>
+		</div>
 		
 		<div class="contactList">
 			<?php
@@ -73,8 +113,5 @@
 			?>
 		</div>
 		
-		<?php echo "Welcome " . $currentUser->get("username") . "!" ?>
-			
-		Hello, <div id="usernamePlaceholder"> </div>
 	</body>
 </html>

@@ -7,9 +7,7 @@
 	use Parse\ParseQuery;
 	$query = new ParseQuery("Module");
 	$results = $query->find();
-	echo "Successfully retrieved " . count($results) . " scores.";
 	session_start();
-	echo $_SESSION["username"];
 
 ?>
 
@@ -94,45 +92,72 @@
 		 }
 
 		</script>
+		 
+		 <style>
+		 	#headingContainer{
+		 		margin-left:30%;
+				margin-right:30%;
+				padding-top:1em;
+		 	}
+			
+		 	#buttons{
+		 		float:right;
+				margin-top:15px;
+				margin-bottom:15px;
+				margin-left:35px;
+				margin-right:5px;
+		 	}
+		 </style>
 	</head>
 	
-	<body style="margin-left:30%; margin-right:30%">
+	<body>
+		<div id="headingContainer">
+			<h3 style="color:#468cc8; font-size:1.8em;"> Select the modules you are taking or are interested in </h3><br />
+		</div>
 		
-		<table class="pure-table">
-		    <thead>
-		        <tr>
-		            <th>Module Code</th>
-		            <th>Module Name</th>
-		            <th>Module Organizer</th>
-					<th></th>
-		        </tr>
-		    </thead>
+		<div id="tableAndBtnContainer" style="margin-left:30%; margin-right:30%">
+			<table class="pure-table">
+			    <thead>
+			        <tr>
+			            <th>Module Code</th>
+			            <th>Module Name</th>
+			            <th>Module Organizer</th>
+						<th></th>
+			        </tr>
+			    </thead>
 
-		    <tbody>
-				<?php
-					for ($i = 0; $i < count($results); $i++) { 
-				 	   $object = $results[$i];
+			    <tbody>
+					<?php
+						for ($i = 0; $i < count($results); $i++) { 
+					 	   $object = $results[$i];
 					   
-					   if($i % 2 != 0){
-				?>
-				<tr class="pure-table-odd">
-				<?php
-						}
-						else{
-				?>
-				<tr>
-				<?php
-						}
-				?>
-		            <td><?php echo $object->get("moduleCode")?></td>
-		            <td><?php echo $object->get("moduleName")?></td>
-					<td><?php echo $object->get("moduleOrganizer")?></td>
-					<td><?php echo "<input type=\"checkbox\" onclick=\"clicked(".$i.",'".$object->get("moduleCode")."')\" id=\"".$i."\">"; ?></td>
-		        </tr>
+						   if($i % 2 != 0){
+					?>
+					<tr class="pure-table-odd">
+					<?php
+							}
+							else{
+					?>
+					<tr>
+					<?php
+							}
+					?>
+			            <td><?php echo $object->get("moduleCode")?></td>
+			            <td><?php echo $object->get("moduleName")?></td>
+						<td><?php echo $object->get("moduleOrganizer")?></td>
+						<td><?php echo "<input type=\"checkbox\" onclick=\"clicked(".$i.",'".$object->get("moduleCode")."')\" id=\"".$i."\">"; ?></td>
+			        </tr>
 
-				<?php } ?>
-		    </tbody>
-		</table>
+					<?php } ?>
+			    </tbody>
+			</table>
+		
+			<div id="buttons">
+				<a class="btn btn-default" href="home.php" role="button">Skip</a>
+				<a class="btn btn-primary" href="home.php" role="button">Confirm Selections</a>
+			</div>
+		</div>
+			
 	</body>
 </html>
 

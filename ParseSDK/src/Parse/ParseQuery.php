@@ -14,7 +14,7 @@ class ParseQuery
   /**
    * @var - Class Name for data stored on Parse.
    */
-  private $className;
+  public $className;
   /**
    * @var array - Where constraints.
    */
@@ -303,6 +303,8 @@ class ParseQuery
     $result = ParseClient::_request('GET',
         '/1/classes/' . $this->className .
         '?' . $queryString, $sessionToken, null, $useMasterKey);
+	// echo "<script type=\"text/javascript\">alert(\"" . "/1/classes/" . $this->className .
+//         "?" . $queryString . "\");</script>";
     $output = array();
     foreach ($result['results'] as $row) {
       $obj = ParseObject::create($this->className, $row['objectId']);

@@ -1,4 +1,23 @@
 <?php
+	function destroySession(){
+		// Unset all of the session variables.
+		$_SESSION = array();
+
+		// If it's desired to kill the session, also delete the session cookie.
+		// Note: This will destroy the session, and not just the session data!
+		if (ini_get("session.use_cookies")) {
+		    $params = session_get_cookie_params();
+		    setcookie(session_name(), '', time() - 42000,
+		        $params["path"], $params["domain"],
+		        $params["secure"], $params["httponly"]
+		    );
+		}
+
+		// Finally, destroy the session.
+		session_destroy();
+	}
+	//destroySession();
+	
 	$username = $_POST["username_SignUp"];
 	$password = $_POST["password_SignUp"];
 	$email = $_POST["email_SignUp"];
@@ -14,10 +33,10 @@
 	$user->set("password", $password);
 	$user->set("email", $email);
 	
-	use Parse\ParseSessionStorage;
+	//use Parse\ParseSessionStorage;
 	// set session storage
 	session_start();
-	ParseClient::setStorage( new ParseSessionStorage() );
+	//ParseClient::setStorage( new ParseSessionStorage() );
  
 	try {
 	  $user->signUp();
@@ -32,6 +51,6 @@
 	
 	// Redirect to the results page without the user ever knowing this page was navigated to
 	header("Location: moduleSelect.php");
-
-
 ?>	  
+
+
