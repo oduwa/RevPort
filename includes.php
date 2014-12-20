@@ -6,7 +6,7 @@
 		<link href="web/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Bootstrap core JS -->
 		<script src="web/bootstrap/js/bootstrap.min.js"></script>
-		<link href="web/css/style.css" rel='stylesheet' type='text/css' />
+		<link href="web/css/styleV2.css" rel='stylesheet' type='text/css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="web/images/fav-icon.png" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>

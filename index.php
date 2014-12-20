@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<head>
 		<title>Runkeeper Website Template | Home :: w3layouts</title>
 		<?php include 'includes.php';?>
+		<link href="web/css/style.css" rel='stylesheet' type='text/css' />
 		<!--768px-menu-->
 	</head>
 	<body>

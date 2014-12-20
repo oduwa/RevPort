@@ -72,7 +72,7 @@
 		<?php include 'appHeader.php';?>
 		
 		<div class="mainBody">
-			<?php echo "Welcome " . $currentUser->get("username") . "! <br />" ?>
+
 			<hr>
 			
 			<?php
@@ -112,6 +112,40 @@
 				}
 			?>
 		</div>
+		
+		<div class="dropdown">
+		<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		    Action <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		    <li><a href="#">Action</a></li>
+		    <li><a href="#">Another action</a></li>
+		    <li><a href="#">Something else here</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#">Separated link</a></li>
+		  </ul>
+	  </div>
+	  
+  		<div class="dropdown">
+  		<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+  		    Jimmy <span class="caret"></span>
+  		  </button>
+  		  <ul class="dropdown-menu" role="menu">
+  		    <li><a href="#">Profile</a></li>
+  		    <li><a href="#">Log Out</a></li>
+  		  </ul>
+  	  	</div>
+		
+  		<div class="dropdown">
+  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
+  		    Jimmy Link <span class="caret"></span>
+  		  </a>
+  		  <ul class="dropdown-menu" role="menu">
+  		    <li><a href="#">Profile</a></li>
+  		    <li><a href="#">Log Out</a></li>
+  		  </ul>
+  	  	</div>
+		
 		
 	</body>
 </html>
