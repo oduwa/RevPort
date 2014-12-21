@@ -21,6 +21,7 @@
 	$query = $moduleRelation->getQuery();
 	$query->className = "Module";
 	$modules = $query->find(); // gets an array of Module PFObjects
+	$_SESSION["modules"] = $modules;
 	
 	// Get users activities
 	$activityRelation = $currentUser->getRelation("activities");

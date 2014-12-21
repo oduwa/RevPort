@@ -33,7 +33,7 @@
 				<div class="header-right">
 					<div class="top-nav" style="float:right;">
 						<ul>
-							<li class="navListItem"><a class="navLink" href="about.html" style="padding: 0.3em 1.8em;">Modules</a></li>
+							<li class="navListItem"><a class="navLink" href="moduleList.php" style="padding: 0.3em 1.8em;">Tests</a></li>
 							<li class="navListItem"><a class="navLink" href="about.html" style="padding: 0.3em 1.8em;">Board</a></li>
 							<li class="dropdown" style="display:inline-block;">
 						  		<button type="button" class="btn btn-link dropdown-toggle navButton" data-toggle="dropdown" aria-expanded="true" id="dropdownMenu2" 
