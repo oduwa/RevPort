@@ -41,6 +41,7 @@
 			.moduleCode{
 					padding: 3px;
 					margin: 0 0 8em;
+					margin-left: 8px;
 				    font-size: 22px;
 				    //line-height: 1.3;
 					font-weight: 600;
@@ -49,6 +50,7 @@
 			
 			.moduleName{
 					padding: 3px;
+					margin-left: 8px;
 				    font-style: normal;
 				    font-weight: bold;
 				    border-radius: 3px;
@@ -57,6 +59,7 @@
 			
 			.moduleOrganizer{
 					padding: 3px;
+					margin-left: 8px;
 					display: block;
 				    margin-top: 1px;
 				    margin-bottom: 0;

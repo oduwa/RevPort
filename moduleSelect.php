@@ -7,6 +7,11 @@
 	use Parse\ParseQuery;
 	$query = new ParseQuery("Module");
 	$results = $query->find();
+	
+	$signupIsHappening = true;
+	if(isset($_GET["signupIsHappening"])){
+		$signupIsHappening = false;
+	}
 	session_start();
 
 ?>
@@ -46,6 +51,7 @@
 		}
 		
 		function myAjax(code, checked) {
+			// NOT USED
 		      $.ajax({
 		           type: "POST",
 		           url: 'addModuleFunction.php',
@@ -153,7 +159,11 @@
 			</table>
 		
 			<div id="buttons">
-				<a class="btn btn-default" href="home.php" role="button">Skip</a>
+				<?php
+					if($signupIsHappening){
+						echo "<a class=\"btn btn-default\" href=\"home.php\" role=\"button\">Skip</a>";
+					}
+				?>
 				<a class="btn btn-primary" href="home.php" role="button">Confirm Selections</a>
 			</div>
 		</div>

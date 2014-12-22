@@ -142,7 +142,7 @@
 					<tr class="active">
 						<th>
 							<a href="moduleList.php" class="tableHeader">Modules</a>
-							<a class="glyphLink" href="about.html" style="float:right;">
+							<a class="glyphLink" href="editModules.php" style="float:right;">
 								<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
 							</a>
 						</th>
