@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Runkeeper Website Template | Home :: w3layouts</title>
+		<title>UEA Revision Portal</title>
 		<?php include 'includes.php';?>
 		<link href="web/css/style.css" rel='stylesheet' type='text/css' />
 		<!--768px-menu-->

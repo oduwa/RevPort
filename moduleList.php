@@ -84,11 +84,17 @@
 			for ($i = 0; $i < count($modules); $i++) { 
 		  	  $object = $modules[$i];
 
+			  // get the tests for this module
+			  $testRelation = $object->getRelation("tests");
+			  $query = $testRelation->getQuery();
+			  $query->className = "Test";
+			  $tests = $query->find();
+			  
 			  echo "<span class=\"moduleMeta\">
-				  <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\" style=\"margin-right:6px;\"></span>5
-			       </span>
+				  <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\" style=\"margin-right:6px;\"></span>" . count($tests) .
+			       "</span>
 			  <br />";
-		  	  echo "<a href=\"#\"><span class=\"moduleCode\">" . $object->get("moduleCode") . "</span></a><br />";
+		  	  echo "<a href=\"testList.php?index=" .$i. "\"><span class=\"moduleCode\">" . $object->get("moduleCode") . "</span></a><br />";
 			  echo "<span class=\"moduleName\">" . $object->get("moduleName") . "</span><br />";
 			  echo "<span class=\"moduleOrganizer\">" . $object->get("moduleOrganizer") . "</span><br />";
 			  echo "<hr />";

@@ -42,29 +42,48 @@
 				float:right;
 				clear: right;
 				display:block;
-				background: #ff0000;
-				width: 20%;
-				border: 2px solid #a1a1a1;
-				padding: 10px 20px;
-				border-radius: 15px;
+				width: 22%;
+				//border: 1px solid #a1a1a1;
+				padding: 10px 10px;
+				//border-radius: 15px;
 			}
 		
 		 	.moduleList{
 		 		float:right;
 				clear: right;
 				display:block;
-				background: #00ffff;
-				width: 20%;
-				border: 2px solid #a1a1a1;
-				padding: 10px 20px;
-				border-radius: 15px;
+				width: 22%;
+				//border: 2px solid #a1a1a1;
+				padding: 10px 10px;
+				//border-radius: 15px;
 		 	}
 			
 			.mainBody{
 				float:left;
 				clear:left;
 				display:block;
-				width: 80%;
+				width: 78%;
+				padding-left:10px;
+				padding-right:10px;
+			}
+			
+			.tableHeader{
+			    font-size: 16px;
+				font-weight: 900;
+				color:#000;
+				line-height: 17px;
+			}
+			
+			a:hover{
+				color:#E95393;
+			}
+			
+			a.glyphLink, a.tableHeader {
+				color:#000;
+			}
+
+			a.glyphLink:hover {
+				color:#0ff;
 			}
 		</style>
 	</head>
@@ -97,55 +116,48 @@
 		</div>
 		
 		<div class="contactList">
-			<?php
-				for ($i = 0; $i < count($modules); $i++) { 
-			  	  $object = $modules[$i];
-			  	  echo $object->get("moduleOrganizer") . "<br />";
-				}
-			?>
+			<div class="panel panel-default" style="border-radius:5px;">
+				<table class="table table-bordered">
+					<tr class="active">
+						<th>
+							<a href="#" class="tableHeader">Contacts</a>
+							<a class="glyphLink" href="about.html" style="float:right;">
+								<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
+							</a>
+						</th>
+					</tr>
+					<?php
+						for ($i = 0; $i < count($modules); $i++) { 
+					  	  $object = $modules[$i];
+					  	  echo "<tr><td><a href=\"#\">" . $object->get("moduleOrganizer") . "</a></td></tr>";
+						}
+					?>
+				</table>
+			</div>
 		</div>
 		
 		<div class="moduleList">
-			<?php
-				for ($i = 0; $i < count($modules); $i++) { 
-			  	  $object = $modules[$i];
-			  	  echo $object->get("moduleName") . "<br />";
-				}
-			?>
+			<div class="panel panel-default" style="border-radius:5px;">
+				<table class="table table-bordered">
+					<tr class="active">
+						<th>
+							<a href="moduleList.php" class="tableHeader">Modules</a>
+							<a class="glyphLink" href="about.html" style="float:right;">
+								<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
+							</a>
+						</th>
+					</tr>
+					<?php
+						for ($i = 0; $i < count($modules); $i++) { 
+					  	  $object = $modules[$i];
+					  	  echo "<tr><td><a href=\"testList.php?index=" . $i . "\">" . $object->get("moduleName") . "</a></td></tr>";
+						}
+					?>
+				</table>
+			</div>
 		</div>
 		
-		<div class="dropdown">
-		<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		    Action <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu">
-		    <li><a href="#">Action</a></li>
-		    <li><a href="#">Another action</a></li>
-		    <li><a href="#">Something else here</a></li>
-		    <li class="divider"></li>
-		    <li><a href="#">Separated link</a></li>
-		  </ul>
-	  </div>
-	  
-  		<div class="dropdown">
-  		<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-  		    Jimmy <span class="caret"></span>
-  		  </button>
-  		  <ul class="dropdown-menu" role="menu">
-  		    <li><a href="#">Profile</a></li>
-  		    <li><a href="#">Log Out</a></li>
-  		  </ul>
-  	  	</div>
 		
-  		<div class="dropdown">
-  		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true">
-  		    Jimmy Link <span class="caret"></span>
-  		  </a>
-  		  <ul class="dropdown-menu" role="menu">
-  		    <li><a href="#">Profile</a></li>
-  		    <li><a href="#">Log Out</a></li>
-  		  </ul>
-  	  	</div>
 		
 		
 	</body>

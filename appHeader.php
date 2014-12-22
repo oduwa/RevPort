@@ -53,7 +53,7 @@
 						  		  </ul>
 							</li>
 							<li class="navListItem">
-								<a href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em;color:#fff;"></span></a>
+								<a class="glyphiconLink" href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em;"></span></a>
 							</li>
 						</ul>
 					</div>
