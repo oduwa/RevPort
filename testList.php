@@ -19,6 +19,9 @@ $query = $testRelation->getQuery();
 $query->className = "Test";
 $tests = $query->find();
 
+// Cache retrieved tests in session
+$_SESSION["tests"] = $tests;
+
 
 
 
@@ -81,6 +84,20 @@ $tests = $query->find();
 				background-color: #ffefc6;
 				border-radius: 3px;
 			}
+			
+			.practiceLabel{
+				display: inline-block;
+				padding: 4px 5px 3px;
+				margin-left: 2px;
+				font-size: 11px;
+				font-weight: 100;
+				line-height: 11px;
+				color: #777;
+				text-transform: uppercase;
+				vertical-align: middle;
+				background-color: #e6e6e6;
+				border-radius: 3px;
+			}
 		</style>
 	</head>
 	
@@ -97,6 +114,10 @@ $tests = $query->find();
 			  $testQuery = new ParseQuery("Test");
 			  $testQuery->equalTo("objectId", $objectId);
 			  $test = $testQuery->find()[0];
+			  
+			  // replace the test in memory with the one whose relation contains questions
+			  $tests[$i] = $test;
+			  
 			  $questionRelation = $test->getRelation("questions");
 			  $query = $questionRelation->getQuery();
 			  $query->className = "Question";
@@ -110,9 +131,12 @@ $tests = $query->find();
 			  echo $testHeader . "<br />";
 			  */
 			  
-			  $testHeader = "<a href=\"#\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";
+			  $testHeader = "<a href=\"test.php?testIndex=" . $i . "&moduleIndex=" . $index . "\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";
 			  if($object->get("gradeable") == true){
-			  	$testHeader = $testHeader . "<span class=\"gradeableLabel\">Graded</span>";
+			  	$testHeader = $testHeader . "<span class=\"gradeableLabel\">Gradeable</span>";
+			  }
+			  else{
+			  	$testHeader = $testHeader . "<span class=\"practiceLabel\">Practice</span>";
 			  }
 			  echo $testHeader . "<br />";
 			  
