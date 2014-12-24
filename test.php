@@ -43,6 +43,7 @@
   	$query->className = "Question";
   	$questions = $query->find();
 	$_SESSION["questions"] = $questions;
+	$_SESSION["theTest"] = $test;
 
 	// Helper functions
 	include "HelperFunctions.php";

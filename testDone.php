@@ -50,6 +50,43 @@
 		$message = "You Scored " . $mark . "%. You can do better!";
 	}
 	
+	// Save users score if not already saved
+	$currentUser = $_SESSION["currentUser"];
+	$test = $_SESSION["theTest"];
+	$test->fetch();
+	$attempters = $test->get("attempters");
+	if(isset($_SESSION["theTest"]) && isset($_SESSION["currentUser"])){
+		// Check if user already took test
+		$alreadyAttempted = false;
+		for($i = 0; $i < count($attempters); $i++){
+			if($attempters[$i] === $currentUser->get("username")){
+				$alreadyAttempted = true;
+				break;
+			}
+		}
+		
+		if(!$alreadyAttempted){
+			// Add as attempted
+			array_push($attempters, $currentUser->get("username"));
+			$test->setArray("attempters", $attempters);
+			$test->save();
+			
+			// save score
+			$score = new ParseObject("Score");
+			$score->set("username", $currentUser->get("username"));
+			$score->set("mark", $mark);
+			$score->save();
+			
+			$relation = $test->getRelation("scores");
+			$relation->add($score);
+			$test->save();
+		}
+	}
+	else{
+		header("Location: error.php?msg=Your%20Score%20Could%20Not%20Be%20Saved");
+	}
+	
+	
 	// Helper functions
 	include "HelperFunctions.php";
 ?>
