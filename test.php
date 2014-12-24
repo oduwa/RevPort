@@ -75,6 +75,12 @@
 			var yourAnswers = [];
 			
 			$(document).ready(function () {
+				// initialize answers array
+				for(var i = 0; i < <?php echo count($questions);?>; i++){
+					yourAnswers[i] = "";
+				}
+				
+				// Set up onclick listeners for each radio button.
 				var radios = $("input[type='radio']");
 				$.each(radios, function(index, value){
 					var id = "#" + value.attributes[2].nodeValue;
@@ -95,16 +101,19 @@
 			}
 			
 			function markAnswers() {
-				// NOT USED
 			      $.ajax({
 			           type: "POST",
 			           url: 'markAnswersFunction.php',
+					   async: false,
 			           data:{answers:yourAnswers},
 			           success:function(html) {
-						 if(html != "You have not answered any question. Attempt the test before submitting."){
-						   window.location.href = "moduleList.php";
+						 if(html == "You have not answered any question. Attempt the test before submitting."){
+						   // do nothing
+						 }
+						 else{
+						 	window.location.href = "testDone.php";
 						 }    
-			             alert(html);
+			             //alert(html);
 			           }
 
 			      });

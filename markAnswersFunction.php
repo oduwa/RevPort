@@ -7,9 +7,14 @@
 	use Parse\ParseRelation;
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg','N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
 	
+	session_start();
+	
 	// Get REQUEST variables
 	if(isset($_POST["answers"])){
 		$usersAnswers = $_POST["answers"];
+		
+		// Save users answers so they can be displayed later
+		$_SESSION["answers"] = $usersAnswers;
 	}
 	else{
 		echo "You have not answered any question. Attempt the test before submitting.";
@@ -17,7 +22,6 @@
 	}
 	
 	// Get questions to be marked
-	session_start();
 	if (isset($_SESSION["questions"])) {
 	    // Its all good!
 		$questions = $_SESSION["questions"];
