@@ -42,7 +42,7 @@
 		     $.ajax({
 		          type: "POST",
 		          url: 'addQuestion.php',
-		 data:{question:$('#question').val(), opt1:$('#opt1').val(), opt2:$('#opt2').val(), opt3:$('#opt3').val(), opt4:$('#opt4').val(), answer:$('#answer').val(), code:$('#modCode').val(), title:$('#testTitle').val()},
+		 data:{question:$('#question').val(), opt1:$('#opt1').val(), opt2:$('#opt2').val(), opt3:$('#opt3').val(), opt4:$('#opt4').val(), answer:$('#answer').val(), code:$('#modCode').val(), title:$('#testTitle').val(), gradeable:$('#gradeable').val()},
 		          success:function(html) {
 		            alert(html);
 		          }
@@ -62,9 +62,12 @@
 			<div style="float:right; clear:right;">
 				Module Code: <input type="text" name="modCode" id="modCode"><br />
 				Test title: <input type="text" name="testTitle" id="testTitle"><br />
+				<select name="gradeable" id="gradeable">
+				  <option value="gradeable">Gradeable</option>
+				  <option value="practice">Practice</option>
+				</select>
 			</div>
-			<button type="button" id="submitButton" data-toggle="modal" data-target="#myModal">X</button>
-			<input type="submit" value="Submit" >
+			<button type="button" id="submitButton" data-toggle="modal" data-target="#myModal">Submit</button>
 			<!-- data-toggle="modal" data-target="#myModal" -->
 		</form>
 		

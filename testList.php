@@ -10,6 +10,7 @@ ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXa
 $index = $_GET["index"];
 
 session_start();
+$currrentUser = $_SESSION["currentUser"];
 $modules = $_SESSION["modules"];
 $module = $modules[$index];
 
@@ -39,6 +40,7 @@ $_SESSION["tests"] = $tests;
 			.testTitle{
 					padding: 3px;
 					margin: 0 0 8em;
+					margin-left: 8px;
 				    font-size: 18px;
 					font-weight: 600;
 					color:#4183c4;
@@ -46,6 +48,7 @@ $_SESSION["tests"] = $tests;
 		
 			.moduleName{
 					padding: 3px;
+					margin-left: 8px;
 				    font-style: normal;
 				    font-weight: bold;
 				    border-radius: 3px;
@@ -54,6 +57,7 @@ $_SESSION["tests"] = $tests;
 		
 			.questionCount{
 					padding: 3px;
+					margin-left: 8px;
 					display: block;
 				    margin-top: 1px;
 				    margin-bottom: 0;
@@ -61,12 +65,13 @@ $_SESSION["tests"] = $tests;
 				    color: #888;
 			}
 		
-			.moduleMeta{
-				margin-top: 6px;
+			.mark{
+				margin-top: 25px;
 				margin-right:20px;
 				float: right;
 				font-size: 12px;
 				font-weight: bold;
+				background-color: #fff;
 				color: #888;
 				clear: right;
 			}
@@ -118,18 +123,30 @@ $_SESSION["tests"] = $tests;
 			  // replace the test in memory with the one whose relation contains questions
 			  $tests[$i] = $test;
 			  
+			  // Get the questions in each test so we can show the count
 			  $questionRelation = $test->getRelation("questions");
 			  $query = $questionRelation->getQuery();
 			  $query->className = "Question";
 			  $questions = $query->find();
 			  
-			  /* UNCOMMENT TO USE STAR TO DENOTE GRADEABLE TEST
-			  $testHeader = "<a href=\"#\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";
-			  if($object->get("gradeable") == true){
-			  	$testHeader = $testHeader . "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\" style=\"margin-left:6px; color:#ffefc6;\"></span>";
+			  // Get the scores for any test attempted
+			  $mark = "";
+			  $attempters = $test->get("attempters");
+			  if(in_array($currrentUser->get("username"), $attempters)){
+				  $scoreRelation = $test->getRelation("scores");
+				  $scoreQuery = $scoreRelation->getQuery();
+				  $scoreQuery->equalTo("username", $currrentUser->get("username"));
+				  $scoreQuery->className = "Score";
+				  $scores = $scoreQuery->find();
+				  if(count($scores) > 0){
+					  $score = $scores[0];
+					  $mark = $score->get("mark");
+				  }
 			  }
-			  echo $testHeader . "<br />";
-			  */
+			  
+			  
+			  
+			  echo "<span class=\"mark\">" . $mark . "%</span><br />";
 			  
 			  $testHeader = "<a href=\"test.php?testIndex=" . $i . "&moduleIndex=" . $index . "\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";
 			  if($object->get("gradeable") == true){

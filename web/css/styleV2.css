@@ -116,6 +116,10 @@ body{
 	-o-transition:0.5s all;
 } 
 
+.navButton:hover{
+	color:#E95393;
+}
+
 /* Adds the point thing to the top of the extended dropdown */
 .dropdown-menu::after {
   position: absolute;

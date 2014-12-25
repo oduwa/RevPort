@@ -16,6 +16,7 @@
 	$answer = $_POST["answer"];
 	$code = $_POST["code"];
 	$title = $_POST["title"];
+	$gradeable = $_POST["gradeable"];
 	
 	// get test
 	$query = new ParseQuery("Test");
@@ -27,6 +28,13 @@
 		$test = new ParseObject("Test");
 		$test->set("testTitle", $title);
 		$test->set("testModule", $code);
+		if($gradeable === "gradeable"){
+			$test->set("gradeable", true);
+		}
+		else{
+			$test->set("gradeable", false);
+		}
+		$test->set("attempters", array());
 		$test->save();
 	}
 	else{
