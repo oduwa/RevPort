@@ -75,6 +75,8 @@
 			$score = new ParseObject("Score");
 			$score->set("username", $currentUser->get("username"));
 			$score->set("mark", $mark);
+			$score->set("scoreModule", $test->get("testModule"));
+			$score->set("scoreTitle", $test->get("testTitle"));
 			$score->save();
 			
 			$relation = $test->getRelation("scores");
