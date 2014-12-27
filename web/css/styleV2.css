@@ -185,6 +185,13 @@ a.glyphiconLink:hover {
 	background: #EE639F;
 }
 /*---End-header----*/
+
+.horizontalCenter {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
 /*--slider--*/
 .text-slider{
 	//background:url(../images/slider.jpg) no-repeat 0px 0px;

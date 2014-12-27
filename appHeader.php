@@ -53,7 +53,7 @@
 						  		  </ul>
 							</li>
 							<li class="navListItem">
-								<a class="glyphiconLink" href="#"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em;"></span></a>
+								<a class="glyphiconLink" href="leaderboards.php"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em;"></span></a>
 							</li>
 						</ul>
 					</div>

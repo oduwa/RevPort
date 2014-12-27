@@ -95,7 +95,7 @@
 
 <html>
 	<head>
-		<title></title>
+		<title>Test Results</title>
 		<?php include 'includes.php';?>
 		
 		<style>

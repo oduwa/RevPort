@@ -34,7 +34,7 @@
 		else{
 			$test->set("gradeable", false);
 		}
-		$test->set("attempters", array());
+		$test->setArray("attempters", array());
 		$test->save();
 	}
 	else{

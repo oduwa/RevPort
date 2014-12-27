@@ -145,8 +145,8 @@ $_SESSION["tests"] = $tests;
 			  }
 			  
 			  
-			  
-			  echo "<span class=\"mark\">" . $mark . "%</span><br />";
+			  if($mark !== ""){$mark = $mark . "%";}
+			  echo "<span class=\"mark\">" . $mark . "</span><br />";
 			  
 			  $testHeader = "<a href=\"test.php?testIndex=" . $i . "&moduleIndex=" . $index . "\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";
 			  if($object->get("gradeable") == true){
