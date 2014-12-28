@@ -14,9 +14,12 @@
 					</div>
 					<nav id="menu-left">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="features.html">Features</a></li>
+							<li><a href="home.php">Home</a></li>
+							<li><a href="moduleList.php">Tests</a></li>
+							<li><a href="#">Board</a></li>
+							<li><a href="leaderboards.php">Leaderboards</a></li>
+							<li><a href="#">Profile</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
 							<div class="clear"> </div>
 						</ul>
 					</nav>

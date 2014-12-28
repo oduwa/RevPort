@@ -190,6 +190,11 @@ a.glyphiconLink:hover {
     margin-left: auto;
     margin-right: auto;
     width: 200px;
+	text-align: center;
+}
+
+.profilePic{
+		width: 7%;
 }
 
 /*--slider--*/
@@ -1068,6 +1073,10 @@ input:focus {
 	}
 }
 @media only screen and (max-width:768px) and (min-width:640px) {
+	.profilePic{
+			width: 10%;
+	}
+	
 	.wrap {
 		width:80%;
 	}
@@ -1224,6 +1233,10 @@ input:focus {
 	}
 }
 @media only screen and (max-width:640px) and (min-width:480px) {
+	.profilePic{
+			width: 15%;
+	}
+	
 	.wrap {
 		width:80%;
 	}
@@ -1398,6 +1411,10 @@ input:focus {
 	}
 }
 @media only screen and (max-width:480px) and (min-width:320px) {
+	.profilePic{
+			width: 15%;
+	}
+	
 	.wrap {
 		width:80%;
 	}
@@ -1583,6 +1600,10 @@ input:focus {
 	}
 }
 @media only screen and (max-width:320px) and (min-width:240px) {
+	.profilePic{
+			width: 15%;
+	}
+	
 	.wrap {
 		width:90%;
 	}
