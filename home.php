@@ -27,8 +27,12 @@
 	$activityRelation = $currentUser->getRelation("activities");
 	$query = $activityRelation->getQuery();
 	$query->className = "Activity";
+	$query->descending("createdAt");
+	$query->limit(10);
 	$activities = $query->find(); // gets an array of Activity PFObjects
 
+	// Helper functions
+	include "HelperFunctions.php";
 ?>
 		
 <!DOCTYPE HTML>
@@ -96,11 +100,14 @@
 			<hr>
 			
 			<?php
+				$currentDate = new DateTime();
 				for ($i = 0; $i < count($activities); $i++) { 
 			  	  $object = $activities[$i];
-			  	  echo "  " . $object->get("activityMessage") . "<hr />";
+			  	  echo "  " . $object->get("activityMessage") . "<span style=\"float:right;clear:right;display:inline;\">" . getTimePassed($currentDate, $object->getCreatedAt()) . "</span>" . "<hr />";
+				  //echo "<span style=\"float:right;clear:right;display:inline;\">d</span>";
 				}
 			?>
+			
 		</div>
 		
 		<div class="contactList">

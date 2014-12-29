@@ -130,7 +130,7 @@ $_SESSION["tests"] = $tests;
 			  $questions = $query->find();
 			  
 			  // Get the scores for any test attempted
-			  $mark = "";
+			  $mark = -1;
 			  $attempters = $test->get("attempters");
 			  if(in_array($currrentUser->get("username"), $attempters)){
 				  $scoreRelation = $test->getRelation("scores");
@@ -143,9 +143,11 @@ $_SESSION["tests"] = $tests;
 					  $mark = $score->get("mark");
 				  }
 			  }
+
 			  
-			  
-			  if($mark !== ""){$mark = $mark . "%";}
+
+			  if(empty($mark)){$mark = "0";}
+			  if($mark != -1){$mark = $mark . "%";}			  
 			  echo "<span class=\"mark\">" . $mark . "</span><br />";
 			  
 			  $testHeader = "<a href=\"test.php?testIndex=" . $i . "&moduleIndex=" . $index . "\"><span class=\"testTitle\">" . $object->get("testTitle") . "</span></a>";

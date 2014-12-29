@@ -129,6 +129,7 @@
 					rankingQuery.find({
 					  success: function(results) {
 						  spinner.spin();
+						  clearRankings(-1);
 						  for(var i = 0; i < results.length; i++){
 							  var ranking = results[i];
 							  var markHtml = " <span class=\"markPercent\">" + ranking.get("averageMark") + "%</span>";
@@ -136,9 +137,6 @@
 							  $("#name" + i).text(ranking.get("username"));
 							  $("#score" + i).html("<progress value=\"" + ranking.get("averageMark") + "\" max=\"100\"></progress>" + markHtml);$("#score" + i).show();
 							  $("#profilePic" + i).show();
-						  }
-						  if(results.length < 1){
-						  	clearRankings(-1);
 						  }
 					  },
 					  error: function(error) {

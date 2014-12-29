@@ -26,5 +26,29 @@ function changeNumberToLetter($number){
 	return $letter;
 }
 
+
+function getTimePassed($currentDateTime, $targetDateTime){
+	$result = "";
+	
+	$currentTimeStamp = $currentDateTime->getTimeStamp();
+	$targetTimeStamp = $targetDateTime->getTimeStamp();
+	
+	$timeStampDifference = $currentTimeStamp - $targetTimeStamp;
+	$timeUnit = "minutes";
+	$timeSince = $timeStampDifference/60;
+	if($timeSince > 59){
+		$timeSince = $timeSince/60;
+	    $timeUnit = "hours";
+		
+		if($timeSince > 23){
+			$timeSince = $timeSince/24;
+		    $timeUnit = "days";
+		}
+	}
+	
+	
+	$result = round($timeSince) . " " . $timeUnit . " ago";
+	return $result;
+}
 	
 ?>

@@ -7,12 +7,6 @@
 	use Parse\ParseRelation;
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg','N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
 
-	// Get REQUEST variables
-	$isGradeable = false;
-	if(isset($_GET["isGradeable"])){
-		$isGradeable = $_GET["isGradeable"];
-	}
-
 	// Get questions as well as users answers
 	session_start();
 	$questions = $_SESSION["questions"];
@@ -57,18 +51,17 @@
 	$test->fetch();
 	$attempters = $test->get("attempters");
 	if(isset($_SESSION["theTest"]) && isset($_SESSION["currentUser"])){
-		// Check if user already took test (if gradeable, otherwise assume they havent taken the test and remark)
+		// Check if user already took test
 		$alreadyAttempted = false;
-		if($test->get("gradeable")){
-			for($i = 0; $i < count($attempters); $i++){
-				if($attempters[$i] === $currentUser->get("username")){
-					$alreadyAttempted = true;
-					break;
-				}
+		$isGradeable = $test->get("gradeable");
+		for($i = 0; $i < count($attempters); $i++){
+			if($attempters[$i] === $currentUser->get("username")){
+				$alreadyAttempted = true;
+				break;
 			}
 		}
 		
-		
+		// save new score if user has never done this test before
 		if(!$alreadyAttempted){
 			// Add as attempted
 			array_push($attempters, $currentUser->get("username"));
@@ -87,22 +80,20 @@
 			$relation->add($score);
 			$test->save();
 		}
+		// if user HAS taken the test and its NOT a gradeable test update their existing score
+		else if(!$isGradeable && $alreadyAttempted){
+			// retreive users score
+			$scoreQuery = new ParseQuery("Score");
+			$scoreQuery->equalTo("username", $currentUser->get("username"));
+			$scoreQuery->equalTo("scoreModule", $test->get("testModule"));
+			$scoreQuery->equalTo("scoreTitle", $test->get("testTitle"));
+			$score = $scoreQuery->first();
+			
+			// update the users score
+			$score->set("mark", $mark);
+			$score->save();
+		}
 		
-		// Record test completion activity
-		$activityMessage = "completed the test \"" . $test->get("testTitle") . "\" for " . $test->get("testModule") . ". Scored " . $mark . "%";
-		$newActivity = new ParseObject("Activity");
-		$newActivity->set("activityMessage", $activityMessage);
-		$newActivity->save();
-		
-		// get saveable user object
-		$userQuery = ParseUser::query();
-		$userQuery->equalTo($currentUser->get("username"), $currentUser->get("password")); 
-		$user = $userQuery->first();
-		
-		// Add activity to user
-		$activityRelation = $user->getRelation("activities");
-		$activityRelation->add($newActivity);
-		$user->save();
 	}
 	else{
 		header("Location: error.php?msg=Your%20Score%20Could%20Not%20Be%20Saved");
@@ -148,6 +139,9 @@
 		</style>
 		
 		<script>
+			Parse.initialize("ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso", "nwbeFPq6tz314WF0FaG2LrvkZ6PvJSJGgOwusG1e");
+			var isFreeToLeavePage = false;
+		
 			$(document).ready(function(){
 		
 				// Setup activity indicator
@@ -173,14 +167,29 @@
 				spinner = new Spinner(opts);
 				spinner.spin(target);
 				
-				// login
+				// login to create javascript instance of user
 				Parse.User.logIn(<?php echo "\"" . $_SESSION["username"] . "\"" ?>, <?php echo "\"" . $_SESSION["password"] . "\"" ?>, {
 				  success: function(user) {
-				    // Do stuff after successful login.
-					  spinner.spin();
+				    // Create activity for user completing test
+  					var Activity = Parse.Object.extend("Activity");
+					var activityMessage = "completed the test <?php echo $test->get("testTitle") ?> for <?php echo $test->get("testModule") ?>. Scored <?php echo $mark ?>%";
+  					var newActivity = new Activity();
+					newActivity.set("activityMessage", activityMessage);
+
+					// save new activity
+					newActivity.save().then(function(savedActivity){
+						var currentUser = Parse.User.current();
+						var activityRelation = currentUser.relation("activities");
+						activityRelation.add(savedActivity);
+   		 				return currentUser.save();
+				    }).then(function(){
+						isFreeToLeavePage = true;
+						spinner.spin();
+					});
 				  },
 				  error: function(user, error) {
 				    // The login failed. Check error to see why.
+					  isFreeToLeavePage = true;
 					  spinner.spin();
 					  alert("An error occured. Please try to manage your modules again later.");
 					  window.location.href = "home.php";
@@ -189,13 +198,9 @@
 			});
 		
 			function finishTest(){
-				// save score if test is gradeable
-				<?php
-					if($isGradeable){
-						// save
-					}
-				?>
-				window.location.href = "moduleList.php";
+				if(isFreeToLeavePage){
+					window.location.href = "moduleList.php";
+				}
 			}
 		</script>
 		
