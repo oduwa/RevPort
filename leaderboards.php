@@ -37,14 +37,22 @@
 			  height:200px;  
 			}  
 			
-			.ranking{
+			.rankingContainer{
 				width: 100%;
 				display:block;
 			}
 			
+			.rankingPosition{
+				margin-top:30px;
+				margin-left:25px;
+				float: left;
+				clear: left;
+			}
+			
 			.profilePic{
 				margin-left: 8px;
-				clear: left;
+				float:left;
+				//clear: left;
 			}
 			
 			.name{
@@ -117,13 +125,14 @@
 					var rankingQuery = new Parse.Query("Ranking");
 					rankingQuery.equalTo("moduleCode", modCode);
 					rankingQuery.notEqualTo("username", "Non Attempter");
-					rankingQuery.ascending("averageMark");
+					rankingQuery.descending("averageMark");
 					rankingQuery.find({
 					  success: function(results) {
 						  spinner.spin();
 						  for(var i = 0; i < results.length; i++){
 							  var ranking = results[i];
 							  var markHtml = " <span class=\"markPercent\">" + ranking.get("averageMark") + "%</span>";
+							  $("#rankingPosition" + i).text(i+1 + ".");
 							  $("#name" + i).text(ranking.get("username"));
 							  $("#score" + i).html("<progress value=\"" + ranking.get("averageMark") + "\" max=\"100\"></progress>" + markHtml);$("#score" + i).show();
 							  $("#profilePic" + i).show();
@@ -143,6 +152,7 @@
 			function clearRankings(indexToClearFrom){
 				for(var x = indexToClearFrom+1; x < 10; x++){
 				  $("#name" + x).text("");
+				  $("#rankingPosition" + x).text("");
 				  //$("#score" + x).text("");
 				  $("#score" + x).html("<progress value=\"0\" max=\"100\"></progress> 0%");$("#score" + x).hide();
 				  //$("#profilePic" + x).attr('src', '');
@@ -178,6 +188,7 @@
 			for ($j = 0; $j < 10; $j++){
 		?>
 		<div class="ranking" style="background:#4ff margin-top:100px; margin-bottom:100px;">
+			<span class="rankingPosition" id="<?php echo "rankingPosition" . $j ?>">1</span>
 			<img class="profilePic" id="<?php echo "profilePic" . $j ?>" src="web/images/default_profile_pic.png" style="float:left;" />
 			<span class="name" id="<?php echo "name" . $j ?>" style="float:left;" value="xxx">@username</span>
 			<span class="score" id="<?php echo "score" . $j ?>"><progress value="0" max="100"></progress> <span class="markPercent"><?php $out = 75; if($j%2 == 0){$out = 66.67;} echo $out . "%"; ?></span></span>

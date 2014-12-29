@@ -2,6 +2,7 @@
 	require 'ParseSDK/autoload.php';
 	use Parse\ParseClient;
 	use Parse\ParseObject;
+	use Parse\ParseUser;
 	use Parse\ParseQuery;
 	use Parse\ParseRelation;
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg','N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
@@ -56,14 +57,17 @@
 	$test->fetch();
 	$attempters = $test->get("attempters");
 	if(isset($_SESSION["theTest"]) && isset($_SESSION["currentUser"])){
-		// Check if user already took test
+		// Check if user already took test (if gradeable, otherwise assume they havent taken the test and remark)
 		$alreadyAttempted = false;
-		for($i = 0; $i < count($attempters); $i++){
-			if($attempters[$i] === $currentUser->get("username")){
-				$alreadyAttempted = true;
-				break;
+		if($test->get("gradeable")){
+			for($i = 0; $i < count($attempters); $i++){
+				if($attempters[$i] === $currentUser->get("username")){
+					$alreadyAttempted = true;
+					break;
+				}
 			}
 		}
+		
 		
 		if(!$alreadyAttempted){
 			// Add as attempted
@@ -83,6 +87,22 @@
 			$relation->add($score);
 			$test->save();
 		}
+		
+		// Record test completion activity
+		$activityMessage = "completed the test \"" . $test->get("testTitle") . "\" for " . $test->get("testModule") . ". Scored " . $mark . "%";
+		$newActivity = new ParseObject("Activity");
+		$newActivity->set("activityMessage", $activityMessage);
+		$newActivity->save();
+		
+		// get saveable user object
+		$userQuery = ParseUser::query();
+		$userQuery->equalTo($currentUser->get("username"), $currentUser->get("password")); 
+		$user = $userQuery->first();
+		
+		// Add activity to user
+		$activityRelation = $user->getRelation("activities");
+		$activityRelation->add($newActivity);
+		$user->save();
 	}
 	else{
 		header("Location: error.php?msg=Your%20Score%20Could%20Not%20Be%20Saved");
@@ -97,6 +117,10 @@
 	<head>
 		<title>Test Results</title>
 		<?php include 'includes.php';?>
+		<!-- Spinner -->
+		<script src="web/bootstrap/js/spin.js"></script>
+		<script type="text/javascript" src="Spinner/assets/fd-slider/fd-slider.js"></script>
+		<script src="Spinner/spin.min.js"></script>
 		
 		<style>
 			#pageContainer{
@@ -124,6 +148,46 @@
 		</style>
 		
 		<script>
+			$(document).ready(function(){
+		
+				// Setup activity indicator
+				var opts = {
+				  lines: 13, // The number of lines to draw
+					length: 4,//20, // The length of each line
+					width: 3,//10, // The line thickness
+					radius: 6,//30, // The radius of the inner circle
+				  corners: 1, // Corner roundness (0..1)
+				  rotate: 0, // The rotation offset
+				  direction: 1, // 1: clockwise, -1: counterclockwise
+				  color: '#000', // #rgb or #rrggbb or array of colors
+				  speed: 1, // Rounds per second
+				  trail: 60, // Afterglow percentage
+				  shadow: false, // Whether to render a shadow
+				  hwaccel: false, // Whether to use hardware acceleration
+				  className: 'spinner', // The CSS class to assign to the spinner
+				  zIndex: 2e9, // The z-index (defaults to 2000000000)
+				  top: '50%', // Top position relative to parent
+				  left: '50%' // Left position relative to parent
+				};
+				target = document.getElementById('spinnerContainer');
+				spinner = new Spinner(opts);
+				spinner.spin(target);
+				
+				// login
+				Parse.User.logIn(<?php echo "\"" . $_SESSION["username"] . "\"" ?>, <?php echo "\"" . $_SESSION["password"] . "\"" ?>, {
+				  success: function(user) {
+				    // Do stuff after successful login.
+					  spinner.spin();
+				  },
+				  error: function(user, error) {
+				    // The login failed. Check error to see why.
+					  spinner.spin();
+					  alert("An error occured. Please try to manage your modules again later.");
+					  window.location.href = "home.php";
+				  }
+				});
+			});
+		
 			function finishTest(){
 				// save score if test is gradeable
 				<?php
@@ -141,6 +205,8 @@
 		<?php include 'appHeader.php';?>
 		
 		<div id="pageContainer">
+			
+			<div id="spinnerContainer" class="screenCentered"></div>
 			
 			<span class="heading"><?php echo $message; ?></span><br /><br />
 			

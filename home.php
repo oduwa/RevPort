@@ -100,18 +100,6 @@
 			  	  $object = $activities[$i];
 			  	  echo "  " . $object->get("activityMessage") . "<hr />";
 				}
-				for ($i = 0; $i < count($activities); $i++) { 
-			  	  $object = $activities[$i];
-			  	  echo "  " . $object->get("activityMessage") . "<hr />";
-				}
-				for ($i = 0; $i < count($activities); $i++) { 
-			  	  $object = $activities[$i];
-			  	  echo "  " . $object->get("activityMessage") . "<hr />";
-				}
-				for ($i = 0; $i < count($activities); $i++) { 
-			  	  $object = $activities[$i];
-			  	  echo "  " . $object->get("activityMessage") . "<hr />";
-				}
 			?>
 		</div>
 		

@@ -76,6 +76,15 @@
 			var yourAnswers = [];
 			
 			$(document).ready(function () {
+				// show gradeable warning modal
+				<?php
+					if($test->get("gradeable")){
+				?>
+				$('#invisiButton').trigger('click');
+				<?php
+					}
+				?>
+				
 				// initialize answers array
 				for(var i = 0; i < <?php echo count($questions);?>; i++){
 					yourAnswers[i] = "";
@@ -92,7 +101,7 @@
 					});
 				});
 			});
-
+			
 			function submitAnswers(){
 				var str = "";
 				for(var i = 0; i < yourAnswers.length; i++){
@@ -104,12 +113,13 @@
 			function markAnswers() {
 			      $.ajax({
 			           type: "POST",
-			           url: 'markAnswersFunction.php',
+			           url: 'storeAnswersFunction.php',
 					   async: false,
 			           data:{answers:yourAnswers},
 			           success:function(html) {
-						 if(html == "You have not answered any question. Attempt the test before submitting."){
+						 if(html == "You have not attempted all questions. Please complete the test before submitting."){
 						   // do nothing
+							 alert("You have not attempted all questions. Please complete the test before submitting.");
 						 }
 						 else{
 						 	window.location.href = "testDone.php";
@@ -147,7 +157,28 @@
 			?>
 			<button onclick="submitAnswers()" style="float:right;">Submit</button>
 		</div>
-		
+	
+	
+	
+		<!-- Modal -->
+		<button style="display:none;" id="invisiButton" data-toggle="modal" data-target="#myModal">Invisible Button To Trigger Warning Modal :D</button>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog"> 
+			      <div class="modal-content">
+				  <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:#e11;"></span> WARNING: THIS TEST IS MARKED AS GRADEABLE.<br /></h4>
+				  </div>
+			      <div class="modal-body">
+					  This means that once initially completed, your score is final. Retaking the test will not change your score so make sure you're ready before taking it.
+			      </div>
+  			    <div class="modal-footer">
+  			      <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+  			    </div>
+			    </div>
+			  </div>
+			</div>
+
 	</body>
 </html>
 

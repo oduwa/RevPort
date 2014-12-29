@@ -34,6 +34,10 @@
 	<head>
 		<title>UEA RevPort - Edit Modules</title>
 		<?php include 'includes.php';?>
+		<!-- Spinner -->
+		<script src="web/bootstrap/js/spin.js"></script>
+		<script type="text/javascript" src="Spinner/assets/fd-slider/fd-slider.js"></script>
+		<script src="Spinner/spin.min.js"></script>
 		
 		<style>
 			.moduleCode{
@@ -80,6 +84,8 @@
 	<body>
 		<?php include 'appHeader.php';?>
 		
+		<div id="spinnerContainer" class="screenCentered"></div>
+		
 		<hr />
 		<?php
 			for ($i = 0; $i < count($modules); $i++) { 
@@ -122,6 +128,7 @@
 			
 			
 			<script>
+				Parse.initialize("ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso", "nwbeFPq6tz314WF0FaG2LrvkZ6PvJSJGgOwusG1e");
 				var indexSelected = 1000;
 				var codeSelected = "";
 			
@@ -130,8 +137,45 @@
 					$('#deleteConfirmButton').click(function(){
 						removeModule(codeSelected);
 					});
-				
+
+					// Setup activity indicator
+					var opts = {
+					  lines: 13, // The number of lines to draw
+						length: 4,//20, // The length of each line
+						width: 3,//10, // The line thickness
+						radius: 6,//30, // The radius of the inner circle
+					  corners: 1, // Corner roundness (0..1)
+					  rotate: 0, // The rotation offset
+					  direction: 1, // 1: clockwise, -1: counterclockwise
+					  color: '#000', // #rgb or #rrggbb or array of colors
+					  speed: 1, // Rounds per second
+					  trail: 60, // Afterglow percentage
+					  shadow: false, // Whether to render a shadow
+					  hwaccel: false, // Whether to use hardware acceleration
+					  className: 'spinner', // The CSS class to assign to the spinner
+					  zIndex: 2e9, // The z-index (defaults to 2000000000)
+					  top: '50%', // Top position relative to parent
+					  left: '50%' // Left position relative to parent
+					};
+					target = document.getElementById('spinnerContainer');
+					spinner = new Spinner(opts);
+					spinner.spin(target);
+					
+					// login
+					Parse.User.logIn(<?php echo "\"" . $_SESSION["username"] . "\"" ?>, <?php echo "\"" . $_SESSION["password"] . "\"" ?>, {
+					  success: function(user) {
+					    // Do stuff after successful login.
+						  spinner.spin();
+					  },
+					  error: function(user, error) {
+					    // The login failed. Check error to see why.
+						  spinner.spin();
+						  alert("An error occured. Please try to manage your modules again later.");
+						  window.location.href = "home.php";
+					  }
+					});
 				});
+				
 			
 				function setSelectedIndex(i){
 					indexSelected = i;
@@ -156,27 +200,45 @@
 				}
 				
 	   		 function removeModule(code){
+				 spinner.spin(target);
 	   			 Parse.initialize("ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso", "nwbeFPq6tz314WF0FaG2LrvkZ6PvJSJGgOwusG1e");
 	   			 var Module = Parse.Object.extend("Module");
 	   			 var query = new Parse.Query(Module);
 	   			 query.equalTo("moduleCode", code);
 	   			 query.find({
 	   			   success: function(results) 
-	   			   {
+	   			   {  
 	   				 if(results.length > 0){
+						// add module 
 	   	 				var currentUser = Parse.User.current();
-	   	 				var relation = currentUser.relation("modules");
-					
-   						alert("Removed " + code);
-   		 				relation.remove(results[0]);
-   		 				currentUser.save();
-						window.location.href = "editModules.php?refreshModules=1";
+	   	 				var moduleRelation = currentUser.relation("modules");
+   		 				moduleRelation.remove(results[0]);
+						
+						// record activity
+						var Activity = Parse.Object.extend("Activity");
+						var newActivity = new Activity();
+						var activityMessage = "removed the module:  " + results[0].get("moduleCode") + " - " + results[0].get("moduleName") + ".";
+						newActivity.set("activityMessage", activityMessage);
+						newActivity.save().then(function(savedActivity){
+							var activityRelation = currentUser.relation("activities");
+							activityRelation.add(savedActivity);
+	   		 				return currentUser.save();
+							
+    				    }).then(function(){
+							alert("Removed " + code);
+							spinner.spin();
+							window.location.href = "editModules.php?refreshModules=1";
+    					});
 	   				 }
+					 else{
+					 	spinner.spin();
+					 }
 
 			     
 	   			   },
 	   			   error: function(error) 
 	   			   {
+					 spinner.spin();  
 	   			     alert("Error: " + error.code + " " + error.message);
 	   			   }
 	   			 });
