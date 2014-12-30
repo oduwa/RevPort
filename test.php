@@ -49,6 +49,7 @@
 	include "HelperFunctions.php";
 ?>
 
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title><?php echo $test->get("testModule") . " - " . $test->get("testTitle") ?></title>

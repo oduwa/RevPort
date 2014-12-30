@@ -13,6 +13,7 @@
 	
 ?>
 
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>RevPort Leaderboards</title>

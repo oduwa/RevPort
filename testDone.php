@@ -104,6 +104,7 @@
 	include "HelperFunctions.php";
 ?>
 
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Test Results</title>

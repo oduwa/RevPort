@@ -29,7 +29,7 @@
 		$_SESSION["modules"] = $modules;
 	}
 ?>
-
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>UEA RevPort - Edit Modules</title>

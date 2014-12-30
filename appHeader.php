@@ -16,7 +16,7 @@
 						<ul>
 							<li><a href="home.php">Home</a></li>
 							<li><a href="moduleList.php">Tests</a></li>
-							<li><a href="#">Board</a></li>
+							<li><a href="boardTopics.php">Board</a></li>
 							<li><a href="leaderboards.php">Leaderboards</a></li>
 							<li><a href="#">Profile</a></li>
 							<li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
@@ -37,7 +37,7 @@
 					<div class="top-nav" style="float:right;">
 						<ul>
 							<li class="navListItem"><a class="navLink" href="moduleList.php" style="padding: 0.3em 1.8em;">Tests</a></li>
-							<li class="navListItem"><a class="navLink" href="about.html" style="padding: 0.3em 1.8em;">Board</a></li>
+							<li class="navListItem"><a class="navLink" href="boardTopics.php" style="padding: 0.3em 1.8em;">Board</a></li>
 							<li class="dropdown" style="display:inline-block;">
 						  		<button type="button" class="btn btn-link dropdown-toggle navButton" data-toggle="dropdown" aria-expanded="true" id="dropdownMenu2" 
 								style="padding: 0.3em 1.8em;">
