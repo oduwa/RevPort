@@ -111,7 +111,7 @@
 		</div>
 		
 		<div class="contactList">
-			<div class="panel panel-default" style="border-radius:5px;">
+			<div class="panel panel-default table-responsive" style="border-radius:5px;">
 				<table class="table table-bordered">
 					<tr class="active">
 						<th>
@@ -132,13 +132,13 @@
 		</div>
 		
 		<div class="moduleList">
-			<div class="panel panel-default" style="border-radius:5px;">
+			<div class="panel panel-default table-responsive" style="border-radius:5px;">
 				<table class="table table-bordered">
 					<tr class="active">
 						<th>
 							<a href="moduleList.php" class="tableHeader">Modules</a>
 							<a class="glyphLink" href="editModules.php" style="float:right;">
-								<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-edit" style="color:#000;" aria-hidden="true"></span>
 							</a>
 						</th>
 					</tr>
