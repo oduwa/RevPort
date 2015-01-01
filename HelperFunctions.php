@@ -38,11 +38,16 @@ function getTimePassed($currentDateTime, $targetDateTime){
 	$timeSince = $timeStampDifference/60;
 	if($timeSince > 59){
 		$timeSince = $timeSince/60;
-	    $timeUnit = "hours";
+	    $timeUnit = (round($timeSince) == 1) ? "hour" : "hours";
 		
 		if($timeSince > 23){
 			$timeSince = $timeSince/24;
-		    $timeUnit = "days";
+		    $timeUnit = (round($timeSince) == 1) ? "day" : "days";
+			
+			if($timeSince > 6){
+				$timeSince = $timeSince/7;
+			    $timeUnit = (round($timeSince) == 1) ? "week" : "weeks";
+			}
 		}
 	}
 	
@@ -50,5 +55,22 @@ function getTimePassed($currentDateTime, $targetDateTime){
 	$result = round($timeSince) . " " . $timeUnit . " ago";
 	return $result;
 }
+
+
+
+function getStartingIndexForPage($pageNumber){
+	if($pageNumber < 5){
+		return 0;
+	}
+	else{
+		$startingIndex = ($pageNumber-5)+1;
+		return $startingIndex;
+	}
+}
+
+
+
+
+
 	
 ?>

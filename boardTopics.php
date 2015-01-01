@@ -5,9 +5,42 @@
 	use Parse\ParseQuery;
 	use Parse\ParseRelation;
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg','N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
+	session_start();
 	
+	// Get REQUEST variables
+	$page = 1;
+	if(isset($_GET["page"])){
+		$page = $_GET["page"];
+	}
+	
+	// Get all modules
 	$query = new ParseQuery("Module");
 	$allModules = $query->find();
+	$_SESSION["allModules"] = $allModules;
+	
+	// Get pinned topics
+	$query = new ParseQuery("Topic");
+	$query->equalTo("isPinned", true);
+	$pinnedTopics = $query->find();
+	
+	// Get total number of topics for paginator
+	$query = new ParseQuery("Topic");
+	$query->equalTo("isPinned", false);
+	$topicCount = $query->count();
+	
+	// Get first page of topics
+	$query = new ParseQuery("Topic");
+	$query->equalTo("isPinned", false);
+	$query->descending("updatedAt");
+	$query->limit(10);
+	if($page != 1){
+		$skipMultiplier = ($page-1);
+		$query->skip(10*$skipMultiplier);
+	}
+	$topics = $query->find();
+	
+	// Helper functions
+	include "HelperFunctions.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -117,17 +150,33 @@
 			<nav class="paginator">
 			  <ul class="pagination pagination-sm">
 			    <li>
-			      <a href="#" aria-label="Previous">
+			      <a href="<?php if($page > 1){$dest = $page-1; echo "boardTopics.php?page=" . $dest;}else{echo "#";} ?>" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
-			    <li class="active"><a href="#">1</a></li>
+				<?php
+					$pageCount = ceil($topicCount/10);
+					$pageCount = ($pageCount == 0) ? 1 : $pageCount;
+					$startingIndex = getStartingIndexForPage($page);
+					for ($i = $startingIndex; $i < $startingIndex+5; $i++){
+						$pos = $i+1;
+						if($pos <= $pageCount){
+							if($pos == $page){
+								echo "<li class=\"active\" ><a href=\"boardTopics.php?page=" . $pos . "\">" . $pos . "</a></li>";
+							}
+							else{
+								echo "<li><a href=\"boardTopics.php?page=" . $pos . "\">" . $pos . "</a></li>";
+							}
+						}
+					}
+				?>
+			    <!-- <li class="active" ><a href="#">1</a></li>
 			    <li><a href="#">2</a></li>
 			    <li><a href="#">3</a></li>
 			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
+			    <li><a href="#">5</a></li> -->
 			    <li>
-			      <a href="#" aria-label="Next">
+			      <a href="<?php if($page<$pageCount){$dest = $page+1; echo "boardTopics.php?page=" . $dest;}else{echo "#";} ?>" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
@@ -140,7 +189,7 @@
 		
 		<!-- Start Topics -->
 		<div class="table-responsive topicContainer">          
-		      <table class="table table-striped">
+		      <table class="table table-striped" style="border: 6px solid #3183b4;">
 		        <thead>
 		          <tr style="background:#3183b4;">
 		            <th></th>
@@ -150,7 +199,32 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr>
+					<!-- Pinned Topics -->
+					<?php
+						for ($i = 0; $i < count($pinnedTopics); $i++){
+							$topic = $pinnedTopics[$i];
+							echo "<tr>";
+							echo "<td>". "-" ."</td>";
+							echo "<td>". $topic->get("topicTitle") ."</td>";
+							echo "<td>". $topic->get("topicPoster") ."</td>";
+							echo "<td>". 0 ."</td>";
+							echo "</tr>";
+						}
+					?>
+					<!-- normal topics -->
+					<?php
+						for ($i = 0; $i < count($topics); $i++){
+							$topic = $topics[$i];
+							$pos = $i + 1;
+							echo "<tr>";
+							echo "<td>". $pos ."</td>";
+							echo "<td>". $topic->get("topicTitle") ."</td>";
+							echo "<td>". $topic->get("topicPoster") ."</td>";
+							echo "<td>". 0 ."</td>";
+							echo "</tr>";
+						}
+					?>
+		          <!-- <tr>
 		            <td>1</td>
 		            <td>A Topic</td>
 					<td>Anna</td>
@@ -167,7 +241,7 @@
 		            <td>t to the opic</td>
 					<td>John</td>
 					<td>16</td>
-		          </tr>
+		          </tr> -->
 		        </tbody>
 		      </table>
 		</div>
