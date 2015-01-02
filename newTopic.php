@@ -86,7 +86,7 @@
 				
 				$('#addTagButton').click(function(){
 					// check for input
-					if($("#tagInput").val() === ""){
+					if($("#tagInput").val().trim() === ""){
 						return false;
 					}
 					
@@ -126,17 +126,17 @@
 				spinner.spin(target);
 				
 				// check that required fields are filled
-			    if ($('#topicTitleField').val()==="") {
+			    if ($('#topicTitleField').val().trim()==="") {
 					alert("You must enter a title for your topic");
 					spinner.spin();
 					return false;
 			    }
-			    if ($('#moduleSelect').val()==="") {
+			    if ($('#moduleSelect').val().trim()==="") {
 					alert("You must enter a module under which your topic belongs");
 					spinner.spin();
 					return false;
 			    }
-			    if ($('#topicTitleArea').val()==="") {
+			    if ($('#topicTitleArea').val().trim()==="") {
 					alert("Please enter a message for your topic");
 					spinner.spin();
 					return false;
@@ -175,17 +175,27 @@
 					spinner.spin();
 					alert("Seems like an error occured creating your topic. Please try again later");
 				}).then(function(){
+					
 					// add activity
 					var Activity = Parse.Object.extend("Activity");
 					var newActivity = new Activity();
-					var activityMessage = "created the topic" + $('#topicTitleField').val() + "on the message board";
+					var activityMessage = "created the topic " + $('#topicTitleField').val() + "on the message board";
 					newActivity.set("activityMessage", activityMessage);
+					
 					return newActivity.save();
 				}, function(topicSaveError) {
   				  	// the save failed.
 					spinner.spin();
 					alert("Seems like an error occured creating your topic. Please try again later");
-				}).then(function(){
+				}).then(function(savedActivity){
+					
+					// add activity to user
+					var currentUser = Parse.User.current();
+					var activityRelation = currentUser.relation("activities");
+					activityRelation.add(savedActivity);
+					
+	 				return currentUser.save();
+				}).then(function(savedUser){
 					// done
 					spinner.spin();
 					window.location.href = "boardTopics.php";
@@ -208,7 +218,7 @@
 			
 			<div class="col-xs-8" style="margin-top:20px">
 				Topic:<br />
-				<input type="text" class="pure-control-group form-control" id="topicTitleField" placeholder="Topic" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" id="topicTitleField" placeholder="Topic" aria-describedby="basic-addon1" maxlength="100"><br />
 				
 				Module:<br />
 				<select name="module" class="selectpicker" data-live-search="true" data-width="auto" id="moduleSelect" onchange="selectModule(this.value)">

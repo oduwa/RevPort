@@ -143,7 +143,7 @@
 		
 		<!-- Start Control and navigation -->
 		<div class="controlContainerrr">
-			<button type="button" class="btn btn-default btn-sm btn-success addTopicButton">
+			<button type="button" class="btn btn-default btn-sm btn-success addTopicButton" onclick="window.location.href='newTopic.php'">
 			  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> New Topic
 			</button>
 			
@@ -218,7 +218,7 @@
 							$pos = $i + 1;
 							echo "<tr>";
 							echo "<td>". $pos ."</td>";
-							echo "<td>". $topic->get("topicTitle") ."</td>";
+							echo "<td><a href=\"topicPage.php?topicId=" . $topic->getObjectId() . "\">". $topic->get("topicTitle") ."</a></td>";
 							echo "<td>". $topic->get("topicPoster") ."</td>";
 							echo "<td>". 0 ."</td>";
 							echo "</tr>";
