@@ -247,6 +247,9 @@
 			<hr />
 			
 			<div style="float:left;">
+				<button type="button" class="btn btn-default btn-sm leftSideButton" onclick="window.location.href='boardTopics.php';">
+				   Topic List
+				</button>
 				<button type="button" class="btn btn-default btn-sm leftSideButton" onclick="trackTopic()">
 				  <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Track Topic
 				</button>

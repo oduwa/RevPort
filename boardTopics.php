@@ -12,6 +12,9 @@
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
+	if(isset($_GET["filter"])){
+		$filter = $_GET["filter"];
+	}
 	
 	// Get all modules
 	$query = new ParseQuery("Module");
@@ -36,6 +39,9 @@
 	if($page != 1){
 		$skipMultiplier = ($page-1);
 		$query->skip(10*$skipMultiplier);
+	}
+	if(isset($_GET["filter"]) && $filter !== "all"){
+		$query->equalTo("tags", $filter);
 	}
 	$topics = $query->find();
 	
@@ -99,6 +105,10 @@
 				searchType = newText;
 				$("#leftSearchButton").text(newText);
 			}
+			
+			function moduleFilter(modCode){
+				window.location.href="boardTopics.php?filter=" + modCode;
+			}
 		</script>
 	</head>
 	
@@ -126,9 +136,11 @@
 			 	</div>
 			</div>
 			
+
 			<div id="rightSearch">
-				<select name="module" class="selectpicker" data-live-search="true" data-width="auto" id="moduleSelect" onchange="showRankings(this.value)">
+				<select name="module" class="selectpicker" data-live-search="true" data-width="auto" id="moduleSelect" onchange="moduleFilter(this.value)">
 					<option value=""> Module Filter </option>
+					<option value="all"> All Modules </option>
 					<?php
 						for ($i = 0; $i < count($allModules); $i++){
 							$module = $allModules[$i];
@@ -188,7 +200,12 @@
 		
 		
 		<!-- Start Topics -->
-		<div class="table-responsive topicContainer">          
+		<div class="table-responsive topicContainer">  
+			<?php
+				if(isset($filter) && $filter !== "all"){
+					echo "<h3 class=\"text-info\">Filter: ". $filter ."</h3>";
+				}
+			?>        
 		      <table class="table table-striped" style="border: 6px solid #3183b4;">
 		        <thead>
 		          <tr style="background:#3183b4;">

@@ -36,6 +36,7 @@ function getTimePassed($currentDateTime, $targetDateTime){
 	$timeStampDifference = $currentTimeStamp - $targetTimeStamp;
 	$timeUnit = "minutes";
 	$timeSince = $timeStampDifference/60;
+	$timeUnit = (round($timeSince) == 1) ? "minute" : "minutes";
 	if($timeSince > 59){
 		$timeSince = $timeSince/60;
 	    $timeUnit = (round($timeSince) == 1) ? "hour" : "hours";
