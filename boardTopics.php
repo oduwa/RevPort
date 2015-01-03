@@ -15,6 +15,10 @@
 	if(isset($_GET["filter"])){
 		$filter = $_GET["filter"];
 	}
+	if(isset($_GET["searchType"]) && isset($_GET["search"])){
+		$searchType = $_GET["searchType"];
+		$searchText = $_GET["search"];
+	}
 	
 	// Get all modules
 	$query = new ParseQuery("Module");
@@ -42,6 +46,14 @@
 	}
 	if(isset($_GET["filter"]) && $filter !== "all"){
 		$query->equalTo("tags", $filter);
+	}
+	else if(isset($_GET["searchType"]) && isset($_GET["search"])){
+		if($searchType === "tag"){
+			$query->equalTo("tags", $searchText);
+		}
+		else if($searchType === "topic"){
+			$query->startsWith("topicTitle", $searchText);
+		}
 	}
 	$topics = $query->find();
 	
@@ -109,6 +121,22 @@
 			function moduleFilter(modCode){
 				window.location.href="boardTopics.php?filter=" + modCode;
 			}
+			
+			function search(){
+				// check that search field isnt empty
+			    if ($('#searchField').val().trim()==="") {
+					alert("You must enter something to search for");
+					return false;
+			    }
+				
+				searchText = $('#searchField').val().trim();
+				if(searchType === "Search Tags"){
+					window.location.href="boardTopics.php?search=" + searchText + "&searchType=tag";
+				}
+				else if(searchType === "Search Topics"){
+					window.location.href="boardTopics.php?search=" + searchText + "&searchType=topic";
+				}
+			}
 		</script>
 	</head>
 	
@@ -120,9 +148,9 @@
 			<div id="leftSearch">
 				<div class="col-xs-6">
 					<div class="input-group">
-					            <input type="text" class="form-control">
+					            <input type="text" class="form-control" id="searchField">
 					            <div class="input-group-btn">
-					                <button id="leftSearchButton" tabindex="-1" class="btn btn-default" type="button">Search Tags</button>
+					                <button id="leftSearchButton" tabindex="-1" class="btn btn-default" type="button" onClick="search()">Search Tags</button>
 					                <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
 					                    <span class="caret"></span>
 					                    <span class="sr-only">Toggle Dropdown</span>
@@ -204,6 +232,9 @@
 			<?php
 				if(isset($filter) && $filter !== "all"){
 					echo "<h3 class=\"text-info\">Filter: ". $filter ."</h3>";
+				}
+				else if(isset($_GET["searchType"]) && isset($_GET["search"])){
+					echo "<h3 class=\"text-info\">Tag: ". $searchText ."</h3>";
 				}
 			?>        
 		      <table class="table table-striped" style="border: 6px solid #3183b4;">
