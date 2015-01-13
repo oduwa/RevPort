@@ -4,6 +4,11 @@
 	}
 
 	$username = $_SESSION["username"];
+	
+	if(!isset($username)){
+		header("Location: error.php?msg=Please log in");
+		exit();
+	}
 ?>
 	
 		<!---start-wrap---->

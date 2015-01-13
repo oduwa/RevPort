@@ -22,17 +22,17 @@
 						<a href="index.html">UEA RevPort</a>
 					</div>
 				</div>
-				<div class="header-right">
+				<!-- <div class="header-right">
 					<div class="top-nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="features.html">Features</a></li>
 					</ul>
-				</div>
+				</div> -->
 				<div class="sign-ligin-btns">
 					<ul>
-						<li id="signupContainer"><a class="signup" id="signupButton" href="#" data-toggle="modal" data-target="#signupModal"><span><i>Signup</i></span></a>
+						<li id="signupContainer"><a class="login signup-plus" id="signupButton" href="#" data-toggle="modal" data-target="#signupModal"><span><i>Sign up</i></span></a>
 							 <div class="clear"> </div>
 				                <div id="signupBox">                
 				                    <form id="signupForm">

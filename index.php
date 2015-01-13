@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<head>
 		<title>UEA Revision Portal</title>
 		<?php include 'includes.php';?>
-		<link href="web/css/style.css" rel='stylesheet' type='text/css' />
+		<!-- <link href="web/css/style.css" rel='stylesheet' type='text/css' /> -->
 		<!--768px-menu-->
 	</head>
 	<body>
@@ -21,28 +21,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div id="da-slider" class="da-slider">
 					<div class="da-slide">
 						<h2>Test Your Knowledge.</h2>
-						<p>Attempt test exercises with solutions</p>
-						<a href="about.html" class="da-link">Find out More</a>
+						<p style="margin-top:0.5em;">Attempt test exercises with solutions</p>
+						<a style="margin-top:0.5em;" href="about.html" class="da-link">Find out More</a>
 					</div>
 					<div class="da-slide">
 						<h2>Learn From Others.</h2>
-						<p>Share material on discussion boards</p>
-						<a href="about.html" class="da-link">Find out More</a>
+						<p style="margin-top:0.5em;">Share material on discussion boards</p>
+						<a style="margin-top:0.5em;" href="about.html" class="da-link">Find out More</a>
 					</div>
 					<div class="da-slide">
 						<h2>Log Your Progress.</h2>
-						<p> Compete with your Friends</p>
-						<a href="about.html" class="da-link">Find out More</a>
+						<p style="margin-top:0.5em;"> Compete with your Friends</p>
+						<a style="margin-top:0.5em;" href="about.html" class="da-link">Find out More</a>
 					</div>
 					<div class="da-slide">
 						<h2>Connect With Lecturers.</h2>
-						<p>Easy contact with lecturers</p>
-						<a href="about.html" class="da-link">Find out More</a>
+						<p style="margin-top:0.5em;">Easy contact with lecturers</p>
+						<a style="margin-top:0.5em;" href="about.html" class="da-link">Find out More</a>
 					</div>
 					<div class="da-slide">
 						<h2>Extra Material.</h2>
-						<p> View additional content added by your lecturers</p>
-						<a href="about.html" class="da-link">Find out More</a>
+						<p style="margin-top:0.5em;"> View additional content added by your lecturers</p>
+						<a style="margin-top:0.5em;" href="about.html" class="da-link">Find out More</a>
 					</div>
 					<nav class="da-arrows">
 						<span class="da-arrows-prev"> </span>
@@ -65,21 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 						
 				<!-start-bottom-footer-grids-->
-				<div class="footer-grids">
-					<div class="wrap">
-						<div class="footer-grid">
-							<h3>Connect With Us</h3>
-							<ul class="social-icons">
-								<li><a class="facebook" href="#"> </a></li>
-								<li><a class="twitter" href="#"> </a></li>
-								<li><a class="youtube" href="#"> </a></li>
-							</ul>
-							<p class="copy-right">Template by <a href="#">W3layouts</a></p>
-						</div>
-					</div>
-						<div class="clear"> </div>
-					</div>
-				</div>
+				<?php include 'footer.php' ?>
 				<!---//End-bottom-footer-grids---->
 			</div>
 			<!----//End-content--->

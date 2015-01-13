@@ -30,6 +30,3 @@
 					$('nav#menu-left').mmenu();
 				});
 		</script>
-				
-	    <style>
-		</style>
