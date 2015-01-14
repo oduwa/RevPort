@@ -98,16 +98,18 @@
 				margin-right:6%;
 			}
 		
-			@media only screen and (max-width:1440px) and (min-width:1024px) {
-				#leftSearch{
-					margin-left:8%;
-				}
+			#leftSearch, #rightSearch{
+				margin-left:8%;
+			}
 			
+			@media only screen and (max-width:1440px) and (min-width:1024px) {
 				#rightSearch{
+					margin-left:0%;
 					margin-right:10%;
 					float:right;
 				}
 			}
+		
 		</style>
 		
 		<script>
