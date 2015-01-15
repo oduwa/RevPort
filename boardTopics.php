@@ -88,6 +88,11 @@
 			}
 			
 			.addTopicButton{
+				margin-left:0%;
+				margin-top:20px;
+			}
+			
+			.trackedTopicsButton{
 				margin-left:6%;
 				margin-top:20px;
 			}
@@ -101,12 +106,22 @@
 			#leftSearch, #rightSearch{
 				margin-left:8%;
 			}
-			
+
+			/* Desktop Layout */
 			@media only screen and (max-width:1440px) and (min-width:1024px) {
 				#rightSearch{
 					margin-left:0%;
 					margin-right:10%;
 					float:right;
+				}
+			}
+			
+			/* Mobile Layout */
+			@media only screen and (max-width:768px) and (min-width:240px) {
+				.topicContainer{
+					margin-left:0%;
+					margin-right:0%;
+					margin-top:0px;
 				}
 			}
 		
@@ -185,9 +200,13 @@
 		
 		<!-- Start Control and navigation -->
 		<div class="controlContainerrr">
+			<button type="button" class="btn btn-default btn-sm trackedTopicsButton" onclick="window.location.href='trackedTopics.php'">
+			  <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Tracked Topics
+			</button>
 			<button type="button" class="btn btn-default btn-sm btn-success addTopicButton" onclick="window.location.href='newTopic.php'">
 			  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> New Topic
 			</button>
+			
 			
 			<nav class="paginator">
 			  <ul class="pagination pagination-sm">

@@ -209,7 +209,7 @@
 					// Add topic to users tracked topics
 					if(topicResults.length < 1){
 						endInput();
-						alert("Seems like an error occured creating your post. Please try again later");
+						alert("Seems like an error occured tracking this post. Please try again later");
 						return false;
 					}
 					
@@ -226,7 +226,7 @@
 				}).then(function(topicResults){
 					// DONE
 					spinner.spin();
-					alert("The topic is now being tracked");
+					alert("The topic is now being tracked. You can now view this topic anytime.");
 				}, function(userSaveError) {
   				  	// the save failed.
 					spinner.spin();

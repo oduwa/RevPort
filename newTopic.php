@@ -241,8 +241,8 @@
 				<button class="pull-right" data-toggle="modal" data-target="#myModal">Add Tag</button>
 				
 				<br /><br /><br /><br /><br />
-				<button onclick="showTags()">X</button>
-				<button onclick="createTopic()">Y</button>
+				<!-- <button onclick="showTags()">X</button> -->
+				<button onclick="createTopic()">Create Topic</button>
 			</div>
 		</div>
 		

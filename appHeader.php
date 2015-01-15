@@ -23,7 +23,7 @@
 							<li><a href="moduleList.php">Tests</a></li>
 							<li><a href="boardTopics.php">Board</a></li>
 							<li><a href="leaderboards.php">Leaderboards</a></li>
-							<li><a href="#">Profile</a></li>
+							<li><a href="#">Settings</a></li>
 							<li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
 							<div class="clear"> </div>
 						</ul>
@@ -56,7 +56,7 @@
 						  		    ?> <span class="caret"></span>
 						  		  </button>
 						  		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-						  		    <li><a href="#">My Profile</a></li>
+						  		    <li><a href="#">Settings</a></li>
 						  		    <li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
 						  		  </ul>
 							</li>
