@@ -112,6 +112,14 @@ class LoginViewController: UIViewController {
         /* Keyboard Handling */
         self.registerForKeyboardNotifications();
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        /* Hide Back button */
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -126,6 +134,31 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func passwordFieldReturn(sender: AnyObject) {
+        
+        /* Get username and password */
+        var username : String = usernameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+        var password : String = passwordTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+        
+        /* Check that a username and a password was entered */
+        if(!username.isEmpty && !password.isEmpty){
+            /* Log in */
+            PFUser.logInWithUsernameInBackground(username, password:password) {
+                (user: PFUser!, error: NSError!) -> Void in
+                if user != nil {
+                    // Do stuff after successful login.
+                    self.navigationController?.popToRootViewControllerAnimated(true);
+                } else {
+                    // The login failed. Check error to see why.
+                    var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
+                    var errorString : NSString = errorInfo["error"] as NSString;
+                    AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                }
+            }
+        }
+        else{
+            AppUtils.sharedInstance.makeAlertView("", message: "Please complete all fields before you continue", action: "OK", sender: self);
+        }
+        
         var textField = sender as UITextField;
         textField.resignFirstResponder();
     }

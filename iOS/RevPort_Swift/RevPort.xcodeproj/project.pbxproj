@@ -35,6 +35,8 @@
 		4CE09F7D1A69EFFC00156435 /* study4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE09F791A69EFFC00156435 /* study4.jpg */; };
 		4CE09F7F1A69F1CD00156435 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */; };
 		4CE8642F1A6A8266000D1CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */; };
+		4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */; };
+		4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		4CE09F791A69EFFC00156435 /* study4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = study4.jpg; sourceTree = "<group>"; };
 		4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
+		4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 				4CE09EEC1A69A86800156435 /* AppDelegate.swift */,
 				4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */,
 				4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */,
+				4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */,
 				4CE09EEE1A69A86800156435 /* FirstViewController.swift */,
 				4CE09EF01A69A86800156435 /* SecondViewController.swift */,
 				4CE09EF21A69A86800156435 /* Main.storyboard */,
@@ -166,6 +171,7 @@
 			children = (
 				4CE09EEB1A69A86800156435 /* Info.plist */,
 				4CE09F6D1A69E5D700156435 /* RevPort-Bridging-Header.h */,
+				4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -328,7 +334,9 @@
 				4CE09F7F1A69F1CD00156435 /* LoginViewController.swift in Sources */,
 				4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */,
 				4CE8642F1A6A8266000D1CD9 /* SignupViewController.swift in Sources */,
+				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
+				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
 				4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

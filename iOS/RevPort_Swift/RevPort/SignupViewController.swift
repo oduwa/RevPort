@@ -18,6 +18,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
     
+    var activityIndicator : UIActivityIndicatorView!;
+    
     var keyboardShowing : Bool = false;
     var fieldsNeedMoving : Bool = false;
     var offset : CGFloat = 0.0;
@@ -63,6 +65,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* Keyboard Handling */
         self.registerForKeyboardNotifications();
+        
+        /* Activity Indicator */
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge);
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidesWhenStopped = true;
+        self.view.addSubview(activityIndicator);
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,6 +148,51 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - UITextField Delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        /* If "Go" is pressed on password keyboard signup, else just hide keyboard */
+        
+        if(textField == passwordTextField){
+            
+            var email : String = emailTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+            var firstName : String = firstNameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+            var lastName : String = lastNameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+            var username : String = usernameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+            var password : String = passwordTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet());
+            
+            /* Check that all fields were completed */
+            if(!email.isEmpty && !firstName.isEmpty && !lastName.isEmpty && !username.isEmpty && !password.isEmpty){
+                
+                /* Sign up */
+                var user = PFUser();
+                user.username = username;
+                user.password = password;
+                user.email = email;
+                user["firstName"] = firstName;
+                user["lastName"] = lastName;
+                
+                activityIndicator.startAnimating();
+                user.signUpInBackgroundWithBlock({ (succeeded : Bool!, error : NSError!) -> Void in
+                    self.activityIndicator.stopAnimating();
+                    
+                    if(succeeded! == true){
+                        // let them use the app
+                        self.navigationController?.popToRootViewControllerAnimated(true);
+                    }
+                    else{
+                        var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
+                        var errorString : NSString = errorInfo["error"] as NSString;
+                        AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                    }
+                })
+            }
+            else{
+                AppUtils.sharedInstance.makeAlertView("", message: "Please complete all fields before you continue", action: "OK", sender: self);
+            }
+            
+        }
+        else{
+            
+        }
         return textField.resignFirstResponder();
     }
     
