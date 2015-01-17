@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignupViewController.swift
 //  RevPort
 //
 //  Created by Odie Edo-Osagie on 17/01/2015.
@@ -8,18 +8,67 @@
 
 import UIKit
 
-let screenSize: CGRect = UIScreen.mainScreen().bounds;
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
-class LoginViewController: UIViewController {
-
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
-    @IBOutlet weak var usernameTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
     
     var keyboardShowing : Bool = false;
     var fieldsNeedMoving : Bool = false;
     var offset : CGFloat = 0.0;
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        /* Make nav bar COMPLETELY transparent */
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default);
+        self.navigationController?.navigationBar.shadowImage = UIImage();
+        self.navigationController?.navigationBar.translucent = true;
+        
+        /* Email Text field */
+        emailTextField.borderStyle = UITextBorderStyle.None;
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"email",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        emailTextField.delegate = self;
+        
+        /* First Name Text Field */
+        firstNameTextField.borderStyle = UITextBorderStyle.None;
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"first name",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        firstNameTextField.delegate = self;
+        
+        /* Last Name Text Field */
+        lastNameTextField.borderStyle = UITextBorderStyle.None;
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"last name",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        lastNameTextField.delegate = self;
+        
+        /* Username Text field */
+        usernameTextField.borderStyle = UITextBorderStyle.None;
+        usernameTextField.attributedPlaceholder = NSAttributedString(string:"username",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        usernameTextField.delegate = self;
+        
+        /* Password Text Field */
+        passwordTextField.borderStyle = UITextBorderStyle.None;
+        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        passwordTextField.delegate = self;
+        
+        /* Keyboard Handling */
+        self.registerForKeyboardNotifications();
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 
     // MARK: - Keyboard Handling
@@ -45,13 +94,13 @@ class LoginViewController: UIViewController {
             var keyboardHeight : CGFloat = isPortrait ? keyboardFrame.size.height : keyboardFrame.size.width;
             
             /* Updating Constraints */
-            offset = self.usernameTextField.frame.origin.y - (keyboardHeight - self.passwordTextField.frame.size.height);
+            offset = self.emailTextField.frame.origin.y - (keyboardHeight - self.firstNameTextField.frame.size.height - self.lastNameTextField.frame.size.height - self.usernameTextField.frame.size.height - self.passwordTextField.frame.size.height - 35);
             
             // Only move if keyboard will obstruct text fields
-            if((screenSize.height - self.usernameTextField.frame.origin.y) < (keyboardHeight + self.passwordTextField.frame.size.height)){
+            if((screenSize.height - self.emailTextField.frame.origin.y) < (keyboardHeight + self.firstNameTextField.frame.size.height + self.lastNameTextField.frame.size.height + self.usernameTextField.frame.size.height + self.passwordTextField.frame.size.height + 15)){
                 fieldsNeedMoving = true;
                 //println(self.usernameTopConstraint.constant);
-                self.usernameTopConstraint.constant -= offset;
+                self.emailTopConstraint.constant -= offset;
             }
             keyboardShowing = true;
             println(offset);
@@ -77,7 +126,7 @@ class LoginViewController: UIViewController {
             /* Updating Constraints */
             // Only move if keyboard will obstruct text fields
             if(fieldsNeedMoving){
-                self.usernameTopConstraint.constant += offset;
+                self.emailTopConstraint.constant += offset;
             }
             keyboardShowing = false;
             
@@ -88,48 +137,10 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-        /* Username Text field */
-        usernameTextField.borderStyle = UITextBorderStyle.None;
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"username",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
-        
-        /* Password Text Field */
-        passwordTextField.borderStyle = UITextBorderStyle.None;
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
-        
-        /* Make nav bar COMPLETELY transparent */
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default);
-        self.navigationController?.navigationBar.shadowImage = UIImage();
-        self.navigationController?.navigationBar.translucent = true;
-        
-        /* Keyboard Handling */
-        self.registerForKeyboardNotifications();
+    // MARK: - UITextField Delegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return textField.resignFirstResponder();
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    // MARK: - IBActions
-    @IBAction func usernameFieldReturn(sender: AnyObject) {
-        var textField = sender as UITextField;
-        textField.resignFirstResponder();
-    }
-    
-    @IBAction func passwordFieldReturn(sender: AnyObject) {
-        var textField = sender as UITextField;
-        textField.resignFirstResponder();
-    }
-    
     
     /*
     // MARK: - Navigation
