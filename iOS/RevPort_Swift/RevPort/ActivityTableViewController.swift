@@ -30,6 +30,7 @@ class ActivityTableViewController: UITableViewController {
         else{
             //PFUser.logOut();
         }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -96,12 +97,15 @@ class ActivityTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell : ActivityTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as ActivityTableViewCell
 
         // Configure the cell...
         var activityMessage = self.activities[indexPath.row]["activityMessage"] as String;
-        cell.textLabel?.text = activityMessage;
-        cell.textLabel?.numberOfLines = 0
+        //cell.textLabel?.text = activityMessage;
+        //cell.textLabel?.numberOfLines = 0
+        cell.messageLabel.text = activityMessage;
+        cell.messageLabel.sizeToFit();
+        cell.messageLabel?.numberOfLines = 0
 
         return cell
     }

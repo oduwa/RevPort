@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */; };
 		4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEC1A69A86800156435 /* AppDelegate.swift */; };
 		4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEE1A69A86800156435 /* FirstViewController.swift */; };
 		4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EF01A69A86800156435 /* SecondViewController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		4CE09EE71A69A86800156435 /* RevPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE09EEB1A69A86800156435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE09EEC1A69A86800156435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C3FF8D31A6D567100544CC9 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		4CE09EDE1A69A86800156435 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 		4CE09EE91A69A86800156435 /* RevPort */ = {
 			isa = PBXGroup;
 			children = (
+				4C3FF8D31A6D567100544CC9 /* Custom */,
 				4CE09EEC1A69A86800156435 /* AppDelegate.swift */,
 				4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */,
 				4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */,
@@ -337,6 +348,7 @@
 				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
 				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
+				4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */,
 				4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
