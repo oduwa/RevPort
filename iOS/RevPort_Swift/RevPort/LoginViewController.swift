@@ -113,6 +113,13 @@ class LoginViewController: UIViewController {
         self.registerForKeyboardNotifications();
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        /* Hide tab bar */
+        self.tabBarController?.tabBar.hidden = true;
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         
@@ -147,6 +154,7 @@ class LoginViewController: UIViewController {
                 if user != nil {
                     // Do stuff after successful login.
                     self.navigationController?.popToRootViewControllerAnimated(true);
+                    self.tabBarController?.selectedIndex = 0;
                 } else {
                     // The login failed. Check error to see why.
                     var errorInfo : [NSObject : AnyObject] = error!.userInfo!;

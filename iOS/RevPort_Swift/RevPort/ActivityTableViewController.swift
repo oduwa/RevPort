@@ -22,6 +22,9 @@ class ActivityTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        /* Nav Bar */
+        self.navigationController?.navigationBar.topItem?.title = "Recent Activities";
+        
         var currentUser = PFUser.currentUser();
     
         if(currentUser == nil){
@@ -30,7 +33,14 @@ class ActivityTableViewController: UITableViewController {
         else{
             //PFUser.logOut();
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLogin", name: "showLogin", object: nil);
 
+    }
+    
+    func showLogin(){
+        AppUtils.sharedInstance.clearCachedProperties();
+        self.performSegueWithIdentifier("showLogin", sender: self);
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,11 +54,32 @@ class ActivityTableViewController: UITableViewController {
         self.navigationController?.navigationBar.shadowImage = nil;
         self.navigationController?.navigationBar.translucent = true;
         
+        fetchActivities();
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Helpers
+    
+    func fetchActivities(){
+        
         var currentUser = PFUser.currentUser();
-        if(currentUser != nil && AppUtils.sharedInstance.cachedActivities.isEmpty){
+        if(currentUser == nil){
+            return;
+        }
+        
+        if(AppUtils.sharedInstance.cachedActivities.isEmpty){
+            // clear already loaded activities
+            self.activities.removeAll(keepCapacity: false);
+            
             // fetch users activities
             var relation = currentUser.relationForKey("activities");
             var query = relation.query();
+            query.orderByAscending("createdAt");
             query.limit = 20;
             
             query.findObjectsInBackgroundWithBlock {
@@ -70,17 +101,10 @@ class ActivityTableViewController: UITableViewController {
         else{
             self.activities = AppUtils.sharedInstance.cachedActivities;
             self.tableView.reloadData();
+            println("reload");
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
-    
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

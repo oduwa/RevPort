@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */; };
+		4C3FF8D81A6D612300544CC9 /* ModuleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FF8D71A6D612300544CC9 /* ModuleTableViewController.swift */; };
+		4C3FF8DB1A6D67E300544CC9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FF8DA1A6D67E300544CC9 /* SettingsViewController.swift */; };
+		4C74B1341A70FEBA0023E13A /* ModuleSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */; };
+		4C74BF111A7169F00015BEA6 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */; };
 		4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEC1A69A86800156435 /* AppDelegate.swift */; };
 		4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEE1A69A86800156435 /* FirstViewController.swift */; };
 		4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EF01A69A86800156435 /* SecondViewController.swift */; };
@@ -38,6 +42,8 @@
 		4CE8642F1A6A8266000D1CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */; };
 		4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */; };
 		4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */; };
+		4CF09BA11A710F4200823176 /* TestListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF09BA01A710F4200823176 /* TestListTableViewController.swift */; };
+		4CF09BA31A711A4700823176 /* TestListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF09BA21A711A4700823176 /* TestListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +58,10 @@
 
 /* Begin PBXFileReference section */
 		4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		4C3FF8D71A6D612300544CC9 /* ModuleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTableViewController.swift; sourceTree = "<group>"; };
+		4C3FF8DA1A6D67E300544CC9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectTableViewController.swift; sourceTree = "<group>"; };
+		4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		4CE09EE71A69A86800156435 /* RevPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE09EEB1A69A86800156435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE09EEC1A69A86800156435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +97,8 @@
 		4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
+		4CF09BA01A710F4200823176 /* TestListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestListTableViewController.swift; sourceTree = "<group>"; };
+		4CF09BA21A711A4700823176 /* TestListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,12 +132,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C3FF8D31A6D567100544CC9 /* Custom */ = {
+		4C3FF8D31A6D567100544CC9 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
 				4C3FF8D41A6D56A400544CC9 /* ActivityTableViewCell.swift */,
+				4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */,
 			);
-			name = Custom;
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		4C3FF8D61A6D610E00544CC9 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				4C3FF8D71A6D612300544CC9 /* ModuleTableViewController.swift */,
+				4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		4C3FF8D91A6D67CB00544CC9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4C3FF8DA1A6D67E300544CC9 /* SettingsViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		4CE09EDE1A69A86800156435 = {
@@ -162,11 +192,13 @@
 		4CE09EE91A69A86800156435 /* RevPort */ = {
 			isa = PBXGroup;
 			children = (
-				4C3FF8D31A6D567100544CC9 /* Custom */,
+				4CF09B9F1A710F2800823176 /* Tests */,
+				4C3FF8D91A6D67CB00544CC9 /* Settings */,
+				4C3FF8D61A6D610E00544CC9 /* Module */,
+				4C3FF8D31A6D567100544CC9 /* Activity */,
 				4CE09EEC1A69A86800156435 /* AppDelegate.swift */,
 				4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */,
 				4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */,
-				4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */,
 				4CE09EEE1A69A86800156435 /* FirstViewController.swift */,
 				4CE09EF01A69A86800156435 /* SecondViewController.swift */,
 				4CE09EF21A69A86800156435 /* Main.storyboard */,
@@ -234,6 +266,16 @@
 				4CE09F791A69EFFC00156435 /* study4.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		4CF09B9F1A710F2800823176 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CF09BA01A710F4200823176 /* TestListTableViewController.swift */,
+				4CF09BA21A711A4700823176 /* TestListTableViewCell.swift */,
+				4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,9 +384,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C74B1341A70FEBA0023E13A /* ModuleSelectTableViewController.swift in Sources */,
 				4CE09F7F1A69F1CD00156435 /* LoginViewController.swift in Sources */,
+				4C74BF111A7169F00015BEA6 /* QuestionViewController.swift in Sources */,
 				4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */,
+				4CF09BA31A711A4700823176 /* TestListTableViewCell.swift in Sources */,
 				4CE8642F1A6A8266000D1CD9 /* SignupViewController.swift in Sources */,
+				4C3FF8DB1A6D67E300544CC9 /* SettingsViewController.swift in Sources */,
+				4CF09BA11A710F4200823176 /* TestListTableViewController.swift in Sources */,
+				4C3FF8D81A6D612300544CC9 /* ModuleTableViewController.swift in Sources */,
 				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
 				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
