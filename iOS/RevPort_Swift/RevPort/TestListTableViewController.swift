@@ -16,6 +16,9 @@ class TestListTableViewController: UITableViewController {
     var scores = Array<PFObject>();
     var questionsToShow = Array<PFObject>();
     
+    var answersToShow = Array<String>();
+    var choicesToShow = Array<String>();
+    
     /* Sub Views */
     var activityIndicator : UIActivityIndicatorView!;
     
@@ -35,6 +38,8 @@ class TestListTableViewController: UITableViewController {
         activityIndicator.hidden = false;
         
         fetchTests();
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showAnswers:"), name: "ShowAnswersNotif", object: nil);
     }
 
     override func didReceiveMemoryWarning() {
@@ -198,6 +203,18 @@ class TestListTableViewController: UITableViewController {
         }
         
     }
+    
+    
+    // MARK: - Selectors
+    func showAnswers(notification:NSNotification){
+        let userInfo:Dictionary<NSString,NSArray!> = notification.userInfo as Dictionary<NSString,NSArray!>
+        self.choicesToShow = userInfo["choices"] as Array<String>;
+        self.answersToShow = userInfo["answers"] as Array<String>;
+
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.performSegueWithIdentifier("showAnswer", sender: self);
+        })
+    }
 
     
     // MARK: - Navigation
@@ -209,6 +226,13 @@ class TestListTableViewController: UITableViewController {
             var questionViewCont = segue.destinationViewController as QuestionViewController;
             questionViewCont.questions = questionsToShow;
             questionViewCont.questionIndex = 0;
+        }
+        else if(segue.identifier == "showAnswer"){
+            var answerViewCont = segue.destinationViewController as AnswerViewController;
+            answerViewCont.questions = questionsToShow;
+            answerViewCont.choices = choicesToShow;
+            answerViewCont.answers = answersToShow;
+            answerViewCont.questionIndex = 0;
         }
     }
 

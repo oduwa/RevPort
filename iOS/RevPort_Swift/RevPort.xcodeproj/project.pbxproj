@@ -12,6 +12,7 @@
 		4C3FF8DB1A6D67E300544CC9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3FF8DA1A6D67E300544CC9 /* SettingsViewController.swift */; };
 		4C74B1341A70FEBA0023E13A /* ModuleSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */; };
 		4C74BF111A7169F00015BEA6 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */; };
+		4C87BE131A734AB800FEDBB6 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C87BE121A734AB800FEDBB6 /* AnswerViewController.swift */; };
 		4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEC1A69A86800156435 /* AppDelegate.swift */; };
 		4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEE1A69A86800156435 /* FirstViewController.swift */; };
 		4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EF01A69A86800156435 /* SecondViewController.swift */; };
@@ -62,6 +63,7 @@
 		4C3FF8DA1A6D67E300544CC9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectTableViewController.swift; sourceTree = "<group>"; };
 		4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		4C87BE121A734AB800FEDBB6 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		4CE09EE71A69A86800156435 /* RevPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE09EEB1A69A86800156435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE09EEC1A69A86800156435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				4CF09BA01A710F4200823176 /* TestListTableViewController.swift */,
 				4CF09BA21A711A4700823176 /* TestListTableViewCell.swift */,
 				4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */,
+				4C87BE121A734AB800FEDBB6 /* AnswerViewController.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
 				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
+				4C87BE131A734AB800FEDBB6 /* AnswerViewController.swift in Sources */,
 				4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */,
 				4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */,
 			);

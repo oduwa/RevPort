@@ -13,6 +13,7 @@ class QuestionViewController: UIViewController {
     
     var questions = Array<PFObject>();
     var choices = Array<String>();
+    var answers = Array<String>();
     var questionIndex : Int = 0;
     
     @IBOutlet weak var questionTextView: UITextView!
@@ -110,6 +111,12 @@ class QuestionViewController: UIViewController {
 
     @IBAction func optionAPressed(sender: AnyObject) {
         self.choices[questionIndex] = "A";
+        if(self.answers.count <= questionIndex){
+            self.answers.append(self.optionTextViewA.text);
+        }
+        else{
+            self.answers[questionIndex] = self.optionTextViewA.text;
+        }
         self.optionTextViewA.backgroundColor = UIColor.greenColor();
         self.optionTextViewB.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewC.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
@@ -117,6 +124,12 @@ class QuestionViewController: UIViewController {
     }
     @IBAction func optionBPressed(sender: AnyObject) {
         self.choices[questionIndex] = "B";
+        if(self.answers.count <= questionIndex){
+            self.answers.append(self.optionTextViewB.text);
+        }
+        else{
+            self.answers[questionIndex] = self.optionTextViewB.text;
+        }
         self.optionTextViewA.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewB.backgroundColor = UIColor.greenColor();
         self.optionTextViewC.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
@@ -124,6 +137,12 @@ class QuestionViewController: UIViewController {
     }
     @IBAction func optionCPressed(sender: AnyObject) {
         self.choices[questionIndex] = "C";
+        if(self.answers.count <= questionIndex){
+            self.answers.append(self.optionTextViewC.text);
+        }
+        else{
+            self.answers[questionIndex] = self.optionTextViewC.text;
+        }
         self.optionTextViewA.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewB.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewC.backgroundColor = UIColor.greenColor();
@@ -131,10 +150,47 @@ class QuestionViewController: UIViewController {
     }
     @IBAction func optionDPressed(sender: AnyObject) {
         self.choices[questionIndex] = "D";
+        if(self.answers.count <= questionIndex){
+            self.answers.append(self.optionTextViewD.text);
+        }
+        else{
+            self.answers[questionIndex] = self.optionTextViewD.text;
+        }
         self.optionTextViewA.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewB.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewC.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
         self.optionTextViewD.backgroundColor = UIColor.greenColor();
+    }
+    
+    @IBAction func submitButtonPressed(sender: AnyObject) {
+        if(self.answers.count == self.questions.count){
+            /* Count correct answers */
+            var i = 0;
+            var numberCorrect = 0;
+            for answer in answers {
+                var correctAnswer = self.questions[i]["correctAnswer"] as String;
+                if(answer == correctAnswer){
+                    numberCorrect++;
+                }
+                i++;
+            }
+            
+            /* Calculate score */
+            var score = (Double(numberCorrect)/Double(self.questions.count)) * 100.0;
+            score = AppUtils.sharedInstance.roundToDecimalPlaces(score, decimalPlaces: 2);
+            
+            /* display score */
+            AppUtils.sharedInstance.makeAlertView("RevPort", message: "You scored \(score)%", action: "OK", sender: self);
+            
+            /* Send notification to test list controller to dismiss question controller and show answer controller */
+            var info = [NSString : NSArray]();
+            info["choices"] = self.choices;
+            info["answers"] = self.answers;
+            NSNotificationCenter.defaultCenter().postNotificationName("ShowAnswersNotif", object: nil, userInfo: info);
+        }
+        else{
+            AppUtils.sharedInstance.makeAlertView("RevPort", message: "Please answer all questions before you submit", action: "OK", sender: self);
+        }
     }
     /*
     // MARK: - Navigation
