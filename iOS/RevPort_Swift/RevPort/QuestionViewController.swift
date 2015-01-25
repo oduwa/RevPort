@@ -15,6 +15,7 @@ class QuestionViewController: UIViewController {
     var choices = Array<String>();
     var answers = Array<String>();
     var questionIndex : Int = 0;
+    var isGradeable : Bool = false;
     
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var optionTextViewA: UITextView!
@@ -30,6 +31,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var quitButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -42,6 +44,10 @@ class QuestionViewController: UIViewController {
             }
             
             loadQuestionForIndex(questionIndex);
+        }
+        
+        if(self.isGradeable){
+            self.quitButton.hidden = true;
         }
     }
 
@@ -192,6 +198,15 @@ class QuestionViewController: UIViewController {
             AppUtils.sharedInstance.makeAlertView("RevPort", message: "Please answer all questions before you submit", action: "OK", sender: self);
         }
     }
+    
+    @IBAction func quitButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
+    
     /*
     // MARK: - Navigation
     

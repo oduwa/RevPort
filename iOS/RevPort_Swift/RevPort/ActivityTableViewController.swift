@@ -23,7 +23,12 @@ class ActivityTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         /* Nav Bar */
-        self.navigationController?.navigationBar.topItem?.title = "Recent Activities";
+        // Title
+        var titleView = UILabel();
+        titleView.text = "Recent Activities";
+        titleView.font = UIFont(name: "Code-Bold", size: 16.0);
+        titleView.sizeToFit();
+        self.navigationItem.titleView = titleView;
         
         var currentUser = PFUser.currentUser();
     
@@ -127,9 +132,12 @@ class ActivityTableViewController: UITableViewController {
         var activityMessage = self.activities[indexPath.row]["activityMessage"] as String;
         //cell.textLabel?.text = activityMessage;
         //cell.textLabel?.numberOfLines = 0
+        cell.messageLabel.textColor = AppUtils.sharedInstance.redColour1;
         cell.messageLabel.text = activityMessage;
         cell.messageLabel.sizeToFit();
         cell.messageLabel?.numberOfLines = 0
+        
+        //cell.timeLabel.textColor = AppUtils.sharedInstance.turqoiseColour1;
 
         return cell
     }

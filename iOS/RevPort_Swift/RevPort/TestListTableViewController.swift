@@ -15,7 +15,7 @@ class TestListTableViewController: UITableViewController {
     var questionCounts = Array<PFObject>();
     var scores = Array<PFObject>();
     var questionsToShow = Array<PFObject>();
-    
+    var gradeableToShow = false;
     var answersToShow = Array<String>();
     var choicesToShow = Array<String>();
     
@@ -74,7 +74,7 @@ class TestListTableViewController: UITableViewController {
             cell.scoreLabel.text = "\(score)%";
         }
         else{
-            cell.scoreLabel.text = "";
+            cell.scoreLabel.text = "  -  ";
         }
         
         
@@ -103,6 +103,7 @@ class TestListTableViewController: UITableViewController {
             if(error == nil){
                 // store retreived questions list
                 self.questionsToShow = objects as Array<PFObject>;
+                self.gradeableToShow = test["gradeable"] as Bool;
                 self.performSegueWithIdentifier("showQuestion", sender: self);
             }
             else{
@@ -225,6 +226,7 @@ class TestListTableViewController: UITableViewController {
         if(segue.identifier == "showQuestion"){
             var questionViewCont = segue.destinationViewController as QuestionViewController;
             questionViewCont.questions = questionsToShow;
+            questionViewCont.isGradeable = gradeableToShow;
             questionViewCont.questionIndex = 0;
         }
         else if(segue.identifier == "showAnswer"){

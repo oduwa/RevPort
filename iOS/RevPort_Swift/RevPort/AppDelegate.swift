@@ -19,6 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso", clientKey: "YwWAuhKd93VvkOJhca7lczSV9kljj18G6RpNk5hb");
         
+        /* Appearance */
+        UINavigationBar.appearance().barTintColor = AppUtils.sharedInstance.purpleColour1;
+        
+        UITabBar.appearance().barTintColor = AppUtils.sharedInstance.purpleColour1;
+        UITabBar.appearance().selectedImageTintColor = AppUtils.sharedInstance.redColour1;
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: AppUtils.sharedInstance.redColour1], forState:.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: AppUtils.sharedInstance.redColour1], forState:.Normal)
+        
+        //AppUtils.sharedInstance.printAllFontNames()
+        
         return true
     }
 

@@ -17,6 +17,10 @@ class AppUtils: NSObject {
     var storedModuleToAdd : PFObject!;
     var storedQuestions : Array<PFObject> = Array<PFObject>();
 
+    var turqoiseColour1 = UIColor(red: 86/255.0, green: 173/255.0, blue: 167/255.0, alpha: 1.0);
+    var redColour1 = UIColor(red: 164.0/255.0, green: 26.0/255.0, blue: 71.0/255.0, alpha: 1.0);
+    var purpleColour1 = UIColor(red: 159.0/255.0, green: 109.0/255.0, blue: 143.0/255.0, alpha: 1.0);
+
     
     class var sharedInstance: AppUtils {
         return _appUtilsSharedInstance;
@@ -67,6 +71,18 @@ class AppUtils: NSObject {
         
     }
     
+    func printAllFontNames(){
+        for family in UIFont.familyNames()
+        {
+            var famLikeFamily : String = family as String;
+            println(famLikeFamily);
+            
+            for name in UIFont.fontNamesForFamilyName(famLikeFamily)
+            {
+                println(name);
+            }
+        }
+    }
     
     
 }

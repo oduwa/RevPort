@@ -119,6 +119,10 @@ class AnswerViewController: UIViewController {
     }
 
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
+    
 
     /*
     // MARK: - Navigation

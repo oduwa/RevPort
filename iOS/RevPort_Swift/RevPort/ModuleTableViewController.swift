@@ -61,13 +61,20 @@ class ModuleTableViewController: UITableViewController {
         var moduleName = "";
 
         // Configure the cell...
-        if(indexPath.row != self.modules.count){
-            moduleCode = self.modules[indexPath.row]["moduleCode"] as String;
-            moduleName = self.modules[indexPath.row]["moduleName"] as String;
+        if(self.modules.count > 0){
+            if(indexPath.row != self.modules.count){
+                moduleCode = self.modules[indexPath.row]["moduleCode"] as String;
+                moduleName = self.modules[indexPath.row]["moduleName"] as String;
+            }
+            
+            cell.textLabel?.font = UIFont(name: "Code-Bold", size: 16.0);
+            cell.textLabel?.textColor = AppUtils.sharedInstance.redColour1;
+            cell.textLabel?.text = moduleName;
+            
+            cell.detailTextLabel?.font = UIFont(name: "JosefinSans-SemiBold", size: 16.0);
+            //cell.detailTextLabel?.textColor = AppUtils.sharedInstance.turqoiseColour1;
+            cell.detailTextLabel?.text = moduleCode;
         }
-        
-        cell.textLabel?.text = moduleName;
-        cell.detailTextLabel?.text = moduleCode;
         
 
         return cell
@@ -236,8 +243,17 @@ class ModuleTableViewController: UITableViewController {
     // MARK: - Selectors
     func addModuleRow(){
         
+        /* Check that user addded a module */
+        if(AppUtils.sharedInstance.storedModuleToAdd == nil){
+            /* End editing */
+            UIApplication.sharedApplication().sendAction(self.editButtonItem().action, to: self.editButtonItem().target, from: self, forEvent: nil);
+            
+            return;
+        }
+        
+        
         /* Check that module has not already been added */
-        var newModuleCode = AppUtils.sharedInstance.storedModuleToAdd["moduleCode"] as String;
+        var newModuleCode = AppUtils.sharedInstance.storedModuleToAdd["moduleCode"] as? String;
         for module in self.modules {
             var existingModuleCode = module["moduleCode"] as String;
             if(existingModuleCode == newModuleCode){
@@ -260,6 +276,7 @@ class ModuleTableViewController: UITableViewController {
         UIApplication.sharedApplication().sendAction(self.editButtonItem().action, to: self.editButtonItem().target, from: self, forEvent: nil);
         
     }
+    
     
     
     // MARK: - Navigation

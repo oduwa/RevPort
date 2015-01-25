@@ -64,7 +64,11 @@ class ModuleSelectTableViewController: UITableViewController {
             moduleName = self.modules[indexPath.row]["moduleName"] as String;
         }
         
+        cell.textLabel?.font = UIFont(name: "Code-Bold", size: 16.0);
+        cell.textLabel?.textColor = AppUtils.sharedInstance.redColour1;
         cell.textLabel?.text = moduleName;
+        
+        cell.detailTextLabel?.font = UIFont(name: "JosefinSans-SemiBold", size: 16.0);
         cell.detailTextLabel?.text = moduleCode;
         
         
@@ -146,6 +150,11 @@ class ModuleSelectTableViewController: UITableViewController {
         AppUtils.sharedInstance.storedModuleToAdd = moduleToAdd;
         NSNotificationCenter.defaultCenter().postNotificationName("DidSelectModuleToAdd", object: nil);
         self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
     }
     
     /*
