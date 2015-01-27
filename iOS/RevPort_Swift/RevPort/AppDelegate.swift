@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: AppUtils.sharedInstance.redColour1], forState:.Selected)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: AppUtils.sharedInstance.redColour1], forState:.Normal)
+
         
         //AppUtils.sharedInstance.printAllFontNames()
         

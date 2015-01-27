@@ -14,6 +14,7 @@ class TestListTableViewController: UITableViewController {
     var tests = Array<PFObject>();
     var questionCounts = Array<PFObject>();
     var scores = Array<PFObject>();
+    var testToShow : PFObject!;
     var questionsToShow = Array<PFObject>();
     var gradeableToShow = false;
     var answersToShow = Array<String>();
@@ -26,8 +27,15 @@ class TestListTableViewController: UITableViewController {
         super.viewDidLoad()
 
         /* Nav Bar */
+        /* Nav Bar */
+        // Title
         var moduleName = testModule["moduleName"] as String;
-        self.title = moduleName;
+        var titleView = UILabel();
+        titleView.text = moduleName;
+        titleView.font = UIFont(name: "Code-Bold", size: 16.0);
+        titleView.sizeToFit();
+        self.navigationItem.titleView = titleView;
+        //self.title = moduleName;
         
         
         /* Activity Indicator */
@@ -97,6 +105,7 @@ class TestListTableViewController: UITableViewController {
         
         /* Get Questions */
         var test = self.tests[indexPath.row];
+        testToShow = test;
         var questionRelation = test.relationForKey("questions");
         var query = questionRelation.query();
         query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -183,6 +192,9 @@ class TestListTableViewController: UITableViewController {
                             if(error == nil){
                                 test["score_temp"] = score["mark"];
                             }
+                            else if(score == nil){
+                                // nothing
+                            }
                             else{
                                 test["score_temp"] = "";
                             }
@@ -212,6 +224,9 @@ class TestListTableViewController: UITableViewController {
         self.choicesToShow = userInfo["choices"] as Array<String>;
         self.answersToShow = userInfo["answers"] as Array<String>;
 
+        self.tests.removeAll(keepCapacity: false);
+        self.fetchTests();
+        
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             self.performSegueWithIdentifier("showAnswer", sender: self);
         })
@@ -225,6 +240,7 @@ class TestListTableViewController: UITableViewController {
         
         if(segue.identifier == "showQuestion"){
             var questionViewCont = segue.destinationViewController as QuestionViewController;
+            questionViewCont.test = testToShow;
             questionViewCont.questions = questionsToShow;
             questionViewCont.isGradeable = gradeableToShow;
             questionViewCont.questionIndex = 0;

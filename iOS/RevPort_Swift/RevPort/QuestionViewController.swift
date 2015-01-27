@@ -10,7 +10,7 @@ import UIKit
 
 class QuestionViewController: UIViewController {
 
-    
+    var test : PFObject!
     var questions = Array<PFObject>();
     var choices = Array<String>();
     var answers = Array<String>();
@@ -34,6 +34,8 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var quitButton: UIButton!
     
     
+    var activityIndicator : UIActivityIndicatorView!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +51,13 @@ class QuestionViewController: UIViewController {
         if(self.isGradeable){
             self.quitButton.hidden = true;
         }
+        
+        /* Activity Indicator */
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray);
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidesWhenStopped = true;
+        self.view.addSubview(activityIndicator);
+        activityIndicator.hidden = true;
     }
 
     override func didReceiveMemoryWarning() {
@@ -169,7 +178,10 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(sender: AnyObject) {
+        
         if(self.answers.count == self.questions.count){
+            activityIndicator.startAnimating();
+            
             /* Count correct answers */
             var i = 0;
             var numberCorrect = 0;
@@ -181,14 +193,87 @@ class QuestionViewController: UIViewController {
                 i++;
             }
             
+            
             /* Calculate score */
-            var score = (Double(numberCorrect)/Double(self.questions.count)) * 100.0;
-            score = AppUtils.sharedInstance.roundToDecimalPlaces(score, decimalPlaces: 2);
+            var mark = (Double(numberCorrect)/Double(self.questions.count)) * 100.0;
+            mark = AppUtils.sharedInstance.roundToDecimalPlaces(mark, decimalPlaces: 2);
+            
+            
+            /* Record score if necessary */
+            var currentUsername = PFUser.currentUser().username;
+            var attempters = test["attempters"] as Array<String>;
+            var isGradeable = test["gradeable"] as Bool;
+            var alreadyAttempted = false;
+            
+            // Check if user already took test
+            if(contains(attempters, currentUsername)){
+                alreadyAttempted = true;
+            }
+            
+            // save new score if user has never done this test before, gradeable or not
+            if(!alreadyAttempted){
+                // Add as attempted
+                attempters.append(currentUsername);
+                test["attempters"] = attempters;
+                test.save();
+                
+                // save score
+                var score = PFObject(className:"Score");
+                score["username"] = currentUsername;
+                score["mark"] = mark;
+                score["scoreModule"] = test["testModule"] as String;
+                score["scoreTitle"] = test["testTitle"] as String;
+                score.save();
+                
+                // add score to test's relation
+                var relation = test.relationForKey("scores");
+                relation.addObject(score);
+                test.save();
+            }
+            // if user HAS taken the test and its NOT a gradeable test update their existing score
+            else if(!isGradeable && alreadyAttempted){
+                // Get users previous score
+                var query = PFQuery(className:"Score")
+                query.whereKey("username", equalTo:currentUsername)
+                query.whereKey("scoreModule", equalTo:test["testModule"] as String)
+                query.whereKey("scoreTitle", equalTo:test["testTitle"] as String)
+                var score = query.getFirstObject();
+                
+                // update the users score
+                score["mark"] = mark;
+                score.save();
+            }
+            
+            
+            /* Record activity */
+            var newActivity = PFObject(className:"Activity");
+            var testModule = test["testModule"] as String;
+            var testName = test["testTitle"] as String;
+            var activityMessage = "completed the test \"\(testName)\" for \(testModule). Scored \(mark)%";
+            newActivity["activityMessage"] = activityMessage;
+            newActivity.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                if(succeeded){
+                    var activityRelation = PFUser.currentUser().relationForKey("activities");
+                    activityRelation.addObject(newActivity);
+                    PFUser.currentUser().saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+                        if(error == nil){
+                            AppUtils.sharedInstance.cachedActivities.removeAll(keepCapacity: true);
+                        }
+                    })
+                }
+                else{
+                    // nothing
+                }
+            }
+            
+            
+            activityIndicator.stopAnimating();
             
             /* display score */
-            AppUtils.sharedInstance.makeAlertView("RevPort", message: "You scored \(score)%", action: "OK", sender: self);
+            AppUtils.sharedInstance.makeAlertView("RevPort", message: "You scored \(mark)%", action: "OK", sender: self);
             
-            /* Send notification to test list controller to dismiss question controller and show answer controller */
+            
+            /* Send notification to test list controller to dismiss question controller, refresh test list controller and show answer controller */
             var info = [NSString : NSArray]();
             info["choices"] = self.choices;
             info["answers"] = self.answers;

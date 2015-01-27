@@ -11,12 +11,37 @@
             <string>Code-Bold</string>
             <string>Code-Bold</string>
             <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
+            <string>Code-Bold</string>
         </mutableArray>
         <mutableArray key="CODE Light.otf">
             <string>Code-Light</string>
         </mutableArray>
         <mutableArray key="JosefinSans-Bold.ttf">
             <string>JosefinSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="JosefinSans-BoldItalic.ttf">
+            <string>JosefinSans-BoldItalic</string>
+            <string>JosefinSans-BoldItalic</string>
+        </mutableArray>
+        <mutableArray key="JosefinSans-SemiBold.ttf">
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
+            <string>JosefinSans-SemiBold</string>
         </mutableArray>
         <mutableArray key="JosefinSans-SemiBoldItalic.ttf">
             <string>JosefinSans-SemiBoldItalic</string>
@@ -90,7 +115,7 @@
         <scene sceneID="EWd-lm-X4i">
             <objects>
                 <navigationController id="cQe-Ky-yli" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="amz-yD-SjP"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings.png" id="amz-yD-SjP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Opa-Rj-sjK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,7 +211,7 @@
         <scene sceneID="Eig-1P-P0D">
             <objects>
                 <navigationController id="Dre-Ke-lIw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Modules" image="second" id="2In-cU-eH3"/>
+                    <tabBarItem key="tabBarItem" title="Modules" image="literature.png" id="2In-cU-eH3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h27-Gz-xHO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -341,11 +366,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-QJ-gpT">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-QJ-gpT">
                                 <rect key="frame" x="16" y="93" width="280" height="120"/>
                                 <color key="backgroundColor" red="0.63529411764705879" green="0.11764705882352941" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-BoldItalic" family="Josefin Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHM-PC-xbc">
@@ -355,6 +380,7 @@
                                     <constraint firstAttribute="width" constant="37" id="TUE-S4-3nk"/>
                                     <constraint firstAttribute="height" constant="50" id="qgJ-6S-Ckz"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="A">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -367,7 +393,7 @@
                                 <rect key="frame" x="70" y="247" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YH4-g4-mib">
@@ -376,6 +402,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Apr-fh-5KL"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="B">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -388,7 +415,7 @@
                                 <rect key="frame" x="70" y="318" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E45-U5-gBU">
@@ -397,6 +424,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cez-MG-Ol2"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="C">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -409,7 +437,7 @@
                                 <rect key="frame" x="70" y="386" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mt8-sU-OgB">
@@ -418,6 +446,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="w94-Sq-fnr"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="D">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -430,7 +459,7 @@
                                 <rect key="frame" x="70" y="457" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlX-ba-rg0">
@@ -446,12 +475,13 @@
                                     <action selector="prevButtonPressed:" destination="3sq-M4-mJs" eventType="touchUpInside" id="kOh-kq-zEn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJX-lv-0Qd">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJX-lv-0Qd">
                                 <rect key="frame" x="16" y="38" width="55" height="30"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.1019607843" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="tKC-Dn-Snr"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -460,12 +490,13 @@
                                     <action selector="submitButtonPressed:" destination="3sq-M4-mJs" eventType="touchUpInside" id="RK0-pP-R3h"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-MH-6i2">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7c-MH-6i2">
                                 <rect key="frame" x="250" y="38" width="55" height="30"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.1019607843" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="vRR-jf-4vR"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="Quit">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -608,7 +639,7 @@
         <scene sceneID="aqc-RK-nKc">
             <objects>
                 <navigationController id="cJB-Pz-qEV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Activity" image="first" id="dKc-vz-8F9"/>
+                    <tabBarItem key="tabBarItem" title="Activity" image="checklist.png" id="dKc-vz-8F9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hk0-bG-cQ2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -817,11 +848,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDP-4T-xh5">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDP-4T-xh5">
                                 <rect key="frame" x="16" y="92" width="280" height="120"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.1019607843" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-BoldItalic" family="Josefin Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1u-iE-bbH">
@@ -831,6 +862,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Tzo-Qd-dU2"/>
                                     <constraint firstAttribute="width" constant="37" id="bSR-py-GYG"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="A">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -840,7 +872,7 @@
                                 <rect key="frame" x="70" y="246" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slw-Jq-iaC">
@@ -849,6 +881,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eon-8Z-Gz2"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="B">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -858,7 +891,7 @@
                                 <rect key="frame" x="70" y="317" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQn-kO-mYG">
@@ -867,6 +900,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="yby-an-MTV"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="C">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -876,7 +910,7 @@
                                 <rect key="frame" x="70" y="385" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ma-ni-C2L">
@@ -885,6 +919,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xjf-DP-rqt"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="D">
                                     <color key="titleColor" red="0.52042029580000004" green="1" blue="0.96071572620000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -894,7 +929,7 @@
                                 <rect key="frame" x="70" y="456" width="235" height="50"/>
                                 <color key="backgroundColor" red="0.34140944499999998" green="0.86283207250000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="JosefinSans-SemiBold" family="Josefin Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="984-YU-5Da">
@@ -923,12 +958,13 @@
                                     <action selector="nextButtonPressed:" destination="TBY-ag-uPb" eventType="touchUpInside" id="nfb-DR-4A3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-IV-ZLU">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9X9-IV-ZLU">
                                 <rect key="frame" x="16" y="36" width="55" height="30"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.1019607843" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="83Z-Sa-Cmv"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Code-Bold" family="Code Bold" pointSize="15"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -995,10 +1031,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="checklist.png" width="32" height="32"/>
         <image name="less_then.png" width="32" height="32"/>
+        <image name="literature.png" width="32" height="32"/>
         <image name="more_then.png" width="32" height="32"/>
-        <image name="second" width="30" height="30"/>
+        <image name="settings.png" width="32" height="32"/>
         <image name="study1.jpg" width="500" height="332"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

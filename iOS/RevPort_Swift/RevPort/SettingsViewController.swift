@@ -20,7 +20,14 @@ class SettingsViewController: UITableViewController, UIAlertViewDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         /* Nav Bar */
-        self.navigationController?.navigationBar.topItem?.title = "Settings";
+        // Title
+        var titleView = UILabel();
+        titleView.text = "Settings";
+        titleView.font = UIFont(name: "Code-Bold", size: 16.0);
+        titleView.sizeToFit();
+        self.navigationItem.titleView = titleView;
+        
+        self.tabBarItem.image = UIImage(named: "settings")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
     }
 
     override func didReceiveMemoryWarning() {

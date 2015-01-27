@@ -15,12 +15,6 @@ class ActivityTableViewController: UITableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         /* Nav Bar */
         // Title
@@ -30,6 +24,13 @@ class ActivityTableViewController: UITableViewController {
         titleView.sizeToFit();
         self.navigationItem.titleView = titleView;
         
+        for item in self.tabBarController?.tabBar.items as [UITabBarItem] {
+            if let image = item.image {
+                item.image = image.imageWithColor(AppUtils.sharedInstance.darkGrayColour1).imageWithRenderingMode(.AlwaysOriginal)
+            }
+        }
+        
+        /* Check that a user is logged in */
         var currentUser = PFUser.currentUser();
     
         if(currentUser == nil){
@@ -60,6 +61,8 @@ class ActivityTableViewController: UITableViewController {
         self.navigationController?.navigationBar.translucent = true;
         
         fetchActivities();
+        
+        self.tabBarItem.image = UIImage(named: "checklist")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
 
     }
 
@@ -84,7 +87,7 @@ class ActivityTableViewController: UITableViewController {
             // fetch users activities
             var relation = currentUser.relationForKey("activities");
             var query = relation.query();
-            query.orderByAscending("createdAt");
+            query.orderByDescending("createdAt");
             query.limit = 20;
             
             query.findObjectsInBackgroundWithBlock {
@@ -130,6 +133,7 @@ class ActivityTableViewController: UITableViewController {
 
         // Configure the cell...
         var activityMessage = self.activities[indexPath.row]["activityMessage"] as String;
+        var timeOfActivity = self.activities[indexPath.row].createdAt as NSDate;
         //cell.textLabel?.text = activityMessage;
         //cell.textLabel?.numberOfLines = 0
         cell.messageLabel.textColor = AppUtils.sharedInstance.redColour1;
@@ -138,7 +142,8 @@ class ActivityTableViewController: UITableViewController {
         cell.messageLabel?.numberOfLines = 0
         
         //cell.timeLabel.textColor = AppUtils.sharedInstance.turqoiseColour1;
-
+        cell.timeLabel.text = AppUtils.sharedInstance.getTimePassed(timeOfActivity);
+        
         return cell
     }
     
@@ -195,3 +200,5 @@ class ActivityTableViewController: UITableViewController {
     }
 
 }
+
+

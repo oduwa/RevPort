@@ -20,6 +20,7 @@ class AppUtils: NSObject {
     var turqoiseColour1 = UIColor(red: 86/255.0, green: 173/255.0, blue: 167/255.0, alpha: 1.0);
     var redColour1 = UIColor(red: 164.0/255.0, green: 26.0/255.0, blue: 71.0/255.0, alpha: 1.0);
     var purpleColour1 = UIColor(red: 159.0/255.0, green: 109.0/255.0, blue: 143.0/255.0, alpha: 1.0);
+    var darkGrayColour1 = UIColor(red: 50/255.0, green: 50/255.0, blue: 50/255.0, alpha: 1.0);
 
     
     class var sharedInstance: AppUtils {
@@ -84,5 +85,61 @@ class AppUtils: NSObject {
         }
     }
     
+    func getTimePassed(targetDateTime : NSDate) -> String{
+        
+        let currentDate = NSDate();
+        let currentTimeStamp = currentDate.timeIntervalSince1970;
+        let targetTimeStamp = targetDateTime.timeIntervalSince1970;
+        
+        var timeStampDifference = currentTimeStamp - targetTimeStamp;
+        var timeUnit = "minutes";
+        var timeSince = timeStampDifference/60;
+
+        timeUnit = (floor(timeSince) == 1) ? "minute" : "minutes";
+        
+        if(timeSince > 59){
+            timeSince = timeSince/60;
+            timeUnit = (floor(timeSince) == 1) ? "hour" : "hours";
+            
+            if(timeSince > 23){
+                timeSince = timeSince/24;
+                timeUnit = (floor(timeSince) == 1) ? "day" : "days";
+                
+                if(timeSince > 6){
+                    timeSince = timeSince/7;
+                    timeUnit = (floor(timeSince) == 1) ? "week" : "weeks";
+                }
+            }
+        }
+        
+        timeSince = floor(timeSince);
+        var timeSinceAsInt = Int(timeSince);
+        var result = "\(timeSinceAsInt) \(timeUnit) ago";
+        
+        return result;
+    }
     
+    
+    
+}
+
+extension UIImage {
+    func imageWithColor(tintColor: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        
+        let context = UIGraphicsGetCurrentContext() as CGContextRef
+        CGContextTranslateCTM(context, 0, self.size.height)
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextSetBlendMode(context, kCGBlendModeNormal)
+        
+        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
+        CGContextClipToMask(context, rect, self.CGImage)
+        tintColor.setFill()
+        CGContextFillRect(context, rect)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 }
