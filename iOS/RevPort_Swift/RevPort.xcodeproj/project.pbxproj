@@ -61,7 +61,6 @@
 		4CAE3B3E1A755185000CEFC2 /* more_then.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAE3B3A1A755185000CEFC2 /* more_then.png */; };
 		4CAE3B3F1A755185000CEFC2 /* more_then@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAE3B3B1A755185000CEFC2 /* more_then@2x.png */; };
 		4CCE78411A76897300701A9F /* literature2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE783F1A76897300701A9F /* literature2.png */; };
-		4CCE78421A76897300701A9F /* literature2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE78401A76897300701A9F /* literature2@2x.png */; };
 		4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEC1A69A86800156435 /* AppDelegate.swift */; };
 		4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EEE1A69A86800156435 /* FirstViewController.swift */; };
 		4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09EF01A69A86800156435 /* SecondViewController.swift */; };
@@ -161,7 +160,6 @@
 		4CAE3B3A1A755185000CEFC2 /* more_then.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_then.png; sourceTree = "<group>"; };
 		4CAE3B3B1A755185000CEFC2 /* more_then@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_then@2x.png"; sourceTree = "<group>"; };
 		4CCE783F1A76897300701A9F /* literature2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = literature2.png; sourceTree = "<group>"; };
-		4CCE78401A76897300701A9F /* literature2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "literature2@2x.png"; sourceTree = "<group>"; };
 		4CE09EE71A69A86800156435 /* RevPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE09EEB1A69A86800156435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE09EEC1A69A86800156435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -404,7 +402,6 @@
 			isa = PBXGroup;
 			children = (
 				4CCE783F1A76897300701A9F /* literature2.png */,
-				4CCE78401A76897300701A9F /* literature2@2x.png */,
 				4C5B09F51A766F7B004F12FE /* checklist.png */,
 				4C5B09F61A766F7B004F12FE /* checklist@2x.png */,
 				4C5B09F71A766F7B004F12FE /* literature.png */,
@@ -532,7 +529,6 @@
 				4CCE78411A76897300701A9F /* literature2.png in Resources */,
 				4CAE3B1B1A752B75000CEFC2 /* JosefinSans-Regular.ttf in Resources */,
 				4CE09F7C1A69EFFC00156435 /* study3.jpg in Resources */,
-				4CCE78421A76897300701A9F /* literature2@2x.png in Resources */,
 				4CAE3B261A752B75000CEFC2 /* Pacifico.ttf in Resources */,
 				4CAE3B361A752B75000CEFC2 /* Raleway-SemiBold.otf in Resources */,
 				4CAE3B201A752B75000CEFC2 /* JosefinSansStd-Light.otf in Resources */,
