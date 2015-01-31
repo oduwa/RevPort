@@ -209,7 +209,7 @@
 	   			   success: function(results) 
 	   			   {  
 	   				 if(results.length > 0){
-						// add module 
+						// remove module 
 	   	 				var currentUser = Parse.User.current();
 	   	 				var moduleRelation = currentUser.relation("modules");
    		 				moduleRelation.remove(results[0]);

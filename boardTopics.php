@@ -65,6 +65,7 @@
 <html>
 	<head>
 		<title>Discussion Board</title>
+		<?php $pageTitle = "board"; ?>
 		<?php include 'includes.php';?>
 		<!-- Fancy Select -->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>

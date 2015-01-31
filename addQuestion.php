@@ -28,6 +28,7 @@
 		$test = new ParseObject("Test");
 		$test->set("testTitle", $title);
 		$test->set("testModule", $code);
+		$test->set("questionCount", 0);
 		if($gradeable === "gradeable"){
 			$test->set("gradeable", true);
 		}
@@ -53,6 +54,7 @@
 	// Add question to test
 	$relation = $test->getRelation("questions");
 	$relation->add($question);
+	$test->increment("questionCount");
 	$test->save();
 	
 	// Add test to Module

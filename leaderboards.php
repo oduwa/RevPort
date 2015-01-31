@@ -162,6 +162,7 @@
 	</head>
 	
 	<body>
+		<?php $pageTitle = "leaderboard"; ?>
 		<?php include 'appHeader.php';?>
 		
 		<div id="spinnerContainer" class="screenCentered"></div>

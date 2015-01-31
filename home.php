@@ -9,10 +9,13 @@
 	$currentUser = $_SESSION["currentUser"];
 	if (isset($_SESSION["currentUser"])) {
 	    // Its all good!
+		if(empty($currentUser->get("username"))){
+			header("Location: index.php?error=loginError");
+		}
 	}
 	else {
 	    // show the signup or login page
-		header("Location: error.php?msg=Wrong%20credentials%20maybe");
+		header("Location: index.php?error=loginError");
 	}
 
 	//Get users modules
@@ -39,6 +42,7 @@
 <html>
 	<head>
 		<title>UEA RevPort</title>
+		<?php $pageTitle = "home"; ?>
 		<?php include 'includes.php';?>
 		
 		<style>
@@ -111,24 +115,34 @@
 		</div>
 		
 		<div class="contactList">
-			<div class="panel panel-default table-responsive" style="border-radius:5px;">
-				<table class="table table-bordered">
-					<tr class="active">
-						<th>
-							<a href="#" class="tableHeader">Contacts</a>
-							<a class="glyphLink" href="about.html" style="float:right;">
-								<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
-							</a>
-						</th>
-					</tr>
-					<?php
-						for ($i = 0; $i < count($modules); $i++) { 
-					  	  $object = $modules[$i];
-					  	  echo "<tr><td><a href=\"#\">" . $object->get("moduleOrganizer") . "</a></td></tr>";
-						}
-					?>
-				</table>
-			</div>
+			<?php
+				if($currentUser->get("privilegeLevel") > 0){
+					echo "<a href=\"makeTest.php\">Add Test</a>";
+				}
+				else{
+			?>
+					<div class="panel panel-default table-responsive" style="border-radius:5px;">
+						<table class="table table-bordered">
+							<tr class="active">
+								<th>
+									<a href="#" class="tableHeader">Contacts</a>
+									<a class="glyphLink" href="about.html" style="float:right;">
+										<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
+									</a>
+								</th>
+							</tr>
+							<?php
+								for ($i = 0; $i < count($modules); $i++) { 
+							  	  $object = $modules[$i];
+							  	  echo "<tr><td><a href=\"#\">" . $object->get("moduleOrganizer") . "</a></td></tr>";
+								}
+							?>
+						</table>
+					</div>
+			<?php
+				}
+			?>
+			
 		</div>
 		
 		<div class="moduleList">

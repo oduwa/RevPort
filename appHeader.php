@@ -41,8 +41,31 @@
 				<div class="header-right">
 					<div class="top-nav" style="float:right;">
 						<ul>
-							<li class="navListItem"><a class="navLink" href="moduleList.php" style="padding: 0.3em 1.8em;">Tests</a></li>
-							<li class="navListItem"><a class="navLink" href="boardTopics.php" style="padding: 0.3em 1.8em;">Board</a></li>
+							<?php 
+								if(!isset($pageTitle)){
+									$pageTitle = "";
+								}
+								if($pageTitle === "tests"){
+							?>		
+							<li class="navListItem"><a class="navLink" href="moduleList.php" style="padding: 0.3em 1.8em; color:#E95393;">Tests</a></li>
+							<?php
+								}
+								else{
+									echo "<li class=\"navListItem\"><a class=\"navLink\" href=\"moduleList.php\" style=\"padding: 0.3em 1.8em;\">Tests</a></li>";
+								}
+							?>
+							
+							<?php 
+								if($pageTitle === "board"){
+							?>		
+							<li class="navListItem"><a class="navLink" href="boardTopics.php" style="padding: 0.3em 1.8em; color:#E95393;">Board</a></li>
+							<?php
+								}
+								else{
+									echo "<li class=\"navListItem\"><a class=\"navLink\" href=\"boardTopics.php\" style=\"padding: 0.3em 1.8em;\">Board</a></li>";
+								}
+							?>
+	
 							<li class="dropdown" style="display:inline-block;">
 						  		<button type="button" class="btn btn-link dropdown-toggle navButton" data-toggle="dropdown" aria-expanded="true" id="dropdownMenu2" 
 								style="padding: 0.3em 1.8em;">
@@ -60,9 +83,21 @@
 						  		    <li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
 						  		  </ul>
 							</li>
+
 							<li class="navListItem">
-								<a class="glyphiconLink" href="leaderboards.php"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em;"></span></a>
+							<?php 
+								if($pageTitle === "leaderboard"){
+							?>		
+								<a class="glyphiconLink" href="leaderboards.php"><span class="glyphicon glyphicon-stats" aria-hidden="true" style="padding-left:1.6em; color:#E95393;"></span></a>
+							<?php
+								}
+								else{
+									echo "<a class=\"glyphiconLink\" href=\"leaderboards.php\"><span class=\"glyphicon glyphicon-stats\" aria-hidden=\"true\" style=\"padding-left:1.6em; \"></span></a>";
+								}
+							?>
 							</li>
+							
+							
 						</ul>
 					</div>
 						

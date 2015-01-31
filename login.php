@@ -6,6 +6,7 @@
 	$password = $_POST["password_LogIn"];
 
 	require 'ParseSDK/autoload.php';
+	session_start();
 	use Parse\ParseClient;
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg', 'N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
 
@@ -20,6 +21,8 @@
 	  header("Location: error.php");
 	  exit();
 	}
+
+	$user = ParseUser::logIn($username, $password);
 
 	// set session storage
 	//use Parse\ParseSessionStorage;

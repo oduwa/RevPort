@@ -12,10 +12,14 @@
 <html>
 	<head>
 		<?php include 'includes.php';?>
+		<!-- Fancy Select -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
 	
 	<body>
+		<?php include 'appHeader.php';?>
 		
 		<script type="text/javascript">
 
@@ -51,26 +55,46 @@
 		 }
 		
 		</script>
-		<form method="POST">
-			Question: <input type="text" name="question" id="question"><br />
-			Option 1: <input type="text" name="opt1" id="opt1"><br />
-			Option 2: <input type="text" name="opt2" id="opt2"><br />
-			Option 3: <input type="text" name="opt3" id="opt3"><br />
-			Option 4: <input type="text" name="opt4" id="opt4"><br />
-			Correct Answer: <input type="text" name="answer" id="answer"><br />
+		<form method="POST" style="margin-top:20px"> 
+			<div class="col-xs-6">
+				Question:<br />
+				<input type="text" class="pure-control-group form-control" name="question" id="question" placeholder="Question" aria-describedby="basic-addon1"><br />
 			
-			<div style="float:right; clear:right;">
-				Module Code: <input type="text" name="modCode" id="modCode"><br />
-				Test title: <input type="text" name="testTitle" id="testTitle"><br />
+				Option 1:<br />
+				<input type="text" class="pure-control-group form-control" name="opt1" id="opt1" placeholder="Option" aria-describedby="basic-addon1"><br />
+			
+				Option 2:<br />
+				<input type="text" class="pure-control-group form-control" name="opt2" id="opt2" placeholder="Option" aria-describedby="basic-addon1"><br />
+			
+				Option 3:<br />
+				<input type="text" class="pure-control-group form-control" name="opt3" id="opt3" placeholder="Option" aria-describedby="basic-addon1"><br />
+			
+				Option 4:<br />
+				<input type="text" class="pure-control-group form-control" name="opt4" id="opt4" placeholder="Option" aria-describedby="basic-addon1"><br />
+			
+				Answer:<br />
+				<input type="text" class="pure-control-group form-control" name="answer" id="answer" placeholder="Correct Answer" aria-describedby="basic-addon1"><br />
+				
+				<button type="button" id="submitButton" data-toggle="modal" data-target="#myModal">Submit</button>
+			
+			</div>
+			
+			<div class="col-xs-3" style="float:right; clear:right;">
+				Module Code:<br />
+				<input type="text" class="pure-control-group form-control" name="modCode" id="modCode" placeholder="Module Code" aria-describedby="basic-addon1"><br />
+				
+				Test title:<br />
+				<input type="text" class="pure-control-group form-control" name="testTitle" id="testTitle" placeholder="Title" aria-describedby="basic-addon1"><br />
+				
 				<select name="gradeable" id="gradeable">
 				  <option value="gradeable">Gradeable</option>
 				  <option value="practice">Practice</option>
 				</select>
 			</div>
-			<button type="button" id="submitButton" data-toggle="modal" data-target="#myModal">Submit</button>
-			<!-- data-toggle="modal" data-target="#myModal" -->
+			
+
 		</form>
-		
+
 		<!-- Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">

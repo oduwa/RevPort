@@ -44,6 +44,11 @@
 	  // Show the error message somewhere and let the user try again.
 	  echo "Error: " . $ex->getCode() . " " . $ex->getMessage();
 	}
+	
+	if(empty($user->objectId)){
+		header("Location: index.php?error=signupError");
+		exit();
+	}
 
 	$_SESSION["username"] = $username;
 	$_SESSION["password"] = $password;

@@ -222,6 +222,76 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</script>
 			
   
+  		<!-- Modal -->
+  		<button style="display:none;" id="invisiButton" data-toggle="modal" data-target="#myModal">Invisible Button To Trigger Warning Modal :D</button>
+  			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  			  <div class="modal-dialog"> 
+  			      <div class="modal-content">
+  				  <div class="modal-header">
+  				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  				        <h4 class="modal-title"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:#e11;"></span> FAILED TO LOGIN<br /></h4>
+  				  </div>
+  			      <div class="modal-body">
+  					  Your username or password is incorrect.
+  			      </div>
+    			    <div class="modal-footer">
+    			      <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+    			    </div>
+  			    </div>
+  			  </div>
+  			</div>
+			
+	  		<button style="display:none;" id="invisiButton2" data-toggle="modal" data-target="#myModal2">Invisible Button To Trigger Signup Warning Modal :D</button>
+	  			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  			  <div class="modal-dialog"> 
+	  			      <div class="modal-content">
+	  				  <div class="modal-header">
+	  				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  				        <h4 class="modal-title"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:#e11;"></span> FAILED TO SIGN UP<br /></h4>
+	  				  </div>
+	  			      <div class="modal-body">
+	  					  That username or email is taken.
+	  			      </div>
+	    			    <div class="modal-footer">
+	    			      <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+	    			    </div>
+	  			    </div>
+	  			  </div>
+	  			</div>
+			
+			
+			<?php
+				
+				if(isset($_GET["error"])){
+					$errorType = $_GET["error"];
+				}
+				else{
+					$errorType = "";
+				}
+				
+
+				if($errorType === "loginError"){
+			?>
+					
+			<script type="text/javascript">
+				$('#invisiButton').trigger('click')
+			</script>
+					
+			<?
+				}
+				else if($errorType === "signupError"){
+					
+			?>
+			
+			<script type="text/javascript">
+				$('#invisiButton2').trigger('click')
+			</script>
+					
+			<?
+				}
+				
+			?>
+  
 			
 	</body>
 </html>

@@ -80,6 +80,7 @@
 	</head>
 	
 	<body>
+		<?php $pageTitle = "tests"; ?>
 		<?php include 'appHeader.php';?>
 		
 		<hr />
