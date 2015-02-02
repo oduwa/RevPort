@@ -90,10 +90,10 @@ class AnswerViewController: UIViewController {
     @IBAction func prevButtonPressed(sender: AnyObject) {
         if(questionIndex-1 >= 0){
             /* Reset option colours */
-            self.optionTextViewA.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewB.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewC.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewD.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
+            self.optionTextViewA.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewB.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewC.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewD.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
             
             /* Load question */
             loadQuestionForIndex(--questionIndex);
@@ -103,10 +103,10 @@ class AnswerViewController: UIViewController {
     @IBAction func nextButtonPressed(sender: AnyObject) {
         if(questionIndex+1 < self.questions.count){
             /* Reset option colours */
-            self.optionTextViewA.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewB.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewC.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
-            self.optionTextViewD.backgroundColor = UIColor(red: 87.0/255.0, green: 220.0/255.0, blue: 255.0/255.0, alpha: 1.0);
+            self.optionTextViewA.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewB.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewC.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
+            self.optionTextViewD.backgroundColor = UIColor(red: 221.0/255.0, green: 236.0/255.0, blue: 235.0/255.0, alpha: 1.0);
             
             /* Load question */
             loadQuestionForIndex(++questionIndex);
