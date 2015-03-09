@@ -8,6 +8,7 @@
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg','N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
 
 	// get values from request
+	$questionType = $_POST["questionType"];
 	$questionText = $_POST["question"];
 	$option1 = $_POST["opt1"];
 	$option2 = $_POST["opt2"];
@@ -46,8 +47,17 @@
 	
 	// Create and save new question
 	$question = new ParseObject("Question");
+	$question->set("questionType", $questionType);
 	$question->set("questionText", $questionText);
-	$question->setArray("options", [$option1, $option2, $option3, $option4]);
+	if($questionType === "regular"){
+		$question->setArray("options", [$option1, $option2, $option3, $option4]);
+	}
+	else if($questionType === "boolean"){
+		$question->setArray("options", ["true", "false"]);
+	}
+	else if($questionType === "single"){
+		$question->setArray("options", []);
+	}
 	$question->set("correctAnswer", $answer);
 	$question->save();
 	

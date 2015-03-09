@@ -242,6 +242,15 @@
 						
 					}
 					
+					if($question->get("questionType") === "single"){
+						if($usersAnswers[$i] === $correctAnswer){
+							echo "<span class=\"option\" style=\"color:green; font-weight:900;\">" . $correctAnswer  . "</span><br />";
+						}
+						else{
+							echo "<span class=\"option\" style=\"color:green; font-weight:900;\">" . $correctAnswer  . "</span> Your answer was <span class=\"option\" style=\"color:red; font-weight:900;\">" . $usersAnswers[$i] . "</span> <br />";
+						}
+					}
+					
 					echo "<br />";
 				}
 			?>

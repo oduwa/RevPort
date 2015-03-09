@@ -23,13 +23,20 @@
 		
 		<script type="text/javascript">
 
+		var questionType = "regular";
+
 		$(document).ready(function(){
 			$('#submitButton').click(function(){
-				saveQuestion();
+				if($('#question').val() === "" || $('#modCode').val() === "" || $('#testTitle').val() === "" || $('#testTitle').val() === "" || ($('#answer').val() === "" && questionType === "regular") || ($('#opt1').val() === "" && questionType === "regular") || ($('#opt2').val() === "" && questionType === "regular") || ($('#opt3').val() === "" && questionType === "regular") || ($('#opt4').val() === "" && questionType === "regular")){
+					alert("Please complete all fields");
+				}
+				else{
+					saveQuestion();
+				}
 			});
 		
 			$('#doneButton').click(function(){
-				window.location.href = 'index.php';
+				window.location.href = 'home.php';
 			});
 			
 			$('#questionConfirmButton').click(function(){
@@ -43,37 +50,105 @@
 		});
 		
 		function saveQuestion() {
-		     $.ajax({
-		          type: "POST",
-		          url: 'addQuestion.php',
-		 data:{question:$('#question').val(), opt1:$('#opt1').val(), opt2:$('#opt2').val(), opt3:$('#opt3').val(), opt4:$('#opt4').val(), answer:$('#answer').val(), code:$('#modCode').val(), title:$('#testTitle').val(), gradeable:$('#gradeable').val()},
-		          success:function(html) {
-		            alert(html);
-		          }
+			if(questionType === "regular"){
+	   		     $.ajax({
+	   		          type: "POST",
+	   		          url: 'addQuestion.php',
+	   		 data:{questionType:questionType, question:$('#question').val(), opt1:$('#opt1').val(), opt2:$('#opt2').val(), opt3:$('#opt3').val(), opt4:$('#opt4').val(), answer:$('#answer').val(), code:$('#modCode').val(), title:$('#testTitle').val(), gradeable:$('#gradeable').val()},
+	   		          success:function(html) {
+	   		            //alert(html);
+	   		          }
 
-		     });
+	   		     });
+			}
+			else if(questionType === "boolean"){
+	   		     $.ajax({
+	   		          type: "POST",
+	   		          url: 'addQuestion.php',
+	   		 data:{questionType:questionType, question:$('#question').val(), opt1:"", opt2:"", opt3:"", opt4:"", answer:$('#answer2').val(), code:$('#modCode').val(), title:$('#testTitle').val(), gradeable:$('#gradeable').val()},
+	   		          success:function(html) {
+	   		            //alert(html);
+	   		          }
+
+	   		     });
+			}
+			else if(questionType === "single"){
+   		     $.ajax({
+   		          type: "POST",
+   		          url: 'addQuestion.php',
+   		 data:{questionType:questionType, question:$('#question').val(), opt1:"", opt2:"", opt3:"", opt4:"", answer:$('#answer3').val(), code:$('#modCode').val(), title:$('#testTitle').val(), gradeable:$('#gradeable').val()},
+   		          success:function(html) {
+   		            //alert(html);
+   		          }
+
+   		     });
+			}
+			
+		 }
+		 
+		 function showTrueFalseQuestionInput(){
+             var dropdown = document.getElementById("questionTypeSelect");
+             var selected = dropdown.options[dropdown.selectedIndex].value;
+			 
+			 if(selected == 0){
+			 	// Selected 4 options 1 answer
+                 document.getElementById('trueFalseQuestionOptions').style.display = 'none';
+                 document.getElementById('regularQuestionOptions').style.display = 'block';
+				 document.getElementById('singleAnswerQuestionOptions').style.display = 'none';
+				 questionType = "regular";
+			 }
+			 else if(selected == 1){
+			 	// selected true or false
+                 document.getElementById('trueFalseQuestionOptions').style.display = 'block';
+                 document.getElementById('regularQuestionOptions').style.display = 'none';
+				 document.getElementById('singleAnswerQuestionOptions').style.display = 'none';
+				 questionType = "boolean";
+			 }
+			 else if(selected == 2){
+			 	// selected single answer type
+                 document.getElementById('trueFalseQuestionOptions').style.display = 'none';
+                 document.getElementById('regularQuestionOptions').style.display = 'none';
+				 document.getElementById('singleAnswerQuestionOptions').style.display = 'block';
+				 questionType = "single";
+			 }
 		 }
 		
 		</script>
+		 
 		<form method="POST" style="margin-top:20px"> 
 			<div class="col-xs-6">
 				Question:<br />
-				<input type="text" class="pure-control-group form-control" name="question" id="question" placeholder="Question" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="question" id="question" placeholder="Question" aria-describedby="basic-addon1" required><br />
 			
+				<div id="regularQuestionOptions">
 				Option 1:<br />
-				<input type="text" class="pure-control-group form-control" name="opt1" id="opt1" placeholder="Option" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="opt1" id="opt1" placeholder="Option" aria-describedby="basic-addon1" required><br />
 			
 				Option 2:<br />
-				<input type="text" class="pure-control-group form-control" name="opt2" id="opt2" placeholder="Option" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="opt2" id="opt2" placeholder="Option" aria-describedby="basic-addon1" required><br />
 			
 				Option 3:<br />
-				<input type="text" class="pure-control-group form-control" name="opt3" id="opt3" placeholder="Option" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="opt3" id="opt3" placeholder="Option" aria-describedby="basic-addon1" required><br />
 			
 				Option 4:<br />
-				<input type="text" class="pure-control-group form-control" name="opt4" id="opt4" placeholder="Option" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="opt4" id="opt4" placeholder="Option" aria-describedby="basic-addon1" required><br />
 			
 				Answer:<br />
-				<input type="text" class="pure-control-group form-control" name="answer" id="answer" placeholder="Correct Answer" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="answer" id="answer" placeholder="Correct Answer" aria-describedby="basic-addon1" required><br />
+				</div>
+				
+				<div id="trueFalseQuestionOptions" style="display:none;">
+				Answer:<br />
+				<select name="answer2" id="answer2">
+				  <option value="true">True</option>
+				  <option value="false">False</option>
+				</select><br /><br />
+				</div>
+				
+				<div id="singleAnswerQuestionOptions" style="display:none;">
+				Answer:<br />
+				<input type="text" class="pure-control-group form-control" name="answer3" id="answer3" placeholder="Correct Answer" aria-describedby="basic-addon1" required><br />
+				</div>
 				
 				<button type="button" id="submitButton" data-toggle="modal" data-target="#myModal">Submit</button>
 			
@@ -81,14 +156,20 @@
 			
 			<div class="col-xs-3" style="float:right; clear:right;">
 				Module Code:<br />
-				<input type="text" class="pure-control-group form-control" name="modCode" id="modCode" placeholder="Module Code" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="modCode" id="modCode" placeholder="Module Code" aria-describedby="basic-addon1" required><br />
 				
 				Test title:<br />
-				<input type="text" class="pure-control-group form-control" name="testTitle" id="testTitle" placeholder="Title" aria-describedby="basic-addon1"><br />
+				<input type="text" class="pure-control-group form-control" name="testTitle" id="testTitle" placeholder="Title" aria-describedby="basic-addon1" required><br />
 				
 				<select name="gradeable" id="gradeable">
 				  <option value="gradeable">Gradeable</option>
 				  <option value="practice">Practice</option>
+				</select><br />
+				
+				<select name="questionTypeSelect" id="questionTypeSelect" onClick="showTrueFalseQuestionInput()">
+				  <option value="0">4 options 1 answer</option>
+				  <option value="1">True or False</option>
+				  <option value="2">Single Answer</option>
 				</select>
 			</div>
 			

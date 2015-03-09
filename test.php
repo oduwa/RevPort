@@ -101,6 +101,18 @@
 						yourAnswers[idx] = ans;
 					});
 				});
+				
+				// Set up input listeners for each input field
+				var textFields = $("input[type='text']");
+				$.each(textFields, function(index, value){
+					var id = "#" + value.attributes[2].nodeValue;
+					var idx = value.attributes[4].nodeValue;
+					$("#" + value.attributes[2].nodeValue).keyup(function (e) {
+      			     	yourAnswers[idx] = $("#" + value.attributes[2].nodeValue).val();
+      			 	});
+				});
+      			 
+   			 
 			});
 			
 			function submitAnswers(){
@@ -130,6 +142,8 @@
 
 			      });
 			 }
+			 
+			 
 		</script>
 	</head>
 	
@@ -138,6 +152,7 @@
 		
 		<div id="pageContainer">
 			<?php
+				$textFieldCount = 0;
 				for ($i = 0; $i < count($questions); $i++){
 					$question = $questions[$i];
 					$questionNumber = $i + 1;
@@ -153,9 +168,15 @@
 						echo "<span class=\"option\">" . changeNumberToLetter($j) . ": " . $option . "</span><br />";
 					}
 					
+					if($question->get("questionType") === "single"){
+						$textFieldCount++;
+						echo "<input type=\"text\" name=\"ans_" . $i . "\" id=\"textField" . $textFieldCount . "\" class=\"answerInput\" index=\"" . $i . "\"/><br />";
+					}
+					
 					echo "<br />";
 				}
 			?>
+
 			<button onclick="submitAnswers()" style="float:right;">Submit</button>
 		</div>
 	
