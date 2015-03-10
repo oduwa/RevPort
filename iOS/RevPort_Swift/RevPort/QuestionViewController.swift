@@ -33,6 +33,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     
+    @IBOutlet weak var answerTextField: UITextField!
     
     var activityIndicator : UIActivityIndicatorView!;
     
@@ -68,32 +69,72 @@ class QuestionViewController: UIViewController {
     
     // MARK: - Helpers
     func loadQuestionForIndex(index : Int){
+        /* Reset field visibility */
+        self.optionTextViewA.hidden = false; self.optionButtonA.hidden = false;
+        self.optionTextViewB.hidden = false; self.optionButtonB.hidden = false;
+        self.optionTextViewC.hidden = false; self.optionButtonC.hidden = false;
+        self.optionTextViewD.hidden = false; self.optionButtonD.hidden = false;
+        self.answerTextField.hidden = true;
+        
         /* Get question and options */
         var question = self.questions[index];
         var options : Array<String> = question["options"] as Array<String>;
         
-        /* Update views with question details */
-        self.questionTextView.text = question["questionText"] as String;
-        self.optionTextViewA.text = options[0] as String;
-        self.optionTextViewB.text = options[1] as String;
-        self.optionTextViewC.text = options[2] as String;
-        self.optionTextViewD.text = options[3] as String;
-        
-        /* Highlight option if already answered */
-        if(self.choices[index] != ""){
-            if(self.choices[index] == "A"){
-                optionAPressed(optionButtonA);
-            }
-            else if(self.choices[index] == "B"){
-                optionBPressed(optionButtonB);
-            }
-            else if(self.choices[index] == "C"){
-                optionCPressed(optionButtonC);
-            }
-            else if(self.choices[index] == "D"){
-                optionDPressed(optionButtonD);
+        if(question["questionType"] as String == "regular"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            self.optionTextViewA.text = options[0] as String;
+            self.optionTextViewB.text = options[1] as String;
+            self.optionTextViewC.text = options[2] as String;
+            self.optionTextViewD.text = options[3] as String;
+            
+            /* Highlight option if already answered */
+            if(self.choices[index] != ""){
+                if(self.choices[index] == "A"){
+                    optionAPressed(optionButtonA);
+                }
+                else if(self.choices[index] == "B"){
+                    optionBPressed(optionButtonB);
+                }
+                else if(self.choices[index] == "C"){
+                    optionCPressed(optionButtonC);
+                }
+                else if(self.choices[index] == "D"){
+                    optionDPressed(optionButtonD);
+                }
             }
         }
+        else if(question["questionType"] as String == "boolean"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            self.optionTextViewA.text = options[0] as String;
+            self.optionTextViewB.text = options[1] as String;
+            self.optionTextViewC.hidden = true; self.optionButtonC.hidden = true;
+            self.optionTextViewD.hidden = true; self.optionButtonD.hidden = true;
+            
+            /* Highlight option if already answered */
+            if(self.choices[index] != ""){
+                if(self.choices[index] == "A"){
+                    optionAPressed(optionButtonA);
+                }
+                else if(self.choices[index] == "B"){
+                    optionBPressed(optionButtonB);
+                }
+            }
+        }
+        else if(question["questionType"] as String == "single"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            
+            self.optionTextViewA.hidden = true; self.optionButtonA.hidden = true;
+            self.optionTextViewB.hidden = true; self.optionButtonB.hidden = true;
+            self.optionTextViewC.hidden = true; self.optionButtonC.hidden = true;
+            self.optionTextViewD.hidden = true; self.optionButtonD.hidden = true;
+            
+            self.answerTextField.hidden = false;
+            self.answerTextField.text = self.choices[index];
+        }
+        
     }
     
     
@@ -286,6 +327,15 @@ class QuestionViewController: UIViewController {
     
     @IBAction func quitButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    @IBAction func answerTextFieldTypedIn(sender: AnyObject) {
+        if(self.answers.count <= questionIndex){
+            self.answers.append(self.answerTextField.text);
+        }
+        else{
+            self.answers[questionIndex] = self.answerTextField.text;
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {

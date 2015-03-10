@@ -518,6 +518,14 @@
                                     <action selector="nextButtonPressed:" destination="3sq-M4-mJs" eventType="touchUpInside" id="fXp-CF-1A4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SIA-qd-2dq">
+                                <rect key="frame" x="112" y="363" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="answerTextFieldTypedIn:" destination="3sq-M4-mJs" eventType="editingChanged" id="Cov-pF-xAc"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.62352941176470589" green="0.42745098039215684" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -563,6 +571,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="answerTextField" destination="SIA-qd-2dq" id="Nju-Bx-ljt"/>
                         <outlet property="doneButton" destination="TJX-lv-0Qd" id="j28-kx-CfU"/>
                         <outlet property="nextButton" destination="3jh-G3-HWb" id="Ldn-yL-uQz"/>
                         <outlet property="optionButtonA" destination="nHM-PC-xbc" id="fki-Fi-LZF"/>
@@ -1017,6 +1026,10 @@
                     <connections>
                         <outlet property="doneButton" destination="9X9-IV-ZLU" id="IhQ-Ki-ziS"/>
                         <outlet property="nextButton" destination="SJn-ul-w7m" id="tV9-Zw-iH2"/>
+                        <outlet property="optionButtonA" destination="N1u-iE-bbH" id="DUj-vn-6C0"/>
+                        <outlet property="optionButtonB" destination="Slw-Jq-iaC" id="VXC-xB-5T5"/>
+                        <outlet property="optionButtonC" destination="aQn-kO-mYG" id="amB-5X-2Eh"/>
+                        <outlet property="optionButtonD" destination="2Ma-ni-C2L" id="3wu-TH-Vak"/>
                         <outlet property="optionTextViewA" destination="B3f-rG-jeE" id="7aa-fn-Tuo"/>
                         <outlet property="optionTextViewB" destination="sQx-Z9-UO8" id="N2U-q8-RMR"/>
                         <outlet property="optionTextViewC" destination="XOv-Fz-NU4" id="WLe-yG-BQU"/>

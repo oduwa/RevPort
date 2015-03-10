@@ -20,7 +20,12 @@ class AnswerViewController: UIViewController {
     @IBOutlet weak var optionTextViewB: UITextView!
     @IBOutlet weak var optionTextViewC: UITextView!
     @IBOutlet weak var optionTextViewD: UITextView!
-
+    
+    @IBOutlet weak var optionButtonA: UIButton!
+    @IBOutlet weak var optionButtonB: UIButton!
+    @IBOutlet weak var optionButtonC: UIButton!
+    @IBOutlet weak var optionButtonD: UIButton!
+    
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
@@ -42,47 +47,111 @@ class AnswerViewController: UIViewController {
     
     // MARK: - Helpers
     func loadQuestionForIndex(index : Int){
+        /* Reset field visibility */
+        self.optionTextViewA.hidden = false; self.optionButtonA.hidden = false;
+        self.optionTextViewB.hidden = false; self.optionButtonB.hidden = false;
+        self.optionTextViewC.hidden = false; self.optionButtonC.hidden = false;
+        self.optionTextViewD.hidden = false; self.optionButtonD.hidden = false;
+        
         /* Get question and options */
         var question = self.questions[index];
         var correctAnswer = question["correctAnswer"] as String;
         var options : Array<String> = question["options"] as Array<String>;
         
-        /* Update views with question details */
-        self.questionTextView.text = question["questionText"] as String;
-        self.optionTextViewA.text = options[0] as String;
-        self.optionTextViewB.text = options[1] as String;
-        self.optionTextViewC.text = options[2] as String;
-        self.optionTextViewD.text = options[3] as String;
-        
-        /* Highlight option user selected */
-        if(self.choices[index] != ""){
-            if(self.choices[index] == "A"){
-                self.optionTextViewA.backgroundColor = UIColor.redColor();
+        if(question["questionType"] as String == "regular"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            self.optionTextViewA.text = options[0] as String;
+            self.optionTextViewB.text = options[1] as String;
+            self.optionTextViewC.text = options[2] as String;
+            self.optionTextViewD.text = options[3] as String;
+            
+            /* Highlight option user selected */
+            if(self.choices[index] != ""){
+                if(self.choices[index] == "A"){
+                    self.optionTextViewA.backgroundColor = UIColor.redColor();
+                }
+                else if(self.choices[index] == "B"){
+                    self.optionTextViewB.backgroundColor = UIColor.redColor();
+                }
+                else if(self.choices[index] == "C"){
+                    self.optionTextViewC.backgroundColor = UIColor.redColor();
+                }
+                else if(self.choices[index] == "D"){
+                    self.optionTextViewD.backgroundColor = UIColor.redColor();
+                }
             }
-            else if(self.choices[index] == "B"){
+            
+            /* Highlight correct answer */
+            if(options[0] == correctAnswer){
+                self.optionTextViewA.backgroundColor = UIColor.greenColor();
+            }
+            else if(options[1] == correctAnswer){
+                self.optionTextViewB.backgroundColor = UIColor.greenColor();
+            }
+            else if(options[2] == correctAnswer){
+                self.optionTextViewC.backgroundColor = UIColor.greenColor();
+            }
+            else if(options[3] == correctAnswer){
+                self.optionTextViewD.backgroundColor = UIColor.greenColor();
+            }
+        }
+        else if(question["questionType"] as String == "boolean"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            self.optionTextViewA.text = options[0] as String;
+            self.optionTextViewB.text = options[1] as String;
+            self.optionTextViewC.hidden = true;
+            self.optionTextViewD.hidden = true;
+            self.optionButtonC.hidden = true;
+            self.optionButtonD.hidden = true;
+            
+            /* Highlight option user selected */
+            if(self.choices[index] != ""){
+                if(self.choices[index] == "A"){
+                    self.optionTextViewA.backgroundColor = UIColor.redColor();
+                }
+                else if(self.choices[index] == "B"){
+                    self.optionTextViewB.backgroundColor = UIColor.redColor();
+                }
+            }
+            
+            /* Highlight correct answer */
+            if(options[0] == correctAnswer){
+                self.optionTextViewA.backgroundColor = UIColor.greenColor();
+            }
+            else if(options[1] == correctAnswer){
+                self.optionTextViewB.backgroundColor = UIColor.greenColor();
+            }
+        }
+        else if(question["questionType"] as String == "single"){
+            /* Update views with question details */
+            self.questionTextView.text = question["questionText"] as String;
+            
+
+            self.optionTextViewA.hidden = true;
+            self.optionTextViewC.hidden = true;
+            self.optionTextViewD.hidden = true;
+            self.optionButtonA.hidden = true;
+            self.optionButtonB.hidden = true;
+            self.optionButtonC.hidden = true;
+            self.optionButtonD.hidden = true;
+            
+            if(self.answers[index] != correctAnswer){
+                self.optionTextViewB.text = self.answers[index];
                 self.optionTextViewB.backgroundColor = UIColor.redColor();
+                
+                self.optionTextViewC.hidden = false;
+                self.optionTextViewC.text = correctAnswer;
+                self.optionTextViewC.backgroundColor = UIColor.greenColor();
             }
-            else if(self.choices[index] == "C"){
-                self.optionTextViewC.backgroundColor = UIColor.redColor();
+            else{
+                self.optionTextViewB.text = correctAnswer;
+                self.optionTextViewB.backgroundColor = UIColor.greenColor();
             }
-            else if(self.choices[index] == "D"){
-                self.optionTextViewD.backgroundColor = UIColor.redColor();
-            }
+
         }
         
-        /* Highlight correct answer */
-        if(options[0] == correctAnswer){
-            self.optionTextViewA.backgroundColor = UIColor.greenColor();
-        }
-        else if(options[1] == correctAnswer){
-            self.optionTextViewB.backgroundColor = UIColor.greenColor();
-        }
-        else if(options[2] == correctAnswer){
-            self.optionTextViewC.backgroundColor = UIColor.greenColor();
-        }
-        else if(options[3] == correctAnswer){
-            self.optionTextViewD.backgroundColor = UIColor.greenColor();
-        }
     }
     
     
