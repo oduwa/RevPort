@@ -42,13 +42,17 @@
 <html>
 	<head>
 		<title>UEA RevPort</title>
+		<!-- <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'> -->
+		<!-- <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'> -->
+		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+		
 		<?php $pageTitle = "home"; ?>
 		<?php include 'includes.php';?>
 		
 		<style>
 			.contactList{
-				float:right;
-				clear: right;
+				float:left;
+				clear: left;
 				display:block;
 				width: 22%;
 				//border: 1px solid #a1a1a1;
@@ -57,8 +61,8 @@
 			}
 		
 		 	.moduleList{
-		 		float:right;
-				clear: right;
+		 		float:left;
+				clear: left;
 				display:block;
 				width: 22%;
 				//border: 2px solid #a1a1a1;
@@ -67,12 +71,13 @@
 		 	}
 			
 			.mainBody{
-				float:left;
-				clear:left;
+				float:right;
+				clear:right;
 				display:block;
 				width: 78%;
 				padding-left:10px;
 				padding-right:10px;
+				margin-top:20px;
 			}
 			
 			.tableHeader{
@@ -93,6 +98,51 @@
 			a.glyphLink:hover {
 				color:#0ff;
 			}
+			
+			.SidebarText {
+				font-family: 'Josefin Sans', sans-serif;
+				font-weight: normal;
+			}
+			
+			.SidebarTitle {
+				font-family: 'Raleway', sans-serif;
+				font-weight: bold;
+				font-size: 19px;
+			}
+			
+			.ActivityText {
+				font-family: 'Raleway', sans-serif;
+				font-weight: normal;
+				font-size: 18px;
+			}
+			
+			.TimeLabelText {
+				font-family: 'Josefin Sans', sans-serif;
+				font-weight: normal;
+				font-style: italic;
+				font-size: 14px;
+			}
+			
+			.ListContainer {
+				padding: 5px;
+			}
+			
+			.ListItem {
+				
+			}
+			
+			.ListItem:hover{
+				//background-color: #d3d3d3;
+			}
+			
+			body{
+				background-color: #eeeeee;
+			}
+			
+			hr {
+				border: 0; border-top: 1px solid #d3d3d3;
+			}
+			
 		</style>
 	</head>
 	
@@ -101,14 +151,18 @@
 		
 		<div class="mainBody">
 
+			<span class="SidebarTitle" style="">Recent Activity</span>
+
 			<hr>
 			
 			<?php
 				$currentDate = new DateTime();
 				for ($i = 0; $i < count($activities); $i++) { 
 			  	  $object = $activities[$i];
-			  	  echo "  " . $object->get("activityMessage") . "<span style=\"float:right;clear:right;display:inline;\">" . getTimePassed($currentDate, $object->getCreatedAt()) . "</span>" . "<hr />";
+				  echo "<div class=\"ListItem\">"; // start list item
+			  	  echo "<span class=\"ActivityText\">  " . $object->get("activityMessage") . "</span><span style=\"float:right;clear:right;display:inline;\" class=\"TimeLabelText\">" . getTimePassed($currentDate, $object->getCreatedAt()) . "</span>" . "<hr />";
 				  //echo "<span style=\"float:right;clear:right;display:inline;\">d</span>";
+				  echo "</div>"; // end list item
 				}
 			?>
 			
@@ -125,7 +179,7 @@
 						<table class="table table-bordered">
 							<tr class="active">
 								<th>
-									<a href="#" class="tableHeader">Contacts</a>
+									<a href="#" class="tableHeader SidebarTitle">Contacts</a>
 									<a class="glyphLink" href="about.html" style="float:right;">
 										<span class="glyphicon glyphicon-plus" style="color:#000;" aria-hidden="true"></span>
 									</a>
@@ -134,7 +188,7 @@
 							<?php
 								for ($i = 0; $i < count($modules); $i++) { 
 							  	  $object = $modules[$i];
-							  	  echo "<tr><td><a href=\"#\">" . $object->get("moduleOrganizer") . "</a></td></tr>";
+							  	  echo "<tr><td><a class=\"SidebarText\" href=\"#\">" . $object->get("moduleOrganizer") . "</a></td></tr>";
 								}
 							?>
 						</table>
@@ -150,7 +204,7 @@
 				<table class="table table-bordered">
 					<tr class="active">
 						<th>
-							<a href="moduleList.php" class="tableHeader">Modules</a>
+							<a href="moduleList.php" class="tableHeader SidebarTitle">Modules</a>
 							<a class="glyphLink" href="editModules.php" style="float:right;">
 								<span class="glyphicon glyphicon-edit" style="color:#000;" aria-hidden="true"></span>
 							</a>
@@ -159,7 +213,7 @@
 					<?php
 						for ($i = 0; $i < count($modules); $i++) { 
 					  	  $object = $modules[$i];
-					  	  echo "<tr><td><a href=\"testList.php?index=" . $i . "\">" . $object->get("moduleName") . "</a></td></tr>";
+					  	  echo "<tr><td><a class=\"SidebarText\" href=\"testList.php?index=" . $i . "\">" . $object->get("moduleName") . "</a></td></tr>";
 						}
 					?>
 				</table>

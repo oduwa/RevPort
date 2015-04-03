@@ -71,7 +71,7 @@ $_SESSION["tests"] = $tests;
 				float: right;
 				font-size: 12px;
 				font-weight: bold;
-				background-color: #fff;
+				background-color:transparent;
 				color: #888;
 				clear: right;
 			}
@@ -103,11 +103,26 @@ $_SESSION["tests"] = $tests;
 				background-color: #e6e6e6;
 				border-radius: 3px;
 			}
+			
+			.ListContainer {
+				padding: 5px;
+			}
+			
+			.ListItem {
+				
+			}
+			
+			.ListItem:hover {
+				background-color: #d3d3d3;
+			}
+			
 		</style>
 	</head>
 	
 	<body>
 		<?php include 'appHeader.php';?>
+		
+		<div class="ListContainer">
 		
 		<hr />
 		<?php
@@ -144,7 +159,8 @@ $_SESSION["tests"] = $tests;
 				  }
 			  }
 
-			  
+			  // Output
+			  echo "<div class=\"ListItem\" onclick=\"location.href='test.php?testIndex=" . $i . "&moduleIndex=" . $index . "'\">";
 
 			  if(empty($mark)){$mark = "0";}
 			  if($mark != -1){$mark = $mark . "%";}			  
@@ -160,9 +176,14 @@ $_SESSION["tests"] = $tests;
 			  echo $testHeader . "<br />";
 			  
 			  echo "<span class=\"questionCount\">Questions: " . count($questions) . "</span><br />";
+			  
+			  echo "</div>";
+			  
 			  echo "<hr />";
 			}
 		?>
+		
+	</div>
 	</body>
 </html>
 

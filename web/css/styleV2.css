@@ -106,6 +106,9 @@ footer {
 }
 .top-nav ul li.navListItem{
 	display:inline-block;
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+	font-size: 19px;
 }
 .top-nav ul li a.navLink{
 	//color: #777777;
@@ -117,6 +120,12 @@ footer {
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
+}
+
+.ProfileLabel {
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+	font-size: 19px;
 }
 
 .navButton{
@@ -134,6 +143,8 @@ footer {
 .navButton:hover{
 	color:#E95393;
 }
+
+
 
 /* Adds the point thing to the top of the extended dropdown */
 .dropdown-menu::after {

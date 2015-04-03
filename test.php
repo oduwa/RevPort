@@ -57,7 +57,7 @@
 		
 		<style>
 			#pageContainer{
-				margin:1% 20%;
+				margin:1% 2%;
 			}
 			
 			.question{
@@ -71,6 +71,24 @@
 				margin: 0 0 2em;
 				color:#666;
 			}
+			
+			.ListContainer {
+				padding: 5px;
+			}
+			
+			.ListItem {
+				margin-left:3%;
+				margin-right:3%;
+			}
+			
+			.ListItem:hover{
+				//background-color: #d3d3d3;
+			}
+			
+			hr.testHr{
+
+			}
+			
 		</style>
 		
 		<script>
@@ -152,11 +170,14 @@
 		
 		<div id="pageContainer">
 			<?php
+				echo "<div class=\"ListContainer\">"; // start list container
 				$textFieldCount = 0;
 				for ($i = 0; $i < count($questions); $i++){
 					$question = $questions[$i];
 					$questionNumber = $i + 1;
-					echo "<span class=\"question\">Question " . $questionNumber . ": " . $question->get("questionText") . "</span><br />";
+					
+					echo "<div class=\"ListItem\">"; // start list item
+					echo "<span class=\"question\">" . $questionNumber . ": " . $question->get("questionText") . "</span><br />";
 					
 					// Get options for each question
 					$optionsList = $question->get("options");
@@ -174,7 +195,10 @@
 					}
 					
 					echo "<br />";
+					echo "</div>"; // end list item
+					echo "<hr class=\"testHr\" />";
 				}
+				echo "</div>"; // end list container
 			?>
 
 			<button onclick="submitAnswers()" style="float:right;">Submit</button>

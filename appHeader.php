@@ -71,16 +71,16 @@
 								style="padding: 0.3em 1.8em;">
 						  		    <?php
 						  		    	if($username){
-											echo $username;
+											echo "<span class=\"ProfileLabel\">" . $username . "<span>";
 										}
 										else{
-											echo "Profile";
+											echo "<span class=\"ProfileLabel\">Profile<span>";
 										}
 						  		    ?> <span class="caret"></span>
 						  		  </button>
 						  		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-						  		    <li><a href="#">Settings</a></li>
-						  		    <li><a href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
+						  		    <li><a class="ProfileLabel" href="#">Settings</a></li>
+						  		    <li><a class="ProfileLabel" href="#" data-toggle="modal" data-target="#logOutModal">Log Out</a></li>
 						  		  </ul>
 							</li>
 

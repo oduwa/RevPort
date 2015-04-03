@@ -76,12 +76,27 @@
 				color: #888;
 				clear: right;
 			}
+			
+			.ListContainer {
+				padding: 5px;
+			}
+			
+			.ListItem {
+				
+			}
+			
+			.ListItem:hover{
+				background-color: #d3d3d3;
+			}
+			
 		</style>
 	</head>
 	
 	<body>
 		<?php $pageTitle = "tests"; ?>
 		<?php include 'appHeader.php';?>
+		
+		<div class="ListContainer">
 		
 		<hr />
 		<?php
@@ -94,6 +109,8 @@
 			  $query->className = "Test";
 			  $tests = $query->find();
 			  
+			  echo "<div class=\"ListItem\" onclick=\"location.href='testList.php?index=" .$i . "'\">";
+			  
 			  echo "<span class=\"moduleMeta\">
 				  <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\" style=\"margin-right:6px;\"></span>" . count($tests) .
 			       "</span>
@@ -102,7 +119,11 @@
 			  echo "<span class=\"moduleName\">" . $object->get("moduleName") . "</span><br />";
 			  echo "<span class=\"moduleOrganizer\">" . $object->get("moduleOrganizer") . "</span><br />";
 			  echo "<hr />";
+			  
+			  echo "</div>";
 			}
 		?>
+		
+	</div>
 	</body>
 </html>
