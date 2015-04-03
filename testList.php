@@ -38,6 +38,7 @@ $_SESSION["tests"] = $tests;
 		
 		<style>
 			.testTitle{
+					font-family: 'Raleway', sans-serif;
 					padding: 3px;
 					margin: 0 0 8em;
 					margin-left: 8px;
@@ -47,6 +48,7 @@ $_SESSION["tests"] = $tests;
 			}
 		
 			.moduleName{
+					font-family: 'Raleway', sans-serif;
 					padding: 3px;
 					margin-left: 8px;
 				    font-style: normal;
@@ -56,6 +58,7 @@ $_SESSION["tests"] = $tests;
 			}
 		
 			.questionCount{
+					font-family: 'Raleway', sans-serif;
 					padding: 3px;
 					margin-left: 8px;
 					display: block;
@@ -66,6 +69,7 @@ $_SESSION["tests"] = $tests;
 			}
 		
 			.mark{
+				font-family: 'Josefin Sans', sans-serif;
 				margin-top: 25px;
 				margin-right:20px;
 				float: right;
@@ -106,6 +110,7 @@ $_SESSION["tests"] = $tests;
 			
 			.ListContainer {
 				padding: 5px;
+				margin-top:35px;
 			}
 			
 			.ListItem {
@@ -116,6 +121,25 @@ $_SESSION["tests"] = $tests;
 				background-color: #d3d3d3;
 			}
 			
+			.PageTitle {
+				margin-left: 30%;
+				margin-right: 30%;
+				text-align:center;
+				
+				padding-bottom:30px;
+				
+				font-family: 'Raleway', sans-serif;
+				font-weight: bold;
+				font-size: 30px;
+				display:block;
+				color:#468cc8;
+			}
+			
+			
+			.testTitle, .PageTitle {
+				color: #c377ab;
+			}
+			
 		</style>
 	</head>
 	
@@ -123,6 +147,8 @@ $_SESSION["tests"] = $tests;
 		<?php include 'appHeader.php';?>
 		
 		<div class="ListContainer">
+		
+		<span class="PageTitle">Select A Test</span>
 		
 		<hr />
 		<?php

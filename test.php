@@ -38,6 +38,7 @@
 	
 	// get questions
 	$test = $tests[$testIndex];
+	$testTitle = $test->get("testTitle");
   	$questionRelation = $test->getRelation("questions");
   	$query = $questionRelation->getQuery();
   	$query->className = "Question";
@@ -53,6 +54,7 @@
 <html>
 	<head>
 		<title><?php echo $test->get("testModule") . " - " . $test->get("testTitle") ?></title>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<?php include 'includes.php';?>
 		
 		<style>
@@ -61,6 +63,7 @@
 			}
 			
 			.question{
+				font-family: 'Raleway', sans-serif;
 				margin: 0 0 8em;
 			    font-size: 18px;
 				font-weight: 600;
@@ -68,6 +71,7 @@
 			}
 			
 			.option{
+				font-family: 'Josefin Sans', sans-serif;
 				margin: 0 0 2em;
 				color:#666;
 			}
@@ -85,8 +89,23 @@
 				//background-color: #d3d3d3;
 			}
 			
-			hr.testHr{
-
+			.PageTitle {
+				margin-left: 30%;
+				margin-right: 30%;
+				text-align:center;
+				
+				padding-bottom:30px;
+				
+				font-family: 'Raleway', sans-serif;
+				font-weight: bold;
+				font-size: 30px;
+				display:block;
+				color:#468cc8;
+			}
+			
+			
+			.testTitle, .PageTitle {
+				color: #c377ab;
 			}
 			
 		</style>
@@ -166,9 +185,11 @@
 	</head>
 	
 	<body>
-		<?php include 'appHeader.php';?>
 		
 		<div id="pageContainer">
+			
+			<span class="PageTitle"> <?php echo $testTitle; ?></span>
+			
 			<?php
 				echo "<div class=\"ListContainer\">"; // start list container
 				$textFieldCount = 0;
@@ -177,7 +198,7 @@
 					$questionNumber = $i + 1;
 					
 					echo "<div class=\"ListItem\">"; // start list item
-					echo "<span class=\"question\">" . $questionNumber . ": " . $question->get("questionText") . "</span><br />";
+					echo "<span class=\"question\">" . $questionNumber . ": " . ucfirst($question->get("questionText")) . "</span><br />";
 					
 					// Get options for each question
 					$optionsList = $question->get("options");

@@ -84,6 +84,14 @@ footer {
   margin: 0 5px;
 }
 
+body{
+	background-color:#eeeeee;
+}
+
+hr {
+	border: 0; border-top: 1px solid #d3d3d3;
+}
+
 /*---start-header----*/
 .header {
 	padding: 0.3em 0 0em;

@@ -35,10 +35,12 @@
 <html>
 	<head>
 		<title>UEA RevPort - Tests</title>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<?php include 'includes.php';?>
 		
 		<style>
 			.moduleCode{
+					font-family: 'Montserrat', sans-serif;
 					padding: 3px;
 					margin: 0 0 8em;
 					margin-left: 8px;
@@ -49,6 +51,7 @@
 			}
 			
 			.moduleName{
+					font-family: 'Raleway', sans-serif;
 					padding: 3px;
 					margin-left: 8px;
 				    font-style: normal;
@@ -58,6 +61,8 @@
 			}
 			
 			.moduleOrganizer{
+					font-family: 'Raleway', sans-serif;
+					font-style:italic;
 					padding: 3px;
 					margin-left: 8px;
 					display: block;
@@ -79,6 +84,7 @@
 			
 			.ListContainer {
 				padding: 5px;
+				margin-top:35px;
 			}
 			
 			.ListItem {
@@ -89,16 +95,44 @@
 				background-color: #d3d3d3;
 			}
 			
+			
+			body{
+				background-color:#eeeeee;
+			}
+			
+			
+			.PageTitle {
+				margin-left: 30%;
+				margin-right: 30%;
+				text-align:center;
+				
+				padding-bottom:30px;
+				
+				font-family: 'Raleway', sans-serif;
+				font-weight: bold;
+				font-size: 30px;
+				display:block;
+				color:#468cc8;
+			}
+			
+			
+			.moduleCode, .PageTitle {
+				color: #c377ab;
+			}
+			
 		</style>
 	</head>
 	
 	<body>
 		<?php $pageTitle = "tests"; ?>
 		<?php include 'appHeader.php';?>
+	
+		
 		
 		<div class="ListContainer">
+	
+			<span class="PageTitle">Select A Module</span>
 		
-		<hr />
 		<?php
 			for ($i = 0; $i < count($modules); $i++) { 
 		  	  $object = $modules[$i];

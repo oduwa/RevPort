@@ -142,13 +142,13 @@
 			hr {
 				border: 0; border-top: 1px solid #d3d3d3;
 			}
+
 			
 		</style>
 	</head>
 	
 	<body>
 		<?php include 'appHeader.php';?>
-		
 		<div class="mainBody">
 
 			<span class="SidebarTitle" style="">Recent Activity</span>
