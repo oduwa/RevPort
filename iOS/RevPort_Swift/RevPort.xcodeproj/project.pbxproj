@@ -90,6 +90,10 @@
 		4CE09F7C1A69EFFC00156435 /* study3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE09F781A69EFFC00156435 /* study3.jpg */; };
 		4CE09F7D1A69EFFC00156435 /* study4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CE09F791A69EFFC00156435 /* study4.jpg */; };
 		4CE09F7F1A69F1CD00156435 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */; };
+		4CE2DD8D1B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2DD861B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.m */; };
+		4CE2DD8E1B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2DD881B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.m */; };
+		4CE2DD8F1B016AED005F2DA3 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2DD8A1B016AED005F2DA3 /* TPKeyboardAvoidingTableView.m */; };
+		4CE2DD901B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE2DD8C1B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		4CE8642F1A6A8266000D1CD9 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */; };
 		4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */; };
 		4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */; };
@@ -198,6 +202,14 @@
 		4CE09F781A69EFFC00156435 /* study3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = study3.jpg; sourceTree = "<group>"; };
 		4CE09F791A69EFFC00156435 /* study4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = study4.jpg; sourceTree = "<group>"; };
 		4CE09F7E1A69F1CD00156435 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4CE2DD851B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		4CE2DD861B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		4CE2DD871B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		4CE2DD881B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		4CE2DD891B016AED005F2DA3 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		4CE2DD8A1B016AED005F2DA3 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		4CE2DD8B1B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		4CE2DD8C1B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		4CE8642E1A6A8266000D1CD9 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		4CE864341A6AB153000D1CD9 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +383,7 @@
 		4CE09EEA1A69A86800156435 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CE2DD841B016AED005F2DA3 /* TPKeyboardAvoiding */,
 				4C7775581AD4301900CB9B7D /* SLInput */,
 				4CE09EEB1A69A86800156435 /* Info.plist */,
 				4CE09F6D1A69E5D700156435 /* RevPort-Bridging-Header.h */,
@@ -438,6 +451,21 @@
 				4CE09F791A69EFFC00156435 /* study4.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		4CE2DD841B016AED005F2DA3 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				4CE2DD851B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.h */,
+				4CE2DD861B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.m */,
+				4CE2DD871B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.h */,
+				4CE2DD881B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.m */,
+				4CE2DD891B016AED005F2DA3 /* TPKeyboardAvoidingTableView.h */,
+				4CE2DD8A1B016AED005F2DA3 /* TPKeyboardAvoidingTableView.m */,
+				4CE2DD8B1B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				4CE2DD8C1B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 		4CF09B9F1A710F2800823176 /* Tests */ = {
@@ -606,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C74B1341A70FEBA0023E13A /* ModuleSelectTableViewController.swift in Sources */,
+				4CE2DD8F1B016AED005F2DA3 /* TPKeyboardAvoidingTableView.m in Sources */,
 				4CE09F7F1A69F1CD00156435 /* LoginViewController.swift in Sources */,
 				4C74BF111A7169F00015BEA6 /* QuestionViewController.swift in Sources */,
 				4CE09EF11A69A86800156435 /* SecondViewController.swift in Sources */,
@@ -614,11 +643,14 @@
 				4C3FF8DB1A6D67E300544CC9 /* SettingsViewController.swift in Sources */,
 				4CF09BA11A710F4200823176 /* TestListTableViewController.swift in Sources */,
 				4C3FF8D81A6D612300544CC9 /* ModuleTableViewController.swift in Sources */,
+				4CE2DD901B016AED005F2DA3 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
+				4CE2DD8D1B016AED005F2DA3 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				4C77755E1AD4301900CB9B7D /* SingleLineTextField.m in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
 				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
 				4C87BE131A734AB800FEDBB6 /* AnswerViewController.swift in Sources */,
+				4CE2DD8E1B016AED005F2DA3 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				4C77755D1AD4301900CB9B7D /* MBFingerTipWindow.m in Sources */,
 				4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */,
 				4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */,

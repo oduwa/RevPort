@@ -16,6 +16,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
     @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
     
     var activityIndicator : UIActivityIndicatorView!;
@@ -33,38 +34,35 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage();
         self.navigationController?.navigationBar.translucent = true;
         
+        
         /* Email Text field */
-        emailTextField.borderStyle = UITextBorderStyle.None;
-        emailTextField.attributedPlaceholder = NSAttributedString(string:"email",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //emailTextField.borderStyle = UITextBorderStyle.None;
+        //emailTextField.attributedPlaceholder = NSAttributedString(string:"email", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
         emailTextField.delegate = self;
         
         /* First Name Text Field */
-        firstNameTextField.borderStyle = UITextBorderStyle.None;
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string:"first name",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //firstNameTextField.borderStyle = UITextBorderStyle.None;
+        //firstNameTextField.attributedPlaceholder = NSAttributedString(string:"first name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
         firstNameTextField.delegate = self;
         
         /* Last Name Text Field */
-        lastNameTextField.borderStyle = UITextBorderStyle.None;
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string:"last name",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //lastNameTextField.borderStyle = UITextBorderStyle.None;
+        //lastNameTextField.attributedPlaceholder = NSAttributedString(string:"last name", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
         lastNameTextField.delegate = self;
         
         /* Username Text field */
-        usernameTextField.borderStyle = UITextBorderStyle.None;
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"username",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //usernameTextField.borderStyle = UITextBorderStyle.None;
+        //usernameTextField.attributedPlaceholder = NSAttributedString(string:"username", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
         usernameTextField.delegate = self;
         
         /* Password Text Field */
-        passwordTextField.borderStyle = UITextBorderStyle.None;
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //passwordTextField.borderStyle = UITextBorderStyle.None;
+        //passwordTextField.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
         passwordTextField.delegate = self;
         
         /* Keyboard Handling */
-        self.registerForKeyboardNotifications();
+        //self.registerForKeyboardNotifications();
+        
         
         /* Activity Indicator */
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge);
@@ -72,6 +70,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.hidesWhenStopped = true;
         self.view.addSubview(activityIndicator);
     
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        /* Scroll to bottom of scroll view */
+        var bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+        self.scrollView.setContentOffset(bottomOffset, animated: true);
     }
 
     override func didReceiveMemoryWarning() {

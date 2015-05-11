@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
+    @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
     @IBOutlet weak var usernameTopConstraint: NSLayoutConstraint!
     
     var keyboardShowing : Bool = false;
@@ -95,14 +96,12 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         /* Username Text field */
-        usernameTextField.borderStyle = UITextBorderStyle.None;
-        usernameTextField.attributedPlaceholder = NSAttributedString(string:"username",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //usernameTextField.borderStyle = UITextBorderStyle.None;
+        //usernameTextField.attributedPlaceholder = NSAttributedString(string:"username", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()]);
         
         /* Password Text Field */
-        passwordTextField.borderStyle = UITextBorderStyle.None;
-        passwordTextField.attributedPlaceholder = NSAttributedString(string:"password",
-            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()]);
+        //passwordTextField.borderStyle = UITextBorderStyle.None;
+        //passwordTextField.attributedPlaceholder = NSAttributedString(string:"password", attributes:[NSForegroundColorAttributeName: UIColor.darkGrayColor()]);
         
         /* Make nav bar COMPLETELY transparent */
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default);
@@ -110,7 +109,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true;
         
         /* Keyboard Handling */
-        self.registerForKeyboardNotifications();
+        //self.registerForKeyboardNotifications();
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -126,6 +125,10 @@ class LoginViewController: UIViewController {
         /* Hide Back button */
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.hidesBackButton = true;
+        
+        /* Scroll to bottom of scroll view */
+        var bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+        self.scrollView.setContentOffset(bottomOffset, animated: true);
     }
 
     override func didReceiveMemoryWarning() {
