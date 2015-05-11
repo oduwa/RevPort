@@ -170,10 +170,7 @@
 		
 		<div class="contactList">
 			<?php
-				if($currentUser->get("privilegeLevel") > 0){
-					echo "<a href=\"makeTest.php\">Add Test</a>";
-				}
-				else{
+				if($currentUser->get("privilegeLevel") < 1){
 			?>
 					<div class="panel panel-default table-responsive" style="border-radius:5px;">
 						<table class="table table-bordered">
@@ -218,6 +215,19 @@
 					?>
 				</table>
 			</div>
+			
+			<?php
+				if($currentUser->get("privilegeLevel") > 0){
+			?>
+			
+			<a href="makeTest.php" role="button" class="btn btn-primary btn-lg" style="margin:left:35%; margin-right:700%; width:30%;">
+			  <img src="web/images/newTest.png">
+			</a>
+			
+			<?php
+				}
+			?>
+			
 		</div>
 		
 		

@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- <link href="web/css/style.css" rel='stylesheet' type='text/css' /> -->
 		<!--768px-menu-->
 	</head>
-	<body>
+	<body style="background-color: #fff">
 			<?php include 'indexHeader.php';?>
 			<!----start-banner---->
 			<div class="text-slider">
@@ -61,10 +61,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</script>
 			 </div>
 			</div>
-				<!---//End-da-slider----->
+				<!---//End-da-slider---->
 
+
+					<div class="mid-grids">
+						<div class="wrap">
+						<div class="mid-grids-left">
+							<img src="web/images/divices.png" title="divices" />
+							<span> </span>
+						</div>
+						<div class="mid-grids-right">
+							<h3> Get <span>RevPort</span> for your mobile</h3>
+							<p>The RevPort app is now available for i<big>OS</big> devices.</p>
+							<ul class="fea">
+								<li><a href="#"><i>Manage</i> your modules</a></li>
+								<li><a href="#"><i>Take</i> tests on the go </a></li>
+								<li><a href="#"><i>Track</i> your activity</a></li>
+							</ul>
+							
+						</div>
+						<div class="clear"> </div>
+					</div>
+				</div>
 						
-				<!-start-bottom-footer-grids-->
+				
+				<div class="footer-grids">
+					<div class="wrap">
+						<div class="footer-grid">
+							<h3>Quick Links</h3>
+							<ul>
+								<li><a href="#">About Features</a></li>
+								<li><a href="#">Login</a></li>
+								<li><a href="#">Sign Up</a></li>
+							</ul>
+						</div>
+						<div class="footer-grid">
+							<h3>More</h3>
+							<ul>
+								<li><a href="#">FAQ</a></li>
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Terms and Conditions</a></li>
+							</ul>
+						</div>
+						<div class="footer-grid">
+							<h3>Connect With Us</h3>
+							<ul class="social-icons">
+								<li><a class="facebook" href="#"> </a></li>
+								<li><a class="twitter" href="#"> </a></li>
+								<li><a class="youtube" href="#"> </a></li>
+							</ul>
+						</div>
+						<div class="footer-grid">
+							<h3>Newsletter</h3>
+							<p>Subscribe to our newsletter to keep up-to-date with all the latest news.</p>
+							<form>
+								<input type="text" class="text" value="Your Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Name';}">
+								<input type="text" class="text" value="Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email';}">
+								<input type="submit" value="subscribe" />
+							</form>
+						</div>
+						<div class="clear"> </div>
+					</div>
+				</div>
+				
 				<?php include 'footer.php' ?>
 				<!---//End-bottom-footer-grids---->
 			</div>
@@ -258,6 +318,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  			    </div>
 	  			  </div>
 	  			</div>
+				
+		  		<button style="display:none;" id="invisiButton3" data-toggle="modal" data-target="#myModal3">Invisible Button To Trigger Email Warning Modal :D</button>
+		  			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  			  <div class="modal-dialog"> 
+		  			      <div class="modal-content">
+		  				  <div class="modal-header">
+		  				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  				        <h4 class="modal-title"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="color:#e11;"></span> FAILED TO SIGN UP<br /></h4>
+		  				  </div>
+		  			      <div class="modal-body">
+		  					  Invalid email.
+		  			      </div>
+		    			    <div class="modal-footer">
+		    			      <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+		    			    </div>
+		  			    </div>
+		  			  </div>
+		  			</div>
 			
 			
 			<?php
@@ -289,9 +367,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
 			<?
 				}
+				else if($errorType === "emailError"){
 				
 			?>
+			
+			<script type="text/javascript">
+				$('#invisiButton3').trigger('click')
+			</script>
   
+		<?
+			}
+			
+		?>
 			
 	</body>
 </html>

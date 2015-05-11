@@ -188,7 +188,7 @@ $_SESSION["tests"] = $tests;
 			  // Output
 			  echo "<div class=\"ListItem\" onclick=\"location.href='test.php?testIndex=" . $i . "&moduleIndex=" . $index . "'\">";
 
-			  if(empty($mark)){$mark = "0";}
+			  if(empty($mark) || $mark == -1){$mark = "0";}
 			  if($mark != -1){$mark = $mark . "%";}			  
 			  echo "<span class=\"mark\">" . $mark . "</span><br />";
 			  

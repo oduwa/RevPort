@@ -306,7 +306,6 @@
 								echo "<span class=\"meta-text\">Posted ". $post->getCreatedAt()->format("d/m/y") ."</span>";
 								echo "<span class=\"meta-text\">Posted ". $post->getCreatedAt()->format("h:i:s A") ."</span>";
 								echo "<span class=\"meta-text\"><a href=\"#\">Report</a></span>";
-								echo "<span class=\"meta-text\"><a href=\"#\">Quote</a></span>";
 							echo "</td>";
 							
 							// Right Column (message)

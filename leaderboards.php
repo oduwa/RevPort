@@ -83,6 +83,10 @@
 			progress{
 				margin-right:10px;
 			}
+			
+			.ranking .score{
+				background-color: #eeeeee;
+			}
 
 		</style>
 		
@@ -133,7 +137,7 @@
 						  clearRankings(-1);
 						  for(var i = 0; i < results.length; i++){
 							  var ranking = results[i];
-							  var markHtml = " <span class=\"markPercent\">" + ranking.get("averageMark") + "%</span>";
+							  var markHtml = " <span class=\"markPercent\">" + Number((ranking.get("averageMark")).toFixed(2)) + "%</span>";
 							  $("#rankingPosition" + i).text(i+1 + ".");
 							  $("#name" + i).text(ranking.get("username"));
 							  $("#score" + i).html("<progress value=\"" + ranking.get("averageMark") + "\" max=\"100\"></progress>" + markHtml);$("#score" + i).show();
@@ -187,12 +191,13 @@
 		<?php
 			for ($j = 0; $j < 10; $j++){
 		?>
-		<div class="ranking" style="background:#4ff margin-top:100px; margin-bottom:100px;">
+		<div class="ranking" style="background:#2ff margin-top:135px; margin-bottom:135px;">
 			<span class="rankingPosition" id="<?php echo "rankingPosition" . $j ?>">1</span>
 			<img class="profilePic" id="<?php echo "profilePic" . $j ?>" src="web/images/default_profile_pic.png" style="float:left;" />
 			<span class="name" id="<?php echo "name" . $j ?>" style="float:left;" value="xxx">@username</span>
-			<span class="score" id="<?php echo "score" . $j ?>"><progress value="0" max="100"></progress> <span class="markPercent"><?php $out = 75; if($j%2 == 0){$out = 66.67;} echo $out . "%"; ?></span></span>
+			<span class="score" id="<?php echo "score" . $j ?>"><progress value="0" max="100"></progress></span>
 		</div>
+		
 		<?php
 			}
 		?>

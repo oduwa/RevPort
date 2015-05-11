@@ -27,11 +27,27 @@
 	ParseClient::initialize('ORixDHh6POsBCVYXFjdHMcxkCEulj9XmSvLYgVso', 'NMfDfqPynXaaHDRcHibZE7rPMphVkwj1Hg1GCWLg', 'N147DUpf2AeVi3JzTbTlAtEitazlDynM0eLzfJR7');
 	
 	use Parse\ParseUser;
+	use Parse\ParseQuery;
  
 	$user = new ParseUser();
 	$user->set("username", $username);
 	$user->set("password", $password);
 	$user->set("email", $email);
+	
+	/* Count existing username and email that are the same as the one the user entered */
+	$query = ParseUser::query();
+	$query->equalTo("username", $username);
+	$sameUsernameCount = $query->count();
+	$query = ParseUser::query();
+	$query->equalTo("email", $email);
+	$sameEmailCount = $query->count();
+	
+	echo $sameEmailCount;
+	
+	/* Check email validity */
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+	
 	
 	//use Parse\ParseSessionStorage;
 	// set session storage
@@ -42,13 +58,21 @@
 	  $user->signUp();
 	} catch (ParseException $ex) {
 	  // Show the error message somewhere and let the user try again.
-	  echo "Error: " . $ex->getCode() . " " . $ex->getMessage();
+	  echo "Login Error: " . $ex->getCode() . " " . $ex->getMessage();
 	}
 	
-	if(empty($user->objectId)){
+	
+	
+	if($sameUsernameCount > 0 || $sameEmailCount > 0){
 		header("Location: index.php?error=signupError");
 		exit();
 	}
+	
+	if(empty($email)){
+		header("Location: index.php?error=emailError");
+		exit();
+	}
+	
 
 	$_SESSION["username"] = $username;
 	$_SESSION["password"] = $password;

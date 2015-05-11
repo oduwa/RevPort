@@ -125,6 +125,10 @@
 					margin-top:0px;
 				}
 			}
+			
+			tbody, tbody a {
+				color:#468cc8;
+			}
 		
 		</style>
 		
@@ -224,7 +228,7 @@
 						$pos = $i+1;
 						if($pos <= $pageCount){
 							if($pos == $page){
-								echo "<li class=\"active\" ><a href=\"boardTopics.php?page=" . $pos . "\">" . $pos . "</a></li>";
+								echo "<li class=\"active\"><a href=\"boardTopics.php?page=" . $pos . "\">" . $pos . "</a></li>";
 							}
 							else{
 								echo "<li><a href=\"boardTopics.php?page=" . $pos . "\">" . $pos . "</a></li>";
@@ -259,9 +263,9 @@
 					echo "<h3 class=\"text-info\">Tag: ". $searchText ."</h3>";
 				}
 			?>        
-		      <table class="table table-striped" style="border: 6px solid #3183b4;">
+		      <table class="table table-striped" style="border: 6px solid #c377ab;">
 		        <thead>
-		          <tr style="background:#3183b4;">
+		          <tr style="background:#c377ab;">
 		            <th></th>
 		            <th>Topic</th>
 					<th>Created by</th>
@@ -277,7 +281,7 @@
 							echo "<td>". "-" ."</td>";
 							echo "<td>". $topic->get("topicTitle") ."</td>";
 							echo "<td>". $topic->get("topicPoster") ."</td>";
-							echo "<td>". 0 ."</td>";
+							if(empty($topic->get("postCount"))){echo "<td>". 0 ."</td>";}else{echo "<td>". $topic->get("postCount") ."</td>";}
 							echo "</tr>";
 						}
 					?>
@@ -290,7 +294,7 @@
 							echo "<td>". $pos ."</td>";
 							echo "<td><a href=\"topicPage.php?topicId=" . $topic->getObjectId() . "\">". $topic->get("topicTitle") ."</a></td>";
 							echo "<td>". $topic->get("topicPoster") ."</td>";
-							echo "<td>". 0 ."</td>";
+							if(empty($topic->get("postCount"))){echo "<td>". 0 ."</td>";}else{echo "<td>". $topic->get("postCount") ."</td>";}
 							echo "</tr>";
 						}
 					?>
