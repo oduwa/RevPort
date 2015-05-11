@@ -95,8 +95,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if(!keyboardShowing){
             var notificationInfo : [NSObject : AnyObject] = notification.userInfo!;
             
-            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as NSValue;
-            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as NSTimeInterval;
+            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue;
+            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval;
             var keyboardFrame : CGRect = keyboardFrameValue.CGRectValue();
             
             var isPortrait : Bool = UIApplication.sharedApplication().statusBarOrientation.isPortrait;
@@ -124,8 +124,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if(keyboardShowing){
             var notificationInfo : [NSObject : AnyObject] = notification.userInfo!;
             
-            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as NSValue;
-            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as NSTimeInterval;
+            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue;
+            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval;
             var keyboardFrame : CGRect = keyboardFrameValue.CGRectValue();
             
             var isPortrait : Bool = UIApplication.sharedApplication().statusBarOrientation.isPortrait;
@@ -171,17 +171,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 user["lastName"] = lastName;
                 
                 activityIndicator.startAnimating();
-                user.signUpInBackgroundWithBlock({ (succeeded : Bool!, error : NSError!) -> Void in
+                user.signUpInBackgroundWithBlock({ (succeeded, error) -> Void in
                     self.activityIndicator.stopAnimating();
                     
-                    if(succeeded! == true){
+                    if(succeeded == true){
                         // let them use the app
                         self.navigationController?.popToRootViewControllerAnimated(true);
                     }
                     else{
                         var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
-                        var errorString : NSString = errorInfo["error"] as NSString;
-                        AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                        var errorString : NSString = errorInfo["error"] as! NSString;
+                        AppUtils.sharedInstance.makeAlertView("Error", message: errorString as String, action: "OK", sender: self);
                     }
                 })
             }

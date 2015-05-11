@@ -24,7 +24,7 @@ class ActivityTableViewController: UITableViewController {
         titleView.sizeToFit();
         self.navigationItem.titleView = titleView;
         
-        for item in self.tabBarController?.tabBar.items as [UITabBarItem] {
+        for item in self.tabBarController?.tabBar.items as! [UITabBarItem] {
             if let image = item.image {
                 item.image = image.imageWithColor(AppUtils.sharedInstance.darkGrayColour1).imageWithRenderingMode(.AlwaysOriginal)
             }
@@ -85,21 +85,21 @@ class ActivityTableViewController: UITableViewController {
             self.activities.removeAll(keepCapacity: false);
             
             // fetch users activities
-            var relation = currentUser.relationForKey("activities");
+            var relation = currentUser!.relationForKey("activities");
             var query = relation.query();
-            query.orderByDescending("createdAt");
-            query.limit = 20;
+            query!.orderByDescending("createdAt");
+            query!.limit = 20;
             
-            query.findObjectsInBackgroundWithBlock {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+            query!.findObjectsInBackgroundWithBlock {
+                (objects, error) -> Void in
                 if(error == nil) {
-                    for object in objects {
+                    for object in objects as! [PFObject] {
                         var activity : PFObject = object as PFObject;
                         self.activities.append(activity);
                     }
                 } else {
                     // Log details of the failure
-                    NSLog("Error: %@ %@", error, error.userInfo!)
+                    NSLog("Error: %@ %@", error!, error!.userInfo!)
                 }
                 
                 AppUtils.sharedInstance.cachedActivities = self.activities;
@@ -116,24 +116,22 @@ class ActivityTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1;
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return self.activities.count;
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : ActivityTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as ActivityTableViewCell
+        let cell : ActivityTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ActivityTableViewCell
 
         // Configure the cell...
-        var activityMessage = self.activities[indexPath.row]["activityMessage"] as String;
-        var timeOfActivity = self.activities[indexPath.row].createdAt as NSDate;
+        var activityMessage = self.activities[indexPath.row]["activityMessage"] as! String;
+        var timeOfActivity : NSDate = self.activities[indexPath.row].createdAt!;
         //cell.textLabel?.text = activityMessage;
         //cell.textLabel?.numberOfLines = 0
         cell.messageLabel.textColor = AppUtils.sharedInstance.redColour1;

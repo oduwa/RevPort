@@ -29,7 +29,7 @@ class TestListTableViewController: UITableViewController {
         /* Nav Bar */
         /* Nav Bar */
         // Title
-        var moduleName = testModule["moduleName"] as String;
+        var moduleName = testModule["moduleName"] as! String;
         var titleView = UILabel();
         titleView.text = moduleName;
         titleView.font = UIFont(name: "Code-Bold", size: 16.0);
@@ -69,15 +69,15 @@ class TestListTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as TestListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TestListTableViewCell
         
         // Configure the cell...
-        var testTitle = self.tests[indexPath.row]["testTitle"] as String;
-        var gradeable = self.tests[indexPath.row]["gradeable"] as Bool;
-        var count = self.tests[indexPath.row]["questionCount"] as Int;
+        var testTitle = self.tests[indexPath.row]["testTitle"] as! String;
+        var gradeable = self.tests[indexPath.row]["gradeable"] as! Bool;
+        var count = self.tests[indexPath.row]["questionCount"] as! Int;
         var score = 0.0;
         if(self.tests[indexPath.row]["score_temp"] != nil){
-            score =  self.tests[indexPath.row]["score_temp"] as Double;
+            score =  self.tests[indexPath.row]["score_temp"] as! Double;
             score = AppUtils.sharedInstance.roundToDecimalPlaces(score, decimalPlaces: 2);
             cell.scoreLabel.text = "\(score)%";
         }
@@ -108,11 +108,11 @@ class TestListTableViewController: UITableViewController {
         testToShow = test;
         var questionRelation = test.relationForKey("questions");
         var query = questionRelation.query();
-        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+        query!.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if(error == nil){
                 // store retreived questions list
-                self.questionsToShow = objects as Array<PFObject>;
-                self.gradeableToShow = test["gradeable"] as Bool;
+                self.questionsToShow = objects as! Array<PFObject>;
+                self.gradeableToShow = test["gradeable"] as! Bool;
                 self.performSegueWithIdentifier("showQuestion", sender: self);
             }
             else{
@@ -169,12 +169,12 @@ class TestListTableViewController: UITableViewController {
         
         var relation = testModule.relationForKey("tests");
         var query = relation.query();
-        query.orderByAscending("createdAt");
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+        query!.orderByAscending("createdAt");
+        query!.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
             if(error == nil) {
                 // Add test to data source
-                for object in objects {
+                for object in objects as! [PFObject] {
                     var test : PFObject = object as PFObject;
                     self.tests.append(test);
                 }
@@ -182,15 +182,16 @@ class TestListTableViewController: UITableViewController {
                 // Get scores
                 for test in self.tests {
                     self.activityIndicator.startAnimating();
-                    var currentUsername = PFUser.currentUser().username;
-                    var attempters = test["attempters"] as Array<String>;
-                    if(contains(attempters, currentUsername)){
+                    var currentUsername = PFUser.currentUser()!.username;
+                    var attempters = test["attempters"] as! Array<String>;
+                    if(contains(attempters, currentUsername!)){
                         var scoreRelation = test.relationForKey("scores");
                         var scoreQuery = scoreRelation.query();
-                        scoreQuery.whereKey("username", equalTo: currentUsername);
-                        scoreQuery.getFirstObjectInBackgroundWithBlock({ (score, error) -> Void in
+                        scoreQuery!.whereKey("username", equalTo: currentUsername!);
+                        scoreQuery!.getFirstObjectInBackgroundWithBlock({ (score, error) -> Void in
                             if(error == nil){
-                                test["score_temp"] = score["mark"];
+                               // var s : PFObject = score!;
+                                test["score_temp"] = score!["mark"];
                             }
                             else if(score == nil){
                                 // nothing
@@ -208,8 +209,8 @@ class TestListTableViewController: UITableViewController {
             } else {
                 // Log details of the failure
                 var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
-                var errorString : NSString = errorInfo["error"] as NSString;
-                AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                var errorString : NSString = errorInfo["error"] as! NSString;
+                AppUtils.sharedInstance.makeAlertView("Error", message: errorString as String, action: "OK", sender: self);
             }
             
             self.tableView.reloadData();
@@ -220,9 +221,9 @@ class TestListTableViewController: UITableViewController {
     
     // MARK: - Selectors
     func showAnswers(notification:NSNotification){
-        let userInfo:Dictionary<NSString,NSArray!> = notification.userInfo as Dictionary<NSString,NSArray!>
-        self.choicesToShow = userInfo["choices"] as Array<String>;
-        self.answersToShow = userInfo["answers"] as Array<String>;
+        let userInfo:Dictionary<NSString,NSArray!> = notification.userInfo as! Dictionary<NSString,NSArray!>
+        self.choicesToShow = userInfo["choices"] as! Array<String>;
+        self.answersToShow = userInfo["answers"] as! Array<String>;
 
         self.tests.removeAll(keepCapacity: false);
         self.fetchTests();
@@ -239,14 +240,14 @@ class TestListTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if(segue.identifier == "showQuestion"){
-            var questionViewCont = segue.destinationViewController as QuestionViewController;
+            var questionViewCont = segue.destinationViewController as! QuestionViewController;
             questionViewCont.test = testToShow;
             questionViewCont.questions = questionsToShow;
             questionViewCont.isGradeable = gradeableToShow;
             questionViewCont.questionIndex = 0;
         }
         else if(segue.identifier == "showAnswer"){
-            var answerViewCont = segue.destinationViewController as AnswerViewController;
+            var answerViewCont = segue.destinationViewController as! AnswerViewController;
             answerViewCont.questions = questionsToShow;
             answerViewCont.choices = choicesToShow;
             answerViewCont.answers = answersToShow;

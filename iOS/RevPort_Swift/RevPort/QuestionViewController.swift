@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionViewController: UIViewController {
+class QuestionViewController: UIViewController, UIAlertViewDelegate {
 
     var test : PFObject!
     var questions = Array<PFObject>();
@@ -78,11 +78,11 @@ class QuestionViewController: UIViewController {
         
         /* Get question and options */
         var question = self.questions[index];
-        var options : Array<String> = question["options"] as Array<String>;
+        var options : Array<String> = question["options"] as! Array<String>;
         
-        if(question["questionType"] as String == "regular"){
+        if(question["questionType"] as! String == "regular"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
+            self.questionTextView.text = question["questionText"] as! String;
             self.optionTextViewA.text = options[0] as String;
             self.optionTextViewB.text = options[1] as String;
             self.optionTextViewC.text = options[2] as String;
@@ -104,11 +104,11 @@ class QuestionViewController: UIViewController {
                 }
             }
         }
-        else if(question["questionType"] as String == "boolean"){
+        else if(question["questionType"] as! String == "boolean"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
-            self.optionTextViewA.text = options[0] as String;
-            self.optionTextViewB.text = options[1] as String;
+            self.questionTextView.text = question["questionText"] as! String;
+            self.optionTextViewA.text = options[0]
+            self.optionTextViewB.text = options[1];
             self.optionTextViewC.hidden = true; self.optionButtonC.hidden = true;
             self.optionTextViewD.hidden = true; self.optionButtonD.hidden = true;
             
@@ -122,9 +122,9 @@ class QuestionViewController: UIViewController {
                 }
             }
         }
-        else if(question["questionType"] as String == "single"){
+        else if(question["questionType"] as! String == "single"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
+            self.questionTextView.text = question["questionText"] as! String;
             
             self.optionTextViewA.hidden = true; self.optionButtonA.hidden = true;
             self.optionTextViewB.hidden = true; self.optionButtonB.hidden = true;
@@ -227,7 +227,7 @@ class QuestionViewController: UIViewController {
             var i = 0;
             var numberCorrect = 0;
             for answer in answers {
-                var correctAnswer = self.questions[i]["correctAnswer"] as String;
+                var correctAnswer = self.questions[i]["correctAnswer"] as! String;
                 if(answer == correctAnswer){
                     numberCorrect++;
                 }
@@ -241,20 +241,20 @@ class QuestionViewController: UIViewController {
             
             
             /* Record score if necessary */
-            var currentUsername = PFUser.currentUser().username;
-            var attempters = test["attempters"] as Array<String>;
-            var isGradeable = test["gradeable"] as Bool;
+            var currentUsername = PFUser.currentUser()!.username;
+            var attempters = test["attempters"] as! Array<String>;
+            var isGradeable = test["gradeable"] as! Bool;
             var alreadyAttempted = false;
             
             // Check if user already took test
-            if(contains(attempters, currentUsername)){
+            if(contains(attempters, currentUsername!)){
                 alreadyAttempted = true;
             }
             
             // save new score if user has never done this test before, gradeable or not
             if(!alreadyAttempted){
                 // Add as attempted
-                attempters.append(currentUsername);
+                attempters.append(currentUsername!);
                 test["attempters"] = attempters;
                 test.save();
                 
@@ -262,8 +262,8 @@ class QuestionViewController: UIViewController {
                 var score = PFObject(className:"Score");
                 score["username"] = currentUsername;
                 score["mark"] = mark;
-                score["scoreModule"] = test["testModule"] as String;
-                score["scoreTitle"] = test["testTitle"] as String;
+                score["scoreModule"] = test["testModule"] as! String;
+                score["scoreTitle"] = test["testTitle"] as! String;
                 score.save();
                 
                 // add score to test's relation
@@ -275,10 +275,10 @@ class QuestionViewController: UIViewController {
             else if(!isGradeable && alreadyAttempted){
                 // Get users previous score
                 var query = PFQuery(className:"Score")
-                query.whereKey("username", equalTo:currentUsername)
-                query.whereKey("scoreModule", equalTo:test["testModule"] as String)
-                query.whereKey("scoreTitle", equalTo:test["testTitle"] as String)
-                var score = query.getFirstObject();
+                query.whereKey("username", equalTo:currentUsername!)
+                query.whereKey("scoreModule", equalTo:test["testModule"] as! String)
+                query.whereKey("scoreTitle", equalTo:test["testTitle"] as! String)
+                var score : PFObject = query.getFirstObject()!;
                 
                 // update the users score
                 score["mark"] = mark;
@@ -288,15 +288,15 @@ class QuestionViewController: UIViewController {
             
             /* Record activity */
             var newActivity = PFObject(className:"Activity");
-            var testModule = test["testModule"] as String;
-            var testName = test["testTitle"] as String;
+            var testModule = test["testModule"] as! String;
+            var testName = test["testTitle"] as! String;
             var activityMessage = "completed the test \"\(testName)\" for \(testModule). Scored \(mark)%";
             newActivity["activityMessage"] = activityMessage;
             newActivity.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                 if(succeeded){
-                    var activityRelation = PFUser.currentUser().relationForKey("activities");
+                    var activityRelation = PFUser.currentUser()!.relationForKey("activities");
                     activityRelation.addObject(newActivity);
-                    PFUser.currentUser().saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+                    PFUser.currentUser()!.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
                         if(error == nil){
                             AppUtils.sharedInstance.cachedActivities.removeAll(keepCapacity: true);
                         }

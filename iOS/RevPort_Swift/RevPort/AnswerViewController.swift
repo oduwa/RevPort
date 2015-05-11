@@ -55,12 +55,12 @@ class AnswerViewController: UIViewController {
         
         /* Get question and options */
         var question = self.questions[index];
-        var correctAnswer = question["correctAnswer"] as String;
-        var options : Array<String> = question["options"] as Array<String>;
+        var correctAnswer = question["correctAnswer"] as! String;
+        var options : Array<String> = question["options"] as! Array<String>;
         
-        if(question["questionType"] as String == "regular"){
+        if(question["questionType"] as! String == "regular"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
+            self.questionTextView.text = question["questionText"] as! String;
             self.optionTextViewA.text = options[0] as String;
             self.optionTextViewB.text = options[1] as String;
             self.optionTextViewC.text = options[2] as String;
@@ -96,9 +96,9 @@ class AnswerViewController: UIViewController {
                 self.optionTextViewD.backgroundColor = UIColor.greenColor();
             }
         }
-        else if(question["questionType"] as String == "boolean"){
+        else if(question["questionType"] as! String == "boolean"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
+            self.questionTextView.text = question["questionText"] as! String;
             self.optionTextViewA.text = options[0] as String;
             self.optionTextViewB.text = options[1] as String;
             self.optionTextViewC.hidden = true;
@@ -124,9 +124,9 @@ class AnswerViewController: UIViewController {
                 self.optionTextViewB.backgroundColor = UIColor.greenColor();
             }
         }
-        else if(question["questionType"] as String == "single"){
+        else if(question["questionType"] as! String == "single"){
             /* Update views with question details */
-            self.questionTextView.text = question["questionText"] as String;
+            self.questionTextView.text = question["questionText"] as! String;
             
 
             self.optionTextViewA.hidden = true;

@@ -37,8 +37,8 @@ class LoginViewController: UIViewController {
         if(!keyboardShowing){
             var notificationInfo : [NSObject : AnyObject] = notification.userInfo!;
             
-            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as NSValue;
-            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as NSTimeInterval;
+            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue;
+            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval;
             var keyboardFrame : CGRect = keyboardFrameValue.CGRectValue();
             
             var isPortrait : Bool = UIApplication.sharedApplication().statusBarOrientation.isPortrait;
@@ -66,8 +66,8 @@ class LoginViewController: UIViewController {
         if(keyboardShowing){
             var notificationInfo : [NSObject : AnyObject] = notification.userInfo!;
             
-            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as NSValue;
-            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as NSTimeInterval;
+            var keyboardFrameValue : NSValue = notificationInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue;
+            var animationDuration : NSTimeInterval = notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval;
             var keyboardFrame : CGRect = keyboardFrameValue.CGRectValue();
             
             var isPortrait : Bool = UIApplication.sharedApplication().statusBarOrientation.isPortrait;
@@ -136,7 +136,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func usernameFieldReturn(sender: AnyObject) {
-        var textField = sender as UITextField;
+        var textField = sender as! UITextField;
         textField.resignFirstResponder();
     }
     
@@ -150,7 +150,7 @@ class LoginViewController: UIViewController {
         if(!username.isEmpty && !password.isEmpty){
             /* Log in */
             PFUser.logInWithUsernameInBackground(username, password:password) {
-                (user: PFUser!, error: NSError!) -> Void in
+                (user, error) -> Void in
                 if user != nil {
                     // Do stuff after successful login.
                     self.navigationController?.popToRootViewControllerAnimated(true);
@@ -158,8 +158,8 @@ class LoginViewController: UIViewController {
                 } else {
                     // The login failed. Check error to see why.
                     var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
-                    var errorString : NSString = errorInfo["error"] as NSString;
-                    AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                    var errorString : NSString = errorInfo["error"] as! NSString;
+                    AppUtils.sharedInstance.makeAlertView("Error", message: errorString as String, action: "OK", sender: self);
                 }
             }
         }
@@ -167,7 +167,7 @@ class LoginViewController: UIViewController {
             AppUtils.sharedInstance.makeAlertView("", message: "Please complete all fields before you continue", action: "OK", sender: self);
         }
         
-        var textField = sender as UITextField;
+        var textField = sender as! UITextField;
         textField.resignFirstResponder();
     }
     

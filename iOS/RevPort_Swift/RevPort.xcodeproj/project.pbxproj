@@ -18,6 +18,8 @@
 		4C5B0A001A766F7B004F12FE /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C5B09FA1A766F7B004F12FE /* settings@2x.png */; };
 		4C74B1341A70FEBA0023E13A /* ModuleSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */; };
 		4C74BF111A7169F00015BEA6 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */; };
+		4C77755D1AD4301900CB9B7D /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77755A1AD4301900CB9B7D /* MBFingerTipWindow.m */; };
+		4C77755E1AD4301900CB9B7D /* SingleLineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C77755C1AD4301900CB9B7D /* SingleLineTextField.m */; };
 		4C87BE131A734AB800FEDBB6 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C87BE121A734AB800FEDBB6 /* AnswerViewController.swift */; };
 		4CAE3B131A752B75000CEFC2 /* circula-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CAE3AEE1A752B75000CEFC2 /* circula-medium.otf */; };
 		4CAE3B141A752B75000CEFC2 /* CODE Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CAE3AEF1A752B75000CEFC2 /* CODE Bold.otf */; };
@@ -117,6 +119,10 @@
 		4C5B09FA1A766F7B004F12FE /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		4C74B1331A70FEBA0023E13A /* ModuleSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectTableViewController.swift; sourceTree = "<group>"; };
 		4C74BF101A7169F00015BEA6 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		4C7775591AD4301900CB9B7D /* MBFingerTipWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBFingerTipWindow.h; sourceTree = "<group>"; };
+		4C77755A1AD4301900CB9B7D /* MBFingerTipWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBFingerTipWindow.m; sourceTree = "<group>"; };
+		4C77755B1AD4301900CB9B7D /* SingleLineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLineTextField.h; sourceTree = "<group>"; };
+		4C77755C1AD4301900CB9B7D /* SingleLineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleLineTextField.m; sourceTree = "<group>"; };
 		4C87BE121A734AB800FEDBB6 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		4CAE3AEE1A752B75000CEFC2 /* circula-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "circula-medium.otf"; sourceTree = "<group>"; };
 		4CAE3AEF1A752B75000CEFC2 /* CODE Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Bold.otf"; sourceTree = "<group>"; };
@@ -256,6 +262,17 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		4C7775581AD4301900CB9B7D /* SLInput */ = {
+			isa = PBXGroup;
+			children = (
+				4C7775591AD4301900CB9B7D /* MBFingerTipWindow.h */,
+				4C77755A1AD4301900CB9B7D /* MBFingerTipWindow.m */,
+				4C77755B1AD4301900CB9B7D /* SingleLineTextField.h */,
+				4C77755C1AD4301900CB9B7D /* SingleLineTextField.m */,
+			);
+			path = SLInput;
+			sourceTree = "<group>";
+		};
 		4CAE3AED1A752B75000CEFC2 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +371,7 @@
 		4CE09EEA1A69A86800156435 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C7775581AD4301900CB9B7D /* SLInput */,
 				4CE09EEB1A69A86800156435 /* Info.plist */,
 				4CE09F6D1A69E5D700156435 /* RevPort-Bridging-Header.h */,
 				4CE864321A6AA3A0000D1CD9 /* AppUtils.swift */,
@@ -597,9 +615,11 @@
 				4CF09BA11A710F4200823176 /* TestListTableViewController.swift in Sources */,
 				4C3FF8D81A6D612300544CC9 /* ModuleTableViewController.swift in Sources */,
 				4CE864331A6AA3A0000D1CD9 /* AppUtils.swift in Sources */,
+				4C77755E1AD4301900CB9B7D /* SingleLineTextField.m in Sources */,
 				4CE09EED1A69A86800156435 /* AppDelegate.swift in Sources */,
 				4CE864351A6AB153000D1CD9 /* ActivityTableViewController.swift in Sources */,
 				4C87BE131A734AB800FEDBB6 /* AnswerViewController.swift in Sources */,
+				4C77755D1AD4301900CB9B7D /* MBFingerTipWindow.m in Sources */,
 				4C3FF8D51A6D56A400544CC9 /* ActivityTableViewCell.swift in Sources */,
 				4CE09EEF1A69A86800156435 /* FirstViewController.swift in Sources */,
 			);

@@ -59,15 +59,15 @@ class ModuleTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         var moduleCode = "";
         var moduleName = "";
 
         // Configure the cell...
         if(self.modules.count > 0){
             if(indexPath.row != self.modules.count){
-                moduleCode = self.modules[indexPath.row]["moduleCode"] as String;
-                moduleName = self.modules[indexPath.row]["moduleName"] as String;
+                moduleCode = self.modules[indexPath.row]["moduleCode"] as! String;
+                moduleName = self.modules[indexPath.row]["moduleName"] as! String;
             }
             
             cell.textLabel?.font = UIFont(name: "Code-Bold", size: 16.0);
@@ -159,21 +159,21 @@ class ModuleTableViewController: UITableViewController {
             self.modules.removeAll(keepCapacity: false);
             
             // fetch users modules
-            var relation = currentUser.relationForKey("modules");
+            var relation = currentUser!.relationForKey("modules");
             var query = relation.query();
             
-            query.findObjectsInBackgroundWithBlock {
-                (objects: [AnyObject]!, error: NSError!) -> Void in
+            query!.findObjectsInBackgroundWithBlock {
+                (objects, error) -> Void in
                 if(error == nil) {
-                    for object in objects {
+                    for object in objects as! [PFObject] {
                         var module : PFObject = object as PFObject;
                         self.modules.append(module);
                     }
                 } else {
                     // Log details of the failure
                     var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
-                    var errorString : NSString = errorInfo["error"] as NSString;
-                    AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                    var errorString : NSString = errorInfo["error"] as! NSString;
+                    AppUtils.sharedInstance.makeAlertView("Error", message: errorString as String, action: "OK", sender: self);
                 }
                 
                 AppUtils.sharedInstance.cachedModules = self.modules;
@@ -191,22 +191,22 @@ class ModuleTableViewController: UITableViewController {
         
         /* Remove module from back-end */
         var currentUser = PFUser.currentUser();
-        var moduleRelation = currentUser.relationForKey("modules");
+        var moduleRelation = currentUser!.relationForKey("modules");
         var moduleToRemove = self.modules[indexPath.row];
         moduleRelation.removeObject(moduleToRemove);
         
         
         /* Record activity */
         var newActivity = PFObject(className:"Activity");
-        var modName = moduleToRemove["moduleName"] as String;
-        var modCode = moduleToRemove["moduleCode"] as String;
+        var modName = moduleToRemove["moduleName"] as! String;
+        var modCode = moduleToRemove["moduleCode"] as! String;
         var activityMsg = "removed the module:  " + modCode + " - " + modName + ".";
         newActivity["activityMessage"] = activityMsg;
         newActivity.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if(succeeded){
-                var activityRelation = currentUser.relationForKey("activities");
+                var activityRelation = currentUser!.relationForKey("activities");
                 activityRelation.addObject(newActivity);
-                currentUser.saveEventually();
+                currentUser?.saveEventually(nil);
             }
             else{
                 AppUtils.sharedInstance.makeAlertView("RevPort", message: "An error occured adding that module. Please try again later.", action: "OK", sender: self);
@@ -220,21 +220,21 @@ class ModuleTableViewController: UITableViewController {
         
         /* Save module */
         var currentUser = PFUser.currentUser();
-        var moduleRelation = currentUser.relationForKey("modules");
+        var moduleRelation = currentUser!.relationForKey("modules");
         moduleRelation.addObject(module);
         
         
         /* Save activity */
         var newActivity = PFObject(className:"Activity");
-        var modName = module["moduleName"] as String;
-        var modCode = module["moduleCode"] as String;
+        var modName = module["moduleName"] as! String;
+        var modCode = module["moduleCode"] as! String;
         var activityMsg = "added the module:  " + modCode + " - " + modName + ".";
         newActivity["activityMessage"] = activityMsg;
         newActivity.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if(succeeded){
-                var activityRelation = currentUser.relationForKey("activities");
+                var activityRelation = currentUser!.relationForKey("activities");
                 activityRelation.addObject(newActivity);
-                currentUser.saveEventually();
+                currentUser!.saveEventually(nil);
             }
             else{
                 AppUtils.sharedInstance.makeAlertView("RevPort", message: "An error occured adding that module. Please try again later.", action: "OK", sender: self);
@@ -258,7 +258,7 @@ class ModuleTableViewController: UITableViewController {
         /* Check that module has not already been added */
         var newModuleCode = AppUtils.sharedInstance.storedModuleToAdd["moduleCode"] as? String;
         for module in self.modules {
-            var existingModuleCode = module["moduleCode"] as String;
+            var existingModuleCode = module["moduleCode"] as! String;
             if(existingModuleCode == newModuleCode){
                 return;
             }
@@ -288,7 +288,7 @@ class ModuleTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if(segue.identifier == "showTests"){
-            var testListCont = segue.destinationViewController as TestListTableViewController;
+            var testListCont = segue.destinationViewController as! TestListTableViewController;
             testListCont.testModule = moduleToShowTestsFor;
         }
     }

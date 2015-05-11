@@ -35,7 +35,12 @@ class AppUtils: NSObject {
             sender.presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            var alert = UIAlertView(title: title, message: message, delegate: sender, cancelButtonTitle:action)
+            var alert = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle:action)
+//            var alert = UIAlertView()
+//            alert.title = title
+//            alert.message = message
+//            alert.delegate = sender
+//            alert.addButtonWithTitle(action);
             alert.show()
         }
         
@@ -75,7 +80,7 @@ class AppUtils: NSObject {
     func printAllFontNames(){
         for family in UIFont.familyNames()
         {
-            var famLikeFamily : String = family as String;
+            var famLikeFamily : String = family as! String;
             println(famLikeFamily);
             
             for name in UIFont.fontNamesForFamilyName(famLikeFamily)

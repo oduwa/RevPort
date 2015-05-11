@@ -54,14 +54,14 @@ class ModuleSelectTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         var moduleCode = "";
         var moduleName = "";
         
         // Configure the cell...
         if(indexPath.row != self.modules.count){
-            moduleCode = self.modules[indexPath.row]["moduleCode"] as String;
-            moduleName = self.modules[indexPath.row]["moduleName"] as String;
+            moduleCode = self.modules[indexPath.row]["moduleCode"] as! String;
+            moduleName = self.modules[indexPath.row]["moduleName"] as! String;
         }
         
         cell.textLabel?.font = UIFont(name: "Code-Bold", size: 16.0);
@@ -123,19 +123,18 @@ class ModuleSelectTableViewController: UITableViewController {
         activityIndicator.startAnimating();
         
         var query = PFQuery(className:"Module");
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 // The find succeeded.
-                for object in objects {
+                for object in objects as! [PFObject]! {
                     var module : PFObject = object as PFObject;
                     self.modules.append(module);
                 }
             } else {
                 // Log details of the failure
                 var errorInfo : [NSObject : AnyObject] = error!.userInfo!;
-                var errorString : NSString = errorInfo["error"] as NSString;
-                AppUtils.sharedInstance.makeAlertView("Error", message: errorString, action: "OK", sender: self);
+                var errorString : NSString = errorInfo["error"] as! NSString;
+                AppUtils.sharedInstance.makeAlertView("Error", message: errorString as String, action: "OK", sender: self);
             }
             
             self.tableView.reloadData();
